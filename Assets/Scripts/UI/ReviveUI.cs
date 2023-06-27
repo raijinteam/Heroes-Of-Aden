@@ -33,7 +33,7 @@ public class ReviveUI : MonoBehaviour
         slider_Counter.value -= Time.deltaTime / reviveScreenTimer;
         if(slider_Counter.value <= 0)
         {
-            Debug.Log("Show Game over Screen");
+            //Debug.Log("Show Game over Screen");
             this.gameObject.SetActive(false);
             GameManager.Instance.PlayerDied();
         }

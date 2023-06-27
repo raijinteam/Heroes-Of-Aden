@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DataManager : MonoBehaviour
 {
@@ -64,6 +65,8 @@ public class DataManager : MonoBehaviour
 
 	public void SetFirstTimeData()
 	{
+		Debug.Log("Set Player all Data");
+
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_COINS, totalCoins);
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_GAMES, totalGames);
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_ENERGY, totalEnergy);
@@ -72,12 +75,20 @@ public class DataManager : MonoBehaviour
 		PlayerPrefs.SetFloat(PlayerPrefsData.KEY_BESTTIME, 0.0f);
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_ACTIVE_PLAYER_INDEX, 0);
 
+		//Set game start time to null
+		PlayerPrefs.SetString(PlayerPrefsData.KEY_GAME_CURRENT_TIME, "");
+		PlayerPrefs.SetFloat(PlayerPrefsData.KEY_GAME_ACTIVE_TIME, 0);
+
+
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_NOAD, 0);
 		isNOAdPurchase = false;
+
 
 		//Set By Default Player 1 Unlock And Level is 1
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_UNLOCK_PLAYER + 0, 1);
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_PLAYER_LEVEL + 0, 1);
+
+
 
 		activePlayerIndex = PlayerPrefs.GetInt(PlayerPrefsData.KEY_ACTIVE_PLAYER_INDEX);
 
@@ -93,6 +104,8 @@ public class DataManager : MonoBehaviour
 
 	public void GetAllData()
 	{
+		Debug.Log("Load Already Created  Data");
+
 		totalCoins = PlayerPrefs.GetInt(PlayerPrefsData.KEY_COINS);
 		totalGames = PlayerPrefs.GetInt(PlayerPrefsData.KEY_GAMES);
 		totalEnergy = PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY);
@@ -159,7 +172,14 @@ public class DataManager : MonoBehaviour
 	{
 		totalEnergy += _addAmount;
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_ENERGY, totalEnergy);
+		Debug.Log(PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY));
 		UIManager.Instance.ui_useableResource.CalcEnergy();
+	}
+
+	public void IncreaseEnergyOnStart(int _addAmount)
+    {
+		totalEnergy += _addAmount; 
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_ENERGY, totalEnergy);
 	}
 
 	public void SubstractCoins(int _spendAmount)
@@ -183,24 +203,10 @@ public class DataManager : MonoBehaviour
 		UIManager.Instance.ui_useableResource.CalcEnergy();
 	}
 
-	
-
-	public void ResetRoundDataWhenGameover()
-    {
-		collectedCoinsInGame = 0;
-		GameManager.Instance.currentPlayerPoints = 0;
-		GameManager.Instance.currentPlayerLevel = 0;
-		killCountIngame = 0;
-		activeGameTime = 0;
-		GameManager.Instance.list_ActivePowerUpSelectedIndexes.Clear();
-		GameManager.Instance.list_PassivePowerUpSelectedIndexes.Clear();
-		GameManager.Instance.timeInThisRound = 0;
-		GameManager.Instance.player.gameObject.SetActive(false);
-    }
 
 	public bool IsSFXON()
     {
-		Debug.Log("For Sfx : " + PlayerPrefs.GetInt(PlayerPrefsData.KEY_SFX));
+		//Debug.Log("For Sfx : " + PlayerPrefs.GetInt(PlayerPrefsData.KEY_SFX));
 		//return (PlayerPrefs.GetInt(PlayerPrefsData.KEY_SFX) == 0) ? false : true;
 		return (UIManager.Instance.ui_Setting.isSFXOn) ? true : false;
 	}

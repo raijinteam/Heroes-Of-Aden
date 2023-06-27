@@ -60,7 +60,7 @@ public class EnemyHealth : MonoBehaviour
 		{
 			deathCOunt += 1;
 
-			Debug.Log("Died : " + deathCOunt);
+			//Debug.Log("Died : " + deathCOunt);
 			GameManager.Instance.enemyKilled += 1;
 
 			if (data.isBoss)
@@ -71,7 +71,7 @@ public class EnemyHealth : MonoBehaviour
             //play death sound
             if (DataManager.Instance.IsSFXON() == true)
             {
-				Debug.Log("Player Enemy Death Sound");
+				//Debug.Log("Player Enemy Death Sound");
 				SoundManager.Instance.PlayEnemyDeathSound(clip_Death);
 				//audioSource.PlayOneShot(clip_Death);
 			}

@@ -20,7 +20,7 @@ public class AllUseableResourceUI : MonoBehaviour
     private float energy;
     private float targetEnergy;
 
-    private void Start()
+    private void OnEnable()
     {
         coins = PlayerPrefs.GetInt(PlayerPrefsData.KEY_COINS);
         targetCoins = PlayerPrefs.GetInt(PlayerPrefsData.KEY_COINS);
@@ -31,10 +31,9 @@ public class AllUseableResourceUI : MonoBehaviour
         txt_GamsAmount.text = gams.ToString("F0");
 
         energy = DataManager.Instance.totalEnergy;
-        targetEnergy = DataManager.Instance.totalEnergy;
+        targetEnergy = PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY);
         txt_EnergyAmount.text = energy.ToString("F0");
     }
-
 
     private void Update()
     {

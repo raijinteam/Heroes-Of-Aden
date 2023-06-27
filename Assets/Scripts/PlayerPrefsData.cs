@@ -22,6 +22,10 @@ public class PlayerPrefsData
 
     public static string KEY_BESTTIME = "Besttime";
 
+
+    public static string KEY_GAME_CURRENT_TIME = "GameCurrentTime";
+
+    public static string KEY_START_GAME_TIME = "StartGameTime";
     public static string KEY_GAME_ACTIVE_TIME = "GameActiveTime";
     public static string KEY_QUIT_TIME = "GameQuitTime";
 
