@@ -8,9 +8,9 @@ public class GameTimeManager : MonoBehaviour
 
     public static GameTimeManager Instance;
 
-    public float startGameTime;
-    public int minutesToGiveEnergy = 1;
+    public float gameStartTime;
 
+    public int minutesForIncreaseEnergyOverTime = 1;
     private TimeSpan timeSpan;
 
     private void Awake()
@@ -32,13 +32,7 @@ public class GameTimeManager : MonoBehaviour
     }
 
 
-
-    public float totalMinutes;
-
-
-    public float gameStartTime;
-
-    public int minutesForIncreaseEnergyOverTime = 1;
+    
 
     private void Start()
     {
