@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  - Missile
+  - BossPowers
+  - HealthPickUp
+  - PlayerPower
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Player
+  - PlayerPower
+  - Points
+  - Enemy
+  - Range Detector
+  - EnemyPower
+  - Boundary
+  - PickUp
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Enemy Layer One
+    uniqueID: 1131331489
+    locked: 0
+  - name: Enemy Layer Two
+    uniqueID: 3656448279
+    locked: 0
+  - name: Enemy Layer Three
+    uniqueID: 891040499
+    locked: 0
+  - name: Bullets
+    uniqueID: 276858465
+    locked: 0
+  - name: UI
+    uniqueID: 1786212599
+    locked: 0

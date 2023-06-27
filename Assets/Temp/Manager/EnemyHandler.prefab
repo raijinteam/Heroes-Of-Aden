@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1606930136220265654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1606930136220265653}
+  - component: {fileID: 1606930136220265652}
+  m_Layer: 0
+  m_Name: EnemyHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1606930136220265653
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606930136220265654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1606930136220265652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606930136220265654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2dbd0c30d1a22a4da5061573230df84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySpawnParent: {fileID: 0}
+  all_Bosses:
+  - {fileID: 2121064305997240424, guid: f233658e88cce8b4aa32e302d52c3b7d, type: 3}
+  - {fileID: 1958934124401778275, guid: d948801de05d4ab49af315c7ccb117cd, type: 3}
+  - {fileID: 7835567261412027226, guid: b90889dd0b77b9d489566c054cee2392, type: 3}
+  - {fileID: 677545385108002810, guid: 0994c938104c73846a91a9bd9407bc6f, type: 3}
+  enemyOne:
+  - {fileID: 7885315767993495672, guid: 7b6de84d6b1f21340bd6c8c6712a8240, type: 3}
+  - {fileID: 7885315767993495672, guid: 3c1387c1c8e82284697ae75b05d76643, type: 3}
+  - {fileID: 7885315767993495672, guid: 2610179be5032a24cb9e1ebbf070e7e8, type: 3}
+  - {fileID: 7885315767993495672, guid: c97a525155e795744b1f31ace251c836, type: 3}
+  enemyShooting:
+  - {fileID: 363597547275641162, guid: 20eb8bed67752d1409815cc7e70011ab, type: 3}
+  - {fileID: 363597547275641162, guid: 380aa79ed2e3835479ed884d403d0c8e, type: 3}
+  - {fileID: 363597547275641162, guid: c4e304908c696cf4ca5d0fd54f2b5389, type: 3}
+  - {fileID: 363597547275641162, guid: 61f022a758877bc46bf14d1f5c568024, type: 3}
+  all_Goblins:
+  - {fileID: 7885315767993495672, guid: ab3dc4e22565ecc4fb543333aec2d948, type: 3}
+  - {fileID: 7885315767993495672, guid: dedad23ceed65bd41a623dbd5c6d6097, type: 3}
+  - {fileID: 7885315767993495672, guid: 5fe45c42b68c5b04e9daa88054b95808, type: 3}

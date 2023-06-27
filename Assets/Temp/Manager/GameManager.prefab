@@ -1,0 +1,229 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6558774586788584487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6558774586788584486}
+  - component: {fileID: 6558774586788584485}
+  m_Layer: 0
+  m_Name: Goblin Surge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6558774586788584486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558774586788584487}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6558774588306546916}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6558774586788584485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558774586788584487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355fd7eff92b647418e7e488bd0551bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentEnemyIndex: 0
+  SpawnRate: 75
+--- !u!1 &6558774588025335715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6558774588025335714}
+  - component: {fileID: 6558774588025335713}
+  m_Layer: 0
+  m_Name: Normal Shooting Enemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6558774588025335714
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558774588025335715}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6558774588306546916}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6558774588025335713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558774588025335715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f7b3f8a493560418b0c0055ce59195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentEnemyIndex: 0
+  spawnRate: 10
+--- !u!1 &6558774588306546917
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6558774588306546916}
+  - component: {fileID: 6558774588306546907}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6558774588306546916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558774588306546917}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6558774588382954705}
+  - {fileID: 6558774588025335714}
+  - {fileID: 6558774586788584486}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6558774588306546907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558774588306546917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b17e52468bc7742ab5d84565c6c589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  list_ActiveEnemies: []
+  isGameRunning: 0
+  currentPlayerPoints: 0
+  pointsRequiredToLevelUp: 12
+  currentPlayerLevel: 0
+  timeInThisRound: 0
+  killCountInThisRound: 0
+  coinsCollectedInThisRound: 0
+  isPlayerTakeRevive: 0
+  virtual_Camera: {fileID: 0}
+  list_PowerUpIndexesToChooseFrom: 
+  list_PowerUpIndexesChosen: 
+  activePowerUpSelectedCount: 0
+  passivePowerUpSelectedCount: 0
+  list_ActivePowerUpSelectedIndexes: 
+  list_PassivePowerUpSelectedIndexes: 
+  point: {fileID: 8191558429518206481, guid: 3151ca09ba6b4df449b8c205214dcc65, type: 3}
+  pointSpawnParent: {fileID: 0}
+  bossSpawnEnemyCount: 500
+  bossSpawnEnemyCountIncreaseByPercentage: 50
+  shouldSpawnBoss: 0
+  bossBoundary: {fileID: 0}
+  bossKilledCount: 0
+  enemyKilled: 0
+  enemySpawnCount: 0
+  all_SortingLayerName:
+  - Enemy Layer One
+  - Enemy Layer Two
+  - Enemy Layer Three
+  normalEnemy: {fileID: 6558774588382954704}
+  shootingEnemy: {fileID: 6558774588025335713}
+  goblinEnemy: {fileID: 6558774586788584485}
+  pickUpSpawnParent: {fileID: 0}
+  coinSpawnParent: {fileID: 0}
+  healthPickUp: {fileID: 7585903931793926612, guid: c0491fbc96e535a4890e03b7d407185e, type: 3}
+  coinPickUp: {fileID: 6551478090823823726, guid: 6d38bbce7289a0a42aaf596916558ffd, type: 3}
+  magnetPickup: {fileID: 6551478090823823726, guid: 42627fca5fd46594f9f13d8f62e7643a, type: 3}
+  healthPickUpSpawnChance: 0.5
+  magnetPickupSpawnChance: 2
+  coinPickUpSpawnChance: 2
+  player: {fileID: 0}
+  playerBulletSpawnParent: {fileID: 0}
+--- !u!1 &6558774588382954706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6558774588382954705}
+  - component: {fileID: 6558774588382954704}
+  m_Layer: 0
+  m_Name: NormalEnemySpawnHandling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6558774588382954705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558774588382954706}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6558774588306546916}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6558774588382954704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6558774588382954706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e223685f244d5749bea074de75c598f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentEnemyIndex: 0
+  normalEnemySpawnRate: 0.6
