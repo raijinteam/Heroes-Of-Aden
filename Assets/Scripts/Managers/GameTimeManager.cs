@@ -40,7 +40,7 @@ public class GameTimeManager : MonoBehaviour
         if (PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY) < 30)
         {
             string dateQuitString = PlayerPrefs.GetString(PlayerPrefsData.KEY_QUIT_TIME);
-
+            float perviousActiveGameSeconds = PlayerPrefs.GetFloat(PlayerPrefsData.KEY_GAME_ACTIVE_TIME);
             if (!dateQuitString.Equals(""))
             {
                 DateTime dateQuit = DateTime.Parse(dateQuitString);
@@ -52,7 +52,7 @@ public class GameTimeManager : MonoBehaviour
 
                     float totalSeconds = (float)timeSpan.TotalSeconds;
 
-                    float perviousActiveGameSeconds = PlayerPrefs.GetFloat(PlayerPrefsData.KEY_GAME_ACTIVE_TIME);
+                   
 
                     float totalTime = perviousActiveGameSeconds + totalSeconds;
 
@@ -71,15 +71,16 @@ public class GameTimeManager : MonoBehaviour
                     DataManager.Instance.IncreaseEnergy((int)energyCount);
 
                     Debug.Log("Quit For " + timeSpan.TotalSeconds + " Seconds");
-                    Debug.Log("Total Time : " + totalTime);
+                    Debug.Log("Total Time : " + timeSpan);
                 }
 
                 PlayerPrefs.SetString(PlayerPrefsData.KEY_QUIT_TIME, "");
             }
 
             Debug.Log("Previous Game Active Time : " + PlayerPrefs.GetFloat(PlayerPrefsData.KEY_GAME_ACTIVE_TIME));
+
             PlayerPrefs.SetFloat(PlayerPrefsData.KEY_GAME_ACTIVE_TIME, gameStartTime);
-            gameStartTime = timeSpan.Seconds;
+            gameStartTime = perviousActiveGameSeconds + timeSpan.Seconds;
         }
 
 
@@ -99,7 +100,6 @@ public class GameTimeManager : MonoBehaviour
             {
                 DataManager.Instance.IncreaseEnergy((int)gameMinutes);
                 IncreaseEnergyOverTime(AddEnergyCount((int)gameMinutes));
-                UIManager.Instance.ui_useableResource.CalcEnergy();
                 gameStartTime = 0;
             }
         }

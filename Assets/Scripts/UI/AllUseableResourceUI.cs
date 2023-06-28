@@ -14,66 +14,46 @@ public class AllUseableResourceUI : MonoBehaviour
     private float targetCoins;
     [SerializeField] private float lerpTimer = 0.5f;
 
-    private float gams;
+    private float gems;
     private float targetGames;
 
     private float energy;
     private float targetEnergy;
 
-    private void OnEnable()
+
+
+    private void Start()
     {
-        coins = PlayerPrefs.GetInt(PlayerPrefsData.KEY_COINS);
-        targetCoins = PlayerPrefs.GetInt(PlayerPrefsData.KEY_COINS);
-        txt_CoinAmount.text = coins.ToString("F0");
-
-        gams = PlayerPrefs.GetInt(PlayerPrefsData.KEY_GAMES);
-        targetGames = PlayerPrefs.GetInt(PlayerPrefsData.KEY_GAMES);
-        txt_GamsAmount.text = gams.ToString("F0");
-
+        coins = DataManager.Instance.totalCoins;
+        gems = DataManager.Instance.totalGems;
         energy = DataManager.Instance.totalEnergy;
-        targetEnergy = PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY);
+
+        txt_CoinAmount.text = coins.ToString("F0");
+        txt_GamsAmount.text = gems.ToString("F0");
         txt_EnergyAmount.text = energy.ToString("F0");
     }
 
     private void Update()
     {
-        if (coins != targetCoins)
+        if (coins != DataManager.Instance.totalCoins)
         {
-            coins = Mathf.Lerp(coins, targetCoins, lerpTimer);
+            coins = Mathf.Lerp(coins, DataManager.Instance.totalCoins, lerpTimer);
 
             txt_CoinAmount.text = coins.ToString("F0");
         }
 
 
-        if(gams != targetGames)
+        if(gems != DataManager.Instance.totalGems)
         {
-            gams = Mathf.Lerp(gams, targetGames, lerpTimer);
+            gems = Mathf.Lerp(gems, DataManager.Instance.totalGems, lerpTimer);
 
-            txt_GamsAmount.text = gams.ToString("F0");
+            txt_GamsAmount.text = gems.ToString("F0");
         }
 
-        if (energy != targetEnergy)
+        if (energy != DataManager.Instance.totalEnergy)
         {
-            energy = Mathf.Lerp(energy, targetEnergy, lerpTimer);
+            energy = Mathf.Lerp(energy, DataManager.Instance.totalEnergy, lerpTimer);
             txt_EnergyAmount.text = energy.ToString("F0");
         }
     }
-
-    public void CalcCoins()
-    {
-        targetCoins = PlayerPrefs.GetInt(PlayerPrefsData.KEY_COINS);
-    }
-
-    public void CalcGames()
-    {
-        targetGames = PlayerPrefs.GetInt(PlayerPrefsData.KEY_GAMES);
-    }
-
-    public void CalcEnergy()
-    {
-        targetEnergy = DataManager.Instance.totalEnergy;
-       // Debug.Log("Total Energy : " + targetEnergy);
-    }
-
-
 }

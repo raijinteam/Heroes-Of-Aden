@@ -11,7 +11,7 @@ public class DataManager : MonoBehaviour
 
 	[Header("Player Data")]
 	public int totalCoins; // TOTAL COINS IN GAME
-	public int totalGames; // TOTAL GAMES IN GAME
+	public int totalGems; // TOTAL GAMES IN GAME
 	public int totalEnergy; // TOTAL ENERGY IN GAME
 	public int collectedCoinsInGame; // collected coins when player plays game
 	public int killCountIngame; //enemy kill amount when player plays game
@@ -68,7 +68,7 @@ public class DataManager : MonoBehaviour
 		Debug.Log("Set Player all Data");
 
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_COINS, totalCoins);
-		PlayerPrefs.SetInt(PlayerPrefsData.KEY_GAMES, totalGames);
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_GAMES, totalGems);
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_ENERGY, totalEnergy);
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_MUSIC, 1);
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_SFX, 1);
@@ -107,7 +107,7 @@ public class DataManager : MonoBehaviour
 		Debug.Log("Load Already Created  Data");
 
 		totalCoins = PlayerPrefs.GetInt(PlayerPrefsData.KEY_COINS);
-		totalGames = PlayerPrefs.GetInt(PlayerPrefsData.KEY_GAMES);
+		totalGems = PlayerPrefs.GetInt(PlayerPrefsData.KEY_GAMES);
 		totalEnergy = PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY);
 
 		activePlayerIndex = PlayerPrefs.GetInt(PlayerPrefsData.KEY_ACTIVE_PLAYER_INDEX);
@@ -157,15 +157,13 @@ public class DataManager : MonoBehaviour
 	public void IncreaseCoins(int _addAmount)
     {
 		totalCoins += _addAmount;
-		PlayerPrefs.SetInt(PlayerPrefsData.KEY_COINS, totalCoins);
-		UIManager.Instance.ui_useableResource.CalcCoins();
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_COINS, totalCoins);	
 	}
 
 	public void IncreaseGems(int _addAmount)
 	{
-		totalGames += _addAmount;
-		PlayerPrefs.SetInt(PlayerPrefsData.KEY_GAMES, totalGames);
-		UIManager.Instance.ui_useableResource.CalcGames();
+		totalGems += _addAmount;
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_GAMES, totalGems);	
 	}
 
 	public void IncreaseEnergy(int _addAmount)
@@ -173,7 +171,7 @@ public class DataManager : MonoBehaviour
 		totalEnergy += _addAmount;
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_ENERGY, totalEnergy);
 		Debug.Log(PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY));
-		UIManager.Instance.ui_useableResource.CalcEnergy();
+	
 	}
 
 	public void IncreaseEnergyOnStart(int _addAmount)
@@ -186,21 +184,20 @@ public class DataManager : MonoBehaviour
 	{
 		totalCoins -= _spendAmount;
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_COINS, totalCoins);
-		UIManager.Instance.ui_useableResource.CalcCoins();
+		
 	}
 
 	public void SubstractGames(int _spandAmount)
 	{
-		totalGames -= _spandAmount;
-		PlayerPrefs.SetInt(PlayerPrefsData.KEY_GAMES, totalGames);
-		UIManager.Instance.ui_useableResource.CalcGames();
+		totalGems -= _spandAmount;
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_GAMES, totalGems);
+		
 	}
 
 	public void SubstractEnergy(int _spandAmount)
 	{
 		totalEnergy -= _spandAmount;
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_ENERGY, totalEnergy);
-		UIManager.Instance.ui_useableResource.CalcEnergy();
 	}
 
 
