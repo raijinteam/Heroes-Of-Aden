@@ -23,6 +23,7 @@ public class TickingTerrorController : MonoBehaviour
     [SerializeField] private float explosionRadius;
     [SerializeField] private LayerMask enemyLayer;
 
+    private string tag_Enemy = "Enemy";
 
     private void OnEnable()
     {
@@ -59,7 +60,11 @@ public class TickingTerrorController : MonoBehaviour
         foreach (Collider2D collider in colliders)
         {
             // Handle the overlap
-            collider.GetComponent<CollisionControllerEnemy>().TakeDamage(damage);
+            if (collider.gameObject.tag.Equals(tag_Enemy))
+            {
+                collider.GetComponent<CollisionControllerEnemy>().TakeDamage(damage);
+            }
+
         }
 
 

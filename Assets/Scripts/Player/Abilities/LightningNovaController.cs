@@ -9,6 +9,7 @@ public class LightningNovaController : MonoBehaviour
     [SerializeField] private ParticleSystem ps_NovaEffect;
     [SerializeField] private float radius;
     [SerializeField] private LayerMask enemyLayer;
+    private string tag_Enemy = "Enemy";
 
     public void SetData(int _damage)
 	{
@@ -26,7 +27,12 @@ public class LightningNovaController : MonoBehaviour
         foreach (Collider2D collider in colliders)
         {
             // Handle the overlap
-            collider.GetComponent<CollisionControllerEnemy>().TakeDamage(damage);
+            if (collider.gameObject.tag.Equals(tag_Enemy))
+            {
+                collider.GetComponent<CollisionControllerEnemy>().TakeDamage(damage);
+            }
+
+            
         }       
     }
 

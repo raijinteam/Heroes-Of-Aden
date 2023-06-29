@@ -19,8 +19,10 @@ public class ThrusterController : MonoBehaviour
 	[SerializeField] private float radius;
 	[SerializeField] private LayerMask enemyLayer;
 
+	private string tag_Enemy = "Enemy";
 
-    private void OnEnable()
+
+	private void OnEnable()
     {
 		if (DataManager.Instance.IsSFXON() == true)
 		{
@@ -80,7 +82,11 @@ public class ThrusterController : MonoBehaviour
 		foreach (Collider2D collider in colliders)
 		{
 			// Handle the overlap
-			collider.GetComponent<CollisionControllerEnemy>().TakeDamage(damage);
+			if (collider.gameObject.tag.Equals(tag_Enemy))
+			{
+				collider.GetComponent<CollisionControllerEnemy>().TakeDamage(damage);
+			}
+
 		}
 	}
 }

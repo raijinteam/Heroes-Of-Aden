@@ -263,9 +263,10 @@ public class GameManager : MonoBehaviour
 	public void BossDied(Vector3 _position)
 	{
 		bossKilledCount += 1;
+	
 		int countIncrease = (int)(bossSpawnEnemyCount * (bossSpawnEnemyCountIncreaseByPercentage / 100));
-		bossSpawnEnemyCount += countIncrease; // new enemy death count
-
+		bossSpawnEnemyCount = bossSpawnEnemyCount + (bossSpawnEnemyCount + countIncrease); // new enemy death count
+		
 		shouldSpawnBoss = false;
 		bossBoundary.SetActive(false);
 

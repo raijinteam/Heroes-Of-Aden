@@ -30,7 +30,12 @@ public class ShatterstormController : MonoBehaviour
         }
     }
 
-    public void SetData(int _damage, int _areaDamage)
+	private void Start()
+	{
+        Destroy(gameObject, 7f);
+	}
+
+	public void SetData(int _damage, int _areaDamage)
 	{
         damage = _damage;
         splashDamage = _areaDamage;
@@ -79,8 +84,12 @@ public class ShatterstormController : MonoBehaviour
 		// Check if a collision occurred
 		foreach (Collider2D collider in colliders)
 		{
-			// Handle the overlap      
-            collider.GetComponent<CollisionControllerEnemy>().TakeDamage(splashDamage);
+            // Handle the overlap      
+            if (collider.gameObject.tag.Equals(tag_Enemy))
+            {
+                collider.GetComponent<CollisionControllerEnemy>().TakeDamage(splashDamage);
+            }
+          
         }
 	}
 }
