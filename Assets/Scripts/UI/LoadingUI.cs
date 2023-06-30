@@ -16,11 +16,33 @@ public class LoadingUI : MonoBehaviour
 
         //Invoke("Loadscene", 2f);
         StartCoroutine(StartLoading());
+        //StartCoroutine(LoadAsync());
     }
 
     private void Loadscene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
+    }
+
+    IEnumerator LoadAsync()
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(1);
+
+        // While the scene isn't fully loaded
+        while (!operation.isDone)
+        {
+            // You can access operation.progress for a value between 0 and 0.9
+            // that represents the current load progress
+            // Note: operation.progress will never reach 1.0 directly,
+            // when the scene is loaded the operation will just finish
+            float progress = Mathf.Clamp01(operation.progress / 0.9f);
+            Debug.Log("Loading progress: " + (progress * 100) + "%");
+
+            // Yield until next frame
+            yield return null;
+        }
+
+        Debug.Log("Loading completed");
     }
 
     IEnumerator StartLoading()
@@ -38,6 +60,6 @@ public class LoadingUI : MonoBehaviour
         }
 
         Debug.Log("Change scene");
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
 }

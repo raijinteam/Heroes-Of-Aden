@@ -9,6 +9,7 @@ public class CharchterData : MonoBehaviour
     public bool isLocked;
     [TextArea(2,6)]
     public string description;
+    public bool isCoinBased;
     public int[] upgradeAmount;
     public float[] moveSpeed;
     public float[] health;
