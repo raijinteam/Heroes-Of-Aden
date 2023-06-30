@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
 
 	[Header("UI SCRIPTS")]
 	public HomePanelUI ui_HomePanel;
+	public ShopUI ui_Shop;
 	public NavigationbarUI ui_Navigation;
 	public PassiveUpgradeUI ui_PassiveUpgrade;
 	public GameplayUI ui_Gameplay;

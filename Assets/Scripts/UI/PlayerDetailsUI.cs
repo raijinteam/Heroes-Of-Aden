@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class PlayerDetailsUI : MonoBehaviour
 {
+
+    [SerializeField] private GameObject playerDetailsPanel;
 
     [SerializeField] private TextMeshProUGUI txt_PlayerName;
     [SerializeField] private Image img_PlayerIcon;
@@ -15,18 +18,27 @@ public class PlayerDetailsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI txt_Damage;
     [SerializeField] private TextMeshProUGUI txt_Firerate;
 
+    [SerializeField] private Image img_UpgradeResource;
+
     [SerializeField] private Button btn_Select;
     [SerializeField] private Button btn_Upgrade;
 
     [SerializeField] private TextMeshProUGUI txt_UpgradeButton;
+
+    [SerializeField] private Sprite sprite_Coin;
+    [SerializeField] private Sprite sprite_Gems;
+
+    [SerializeField] private float flt_ScaleUpAnimationDuration = 0.2f;
 
     private int selectedIndex;
 
 
     private void OnEnable()
     {
-
+        playerDetailsPanel.transform.DOScale(new Vector3(1, 1, 1), flt_ScaleUpAnimationDuration);
     }
+
+
 
     public void SetSelectedPlayerData(int _selectedIndex)
     {
@@ -47,6 +59,12 @@ public class PlayerDetailsUI : MonoBehaviour
             txt_PlayerLevel.text = "LV." + (PlayerDataManager.Instance.GetPlayerLevel(_selectedIndex)).ToString();
         }
 
+        img_UpgradeResource.sprite = sprite_Gems;
+        if (PlayerDataManager.Instance.all_CharchterData[_selectedIndex].isCoinBased)
+        {
+            img_UpgradeResource.sprite = sprite_Coin;
+        }
+
 
         txt_PlayerName.text = PlayerDataManager.Instance.GetPlayerName(_selectedIndex);
         img_PlayerIcon.sprite = UIManager.Instance.ui_PlayerSelector.all_Player[_selectedIndex].img_PlayerIcon.sprite;
@@ -57,7 +75,7 @@ public class PlayerDetailsUI : MonoBehaviour
 
         txt_Damage.text = PlayerDataManager.Instance.all_CharchterData[_selectedIndex].damage[selectedPlayerLevel].ToString();
 
-        txt_Firerate.text = PlayerDataManager.Instance.all_CharchterData[_selectedIndex].firerate[selectedPlayerLevel].ToString();
+        txt_Firerate.text = PlayerDataManager.Instance.all_CharchterData[_selectedIndex].firerate[selectedPlayerLevel].ToString() + "s";
 
         txt_UpgradeButton.text = PlayerDataManager.Instance.all_CharchterData[_selectedIndex].upgradeAmount[PlayerDataManager.Instance.GetPlayerLevel(_selectedIndex)].ToString();
 
@@ -77,6 +95,11 @@ public class PlayerDetailsUI : MonoBehaviour
     }
 
 
+    private void SetActiveFalseMenu()
+    {
+        this.gameObject.SetActive(false);
+    }
+
     //BUTTON CLICK WHEN USER SELECT PLAYER
     public void OnClick_SelectPlayer()
     {
@@ -88,16 +111,32 @@ public class PlayerDetailsUI : MonoBehaviour
     //BUTTON EVENT WHEN USER CLICK FOR UPGRADE BUTTON 
     public void OnClick_UpgradePlayer()
     {
+        int selectedPlayerLevel = PlayerDataManager.Instance.GetPlayerLevel(selectedIndex) + 1;
 
-        if (!PlayerDataManager.Instance.hasEnoughCoinsForUpgradePlayer(selectedIndex))
+        if (!PlayerDataManager.Instance.all_CharchterData[selectedIndex].isCoinBased)
         {
-            UIManager.Instance.SpawnPopUpBox("Not Enough Coins");
-            return;
+            if (!PlayerDataManager.Instance.HasEnoughGemsForUpgradePlayer(selectedIndex))
+            {
+                UIManager.Instance.SpawnPopUpBox("Not Enough Gems");
+                return;
+            }
+                DataManager.Instance.SubstractGames(PlayerDataManager.Instance.all_CharchterData[selectedIndex].upgradeAmount[selectedPlayerLevel]);
+            
+        }
+        else
+        {
+            if (!PlayerDataManager.Instance.hasEnoughCoinsForUpgradePlayer(selectedIndex))
+            {
+                UIManager.Instance.SpawnPopUpBox("Not Enough Coins");
+                return;
+            }
+                DataManager.Instance.SubstractCoins(PlayerDataManager.Instance.all_CharchterData[selectedIndex].upgradeAmount[selectedPlayerLevel]);
+            
         }
 
+      
+       
 
-
-        int selectedPlayerLevel = PlayerDataManager.Instance.GetPlayerLevel(selectedIndex) + 1;
 
         if (PlayerDataManager.Instance.IsPlayerLocked(selectedIndex))
         {
@@ -119,7 +158,6 @@ public class PlayerDetailsUI : MonoBehaviour
             txt_Damage.text = PlayerDataManager.Instance.all_CharchterData[selectedIndex].damage[selectedPlayerLevel].ToString();
             txt_Firerate.text = PlayerDataManager.Instance.all_CharchterData[selectedIndex].firerate[selectedPlayerLevel].ToString();
             txt_UpgradeButton.text = PlayerDataManager.Instance.all_CharchterData[selectedIndex].upgradeAmount[PlayerDataManager.Instance.GetPlayerLevel(selectedIndex)].ToString();
-            DataManager.Instance.SubstractCoins(PlayerDataManager.Instance.all_CharchterData[selectedIndex].upgradeAmount[selectedPlayerLevel]);
         }
 
         if (PlayerDataManager.Instance.IsPlayerReachMaxLevel(selectedIndex))
@@ -132,6 +170,8 @@ public class PlayerDetailsUI : MonoBehaviour
 
     public void OnClick_CloseMenu()
     {
-        this.gameObject.SetActive(false);
+        Sequence seq = DOTween.Sequence();
+
+        seq.Append(playerDetailsPanel.transform.DOScale(Vector3.zero, flt_ScaleUpAnimationDuration).OnComplete(SetActiveFalseMenu));
     }
 }

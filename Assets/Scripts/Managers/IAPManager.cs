@@ -133,7 +133,12 @@ public class IAPManager : MonoBehaviour, IStoreListener
         {
             //Special Item Code Here
           //  DataManager.instance.SetCoin(100);
-            Debug.Log("Add Special Item" + 100);
+            Debug.Log("Purchase Special Item");
+            DataManager.Instance.PurchaseSpecialItem();
+            DataManager.Instance.IncreaseCoins(UIManager.Instance.ui_Shop.specialItemCoinReward);
+            DataManager.Instance.IncreaseGems(UIManager.Instance.ui_Shop.specialItemGemsReward);
+            DataManager.Instance.UnlockedSpecialItemRewardPlayer(UIManager.Instance.ui_Shop.playerIndex);
+            UIManager.Instance.ui_Shop.specialItemSection.SetActive(false);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
         else if (String.Equals(args.purchasedProduct.definition.id, Products[2], StringComparison.Ordinal))

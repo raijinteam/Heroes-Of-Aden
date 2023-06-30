@@ -56,4 +56,28 @@ public class AllUseableResourceUI : MonoBehaviour
             txt_EnergyAmount.text = energy.ToString("F0");
         }
     }
+
+
+
+
+    public void OnClick_BuyEnergy()
+    {
+        UIManager.Instance.ui_Shop.gameObject.SetActive(true);
+        Vector2 position = new Vector2(0, 2000);
+        UIManager.Instance.ui_Shop.ScrollDownAnimation(position);
+    }
+
+    public void OnClick_BuyCoin()
+    {
+        UIManager.Instance.ui_Shop.gameObject.SetActive(true);
+        Vector2 position = new Vector2(0, 300);
+        UIManager.Instance.ui_Shop.ScrollDownAnimation(position);
+    }
+
+    public void OnClick_BuyGems()
+    {
+        UIManager.Instance.ui_Shop.gameObject.SetActive(true);
+        Vector2 position = new Vector2(0, 1500);
+        UIManager.Instance.ui_Shop.ScrollDownAnimation(position);
+    }
 }

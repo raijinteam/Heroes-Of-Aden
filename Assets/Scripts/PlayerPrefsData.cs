@@ -22,6 +22,7 @@ public class PlayerPrefsData
 
     public static string KEY_BESTTIME = "Besttime";
 
+    public static string KEY_SPECIAL_ITEM_PURCHASE = "SpecialItemPurchase";
 
     public static string KEY_GAME_CURRENT_TIME = "GameCurrentTime";
 

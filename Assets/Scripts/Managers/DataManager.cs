@@ -15,6 +15,7 @@ public class DataManager : MonoBehaviour
 	public int totalEnergy; // TOTAL ENERGY IN GAME
 	public int collectedCoinsInGame; // collected coins when player plays game
 	public int killCountIngame; //enemy kill amount when player plays game
+	public bool isSpecialItemPurchase;
 	public float activeGameTime;
 	public bool isNOAdPurchase;
 	private bool isSFXOn;
@@ -67,26 +68,28 @@ public class DataManager : MonoBehaviour
 	{
 		Debug.Log("Set Player all Data");
 
-		PlayerPrefs.SetInt(PlayerPrefsData.KEY_COINS, totalCoins);
-		PlayerPrefs.SetInt(PlayerPrefsData.KEY_GAMES, totalGems);
-		PlayerPrefs.SetInt(PlayerPrefsData.KEY_ENERGY, totalEnergy);
-		PlayerPrefs.SetInt(PlayerPrefsData.KEY_MUSIC, 1);
-		PlayerPrefs.SetInt(PlayerPrefsData.KEY_SFX, 1);
-		PlayerPrefs.SetFloat(PlayerPrefsData.KEY_BESTTIME, 0.0f);
-		PlayerPrefs.SetInt(PlayerPrefsData.KEY_ACTIVE_PLAYER_INDEX, 0);
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_COINS, totalCoins); // Set Total Coins
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_GAMES, totalGems); // Set Total Gems
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_ENERGY, totalEnergy); //Set Total Energy
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_MUSIC, 1); // Set music on
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_SFX, 1); // Set sfx on
+		PlayerPrefs.SetFloat(PlayerPrefsData.KEY_BESTTIME, 0.0f); // set Best time
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_ACTIVE_PLAYER_INDEX, 0); // set active player index
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_SPECIAL_ITEM_PURCHASE, 0); // set special item purchase false
+		isSpecialItemPurchase = false;
 
 		//Set game start time to null
-		PlayerPrefs.SetString(PlayerPrefsData.KEY_GAME_CURRENT_TIME, "");
-		PlayerPrefs.SetFloat(PlayerPrefsData.KEY_GAME_ACTIVE_TIME, 0);
+		PlayerPrefs.SetString(PlayerPrefsData.KEY_GAME_CURRENT_TIME, ""); // set current active gamme time for time based reward
+		PlayerPrefs.SetFloat(PlayerPrefsData.KEY_GAME_ACTIVE_TIME, 0); // set active game time for time based reward
 
 
-		PlayerPrefs.SetInt(PlayerPrefsData.KEY_NOAD, 0);
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_NOAD, 0); // set no ad false
 		isNOAdPurchase = false;
 
 
 		//Set By Default Player 1 Unlock And Level is 1
-		PlayerPrefs.SetInt(PlayerPrefsData.KEY_UNLOCK_PLAYER + 0, 1);
-		PlayerPrefs.SetInt(PlayerPrefsData.KEY_PLAYER_LEVEL + 0, 1);
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_UNLOCK_PLAYER + 0, 1); // set First player unlock
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_PLAYER_LEVEL + 0, 1); // set first player level 1
 
 
 
@@ -117,7 +120,7 @@ public class DataManager : MonoBehaviour
 		PlayerPrefs.GetInt(PlayerPrefsData.KEY_SFX);
 
 
-
+		CheckForSpecialItemPurchase();
 		CheckForNoAdPurchase();
 	}
 
@@ -130,6 +133,28 @@ public class DataManager : MonoBehaviour
 		}
 	}
 
+	public void CheckForSpecialItemPurchase()
+    {
+		isSpecialItemPurchase = true;
+		if(PlayerPrefs.GetInt(PlayerPrefsData.KEY_SPECIAL_ITEM_PURCHASE) == 0)
+        {
+			isSpecialItemPurchase = false;
+        }
+    }
+
+	public void PurchaseSpecialItem()
+    {
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_SPECIAL_ITEM_PURCHASE, 1);
+		CheckForNoAdPurchase();
+    }
+
+
+	public void UnlockedSpecialItemRewardPlayer(int _selectedIndex)
+    {
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_UNLOCK_PLAYER + _selectedIndex, 1);
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_PLAYER_LEVEL + _selectedIndex, 1);
+		PlayerDataManager.Instance.CheckIsPlayerUnlocked();
+    }
 
 	public void NoAds()
     {

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class LoadingUI : MonoBehaviour
 {
     [SerializeField] private Slider slider_Loading;
     [SerializeField] private float flt_LoadingDuration;
-
+    [SerializeField] private LoadingFadeBGUI ui_FadeBG;
     [SerializeField] private float currentLoadingDuration;
 
     private void Start()
@@ -59,7 +60,15 @@ public class LoadingUI : MonoBehaviour
             yield return null;
         }
 
+        Sequence sec = DOTween.Sequence();
+        sec.Append(ui_FadeBG.img_FadeBG.DOFade(1,0.3f)).OnComplete(ChangeScean);
+
+
         Debug.Log("Change scene");
+    }
+
+    public void ChangeScean()
+    {
         SceneManager.LoadScene(1);
     }
 }

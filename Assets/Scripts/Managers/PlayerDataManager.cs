@@ -69,6 +69,19 @@ public class PlayerDataManager : MonoBehaviour
         return false;
     }
 
+    public bool HasEnoughGemsForUpgradePlayer(int _playerIndex)
+    {
+        /*if(DataManager.Instance.totalGems >= all_CharchterData[_playerIndex].upgradeAmount[all_CharchterData[_playerIndex].level])
+        {
+            return true;
+        }
+        return false;*/
+
+        return DataManager.Instance.totalGems >= all_CharchterData[_playerIndex].upgradeAmount[all_CharchterData[_playerIndex].level] ? true : false;
+    }
+
+
+
     //CHECK IF ANY PLAYER REACH MAX LEVEL
     public bool IsPlayerReachMaxLevel(int _playerIndex)
     {

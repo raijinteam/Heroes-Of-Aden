@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharchterData : MonoBehaviour
 {
+    public Sprite playerIcon;
     public string name;
     public int level;
     public bool isLocked;
