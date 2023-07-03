@@ -25,6 +25,9 @@ public class UIManager : MonoBehaviour
 	public AllUseableResourceUI ui_useableResource;
 	public ReviveUI ui_Revive;
 	public SettingUI ui_Setting;
+	public RewardSummartUI ui_RewardSummary;
+	public RateUsUI ui_RateUs;
+	public SpecialOfferUI ui_SpecialItem;
 
 
 	[HideInInspector]

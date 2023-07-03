@@ -44,7 +44,6 @@ public class HomePanelUI : MonoBehaviour
         }
 
         GameManager.Instance.InstantiateActivePlayer();
-
         this.gameObject.SetActive(false);
         DataManager.Instance.SubstractEnergy(requireEnergyToStart);
         GameManager.Instance.StartGame();

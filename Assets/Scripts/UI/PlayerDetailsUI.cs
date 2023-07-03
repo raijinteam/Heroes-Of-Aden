@@ -32,13 +32,55 @@ public class PlayerDetailsUI : MonoBehaviour
 
     private int selectedIndex;
 
+    [SerializeField] private float flt_PlayerStateAnimationDuration = 0.5f;
+    private float currentHealth;
+    private int targetHealth;
+    private bool canIncreaseHealth;
+    private float currentDamage;
+    private int targetDamage;
+    private bool canIncreaseDamage;
+    private float currentFirerate;
+    private int targetFirerate;
+    private bool canIncreaseFirerate;
 
     private void OnEnable()
     {
         playerDetailsPanel.transform.DOScale(new Vector3(1, 1, 1), flt_ScaleUpAnimationDuration);
+
+        int currentPlayerLevel = PlayerDataManager.Instance.all_CharchterData[selectedIndex].level;
+
+
+        currentHealth = (int)PlayerDataManager.Instance.all_CharchterData[selectedIndex].health[currentPlayerLevel];
+
+        currentDamage = (int)PlayerDataManager.Instance.all_CharchterData[selectedIndex].damage[currentPlayerLevel];
+
+        currentFirerate = (int)PlayerDataManager.Instance.all_CharchterData[selectedIndex].firerate[currentPlayerLevel];
     }
 
 
+    private void Update()
+    {
+        if(currentHealth != targetHealth && canIncreaseHealth)
+        {
+            currentHealth = Mathf.Lerp(currentHealth, targetHealth, flt_PlayerStateAnimationDuration);
+            txt_PlayerHealth.text = ((int)currentHealth).ToString();
+            canIncreaseDamage = true;
+        }
+        if(currentDamage != targetDamage && canIncreaseDamage)
+        {
+            currentDamage = Mathf.Lerp(currentDamage, targetDamage, flt_PlayerStateAnimationDuration);
+            txt_Damage.text = ((int)currentDamage).ToString();
+            canIncreaseFirerate = true;
+            canIncreaseHealth = false;
+        }
+        if(currentFirerate != targetFirerate && canIncreaseFirerate)
+        {
+            currentFirerate = Mathf.Lerp(currentFirerate, targetFirerate, flt_PlayerStateAnimationDuration);
+            txt_Firerate.text = ((int)currentFirerate).ToString();
+            canIncreaseDamage = false;
+        }
+
+    }
 
     public void SetSelectedPlayerData(int _selectedIndex)
     {
@@ -94,6 +136,71 @@ public class PlayerDetailsUI : MonoBehaviour
         }
     }
 
+
+    private IEnumerator IncreasePlayerStartAnimation()
+    {
+
+        float timer = 0;
+        float startingValue = currentHealth;
+
+        txt_PlayerHealth.color = Color.white;
+        txt_Damage.color = Color.white;
+        txt_Firerate.color = Color.white;
+
+        while (timer <= 1)
+        {
+
+            timer += Time.deltaTime / flt_PlayerStateAnimationDuration;
+            Sequence seq = DOTween.Sequence();
+            seq.Append(txt_PlayerHealth.transform.DOScale(1.2f, 0.2f).SetEase(Ease.Linear)).Append(txt_PlayerHealth.transform.DOScale(1f, 0.2f).SetEase(Ease.Linear)).SetLoops(5);
+            currentHealth = Mathf.Lerp(startingValue, targetHealth, timer);
+            txt_PlayerHealth.text = ((int)currentHealth).ToString();
+            txt_PlayerHealth.color = Color.green;
+            yield return null;
+        }
+        txt_PlayerHealth.color = Color.white;
+        txt_PlayerHealth.transform.DOScale(Vector3.one, 0.1f);
+        //Debug.Log("While End");
+       // yield return new WaitForSeconds(0.2f);
+
+       // Debug.Log("Start Damage ");
+
+        timer = 0;
+        startingValue = currentDamage;
+        while (timer <= 1)
+        {
+
+            timer += Time.deltaTime / flt_PlayerStateAnimationDuration;
+            Sequence seq = DOTween.Sequence();
+            seq.Append(txt_Damage.transform.DOScale(1.2f, 0.2f).SetEase(Ease.Linear)).Append(txt_Damage.transform.DOScale(1f, 0.2f).SetEase(Ease.Linear)).SetLoops(5);
+
+            currentDamage = Mathf.Lerp(startingValue, targetDamage, timer);
+            txt_Damage.text = ((int)currentDamage).ToString();
+            txt_Damage.color = Color.green;
+            yield return null;
+        }
+
+        txt_Damage.color = Color.white;
+        txt_Damage.transform.DOScale(Vector3.one, 0.1f);
+        //Debug.Log("Start third loop");
+
+
+        timer = 0;
+        startingValue = currentFirerate;
+        while (timer <= 1)
+        {
+
+            timer += Time.deltaTime / flt_PlayerStateAnimationDuration;
+            Sequence seq = DOTween.Sequence();
+            seq.Append(txt_Firerate.transform.DOScale(1.2f, 0.2f).SetEase(Ease.Linear)).Append(txt_Firerate.transform.DOScale(1f, 0.2f).SetEase(Ease.Linear)).SetLoops(5);
+            currentFirerate = Mathf.Lerp(startingValue, targetFirerate, timer);
+            txt_Firerate.text = ((int)currentFirerate).ToString();
+            txt_Firerate.color = Color.green;
+            yield return null;
+        }
+        txt_Firerate.color = Color.white;
+        txt_Firerate.transform.DOScale(Vector3.one, 0.1f);
+    }
 
     private void SetActiveFalseMenu()
     {
@@ -154,11 +261,22 @@ public class PlayerDetailsUI : MonoBehaviour
             UIManager.Instance.ui_PlayerSelector.SetPlayerLevelText(selectedIndex);
             txt_PlayerLevel.text = "LV." + (PlayerDataManager.Instance.GetPlayerLevel(selectedIndex)).ToString();
 
-            txt_PlayerHealth.text = PlayerDataManager.Instance.all_CharchterData[selectedIndex].health[selectedPlayerLevel].ToString();
-            txt_Damage.text = PlayerDataManager.Instance.all_CharchterData[selectedIndex].damage[selectedPlayerLevel].ToString();
-            txt_Firerate.text = PlayerDataManager.Instance.all_CharchterData[selectedIndex].firerate[selectedPlayerLevel].ToString();
+          //  txt_PlayerHealth.text = PlayerDataManager.Instance.all_CharchterData[selectedIndex].health[selectedPlayerLevel].ToString();
+            targetHealth = (int)PlayerDataManager.Instance.all_CharchterData[selectedIndex].health[selectedPlayerLevel];
+
+          //  txt_Damage.text = PlayerDataManager.Instance.all_CharchterData[selectedIndex].damage[selectedPlayerLevel].ToString();
+            targetDamage = (int)PlayerDataManager.Instance.all_CharchterData[selectedIndex].damage[selectedPlayerLevel];
+
+           // txt_Firerate.text = PlayerDataManager.Instance.all_CharchterData[selectedIndex].firerate[selectedPlayerLevel].ToString();
+            targetFirerate = (int)PlayerDataManager.Instance.all_CharchterData[selectedIndex].firerate[selectedPlayerLevel];
+
             txt_UpgradeButton.text = PlayerDataManager.Instance.all_CharchterData[selectedIndex].upgradeAmount[PlayerDataManager.Instance.GetPlayerLevel(selectedIndex)].ToString();
+
+            /*canIncreaseHealth = true;
+            canIncreaseFirerate = false;*/
+            StartCoroutine(IncreasePlayerStartAnimation());
         }
+
 
         if (PlayerDataManager.Instance.IsPlayerReachMaxLevel(selectedIndex))
         {

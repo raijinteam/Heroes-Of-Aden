@@ -58,6 +58,7 @@ public class LoadingUI : MonoBehaviour
             slider_Loading.value = progress;
            
             yield return null;
+            Debug.Log("End while");
         }
 
         Sequence sec = DOTween.Sequence();

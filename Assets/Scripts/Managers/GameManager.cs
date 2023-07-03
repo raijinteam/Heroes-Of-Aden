@@ -80,6 +80,11 @@ public class GameManager : MonoBehaviour
 
 		//StartGame();
 		//ShowRandomPowerUps();
+
+		if(DataManager.Instance.gameCountForShowSpecialItem >= 1 && !DataManager.Instance.isSpecialItemPurchase)
+        {
+			UIManager.Instance.ui_SpecialItem.gameObject.SetActive(true);
+		}
 	}
 
 
@@ -610,7 +615,8 @@ public class GameManager : MonoBehaviour
 			}
 
 			UIManager.Instance.ui_Gameplay.gameObject.SetActive(false);
-			UIManager.Instance.ui_GameOver.gameObject.SetActive(true);
+			UIManager.Instance.ui_RateUs.gameObject.SetActive(true);
+			//UIManager.Instance.ui_GameOver.gameObject.SetActive(true);
 		}
 	}
 

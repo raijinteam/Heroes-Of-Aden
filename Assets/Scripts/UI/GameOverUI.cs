@@ -16,7 +16,11 @@ public class GameOverUI : MonoBehaviour
 	[SerializeField] private Button btn_2XReward;
 	[SerializeField] private Button btn_Continue;
 
+
+
+
 	[Header("For Animation")]
+	[SerializeField] private GameObject[] all_ObjectsForAnimate;
 	[SerializeField] private GameObject BestTimePanel;
 	[SerializeField] private GameObject killCountPanel;
 	[SerializeField] private GameObject coinPanel;
@@ -46,15 +50,59 @@ public class GameOverUI : MonoBehaviour
 
     private void StartAnimation()
     {
-		Sequence seq = DOTween.Sequence();
 
-		seq.Append(txt_GameplayTimer.DOFade(1, flt_AnimaitonDuration)).
-			Append(BestTimePanel.transform.DOScale(Vector3.one, flt_AnimaitonDuration)).
-			Append(killCountPanel.transform.DOScale(Vector3.one, flt_AnimaitonDuration)).
+		StartCoroutine(DelayTimer());
+
+		/*Sequence seq = DOTween.Sequence();
+
+
+        Tween tween1 = txt_GameplayTimer.DOFade(1, 60);
+        Tween tween2 = BestTimePanel.transform.DOScale(Vector3.one, 60);
+        Tween tween3 = killCountPanel.transform.DOScale(Vector3.one, 60);
+        Tween tween4 = coinPanel.transform.DOScale(Vector3.one, 60);
+        Tween tween5 = btn_2XReward.transform.DOScale(Vector3.one, 60);
+        Tween tween6 = btn_Continue.transform.DOScale(Vector3.one, 60);*/
+
+
+        /*seq.Append(tween1);
+		seq.InsertCallback(tween1.Duration() * 0.5f, () => { tween2.Play(); });
+		seq.InsertCallback(tween2.Duration() * 0.5f, () => { tween3.Play(); });
+		seq.InsertCallback(tween3.Duration() * 0.5f, () => { tween4.Play(); });
+		seq.InsertCallback(tween4.Duration() * 0.5f, () => { tween5.Play(); });
+		seq.InsertCallback(tween4.Duration() * 0.5f, () => { tween6.Play(); });*/
+
+        //seq.Play();
+
+        /*seq.Append(txt_GameplayTimer.DOFade(1, flt_AnimaitonDuration)).
+            Append(BestTimePanel.transform.DOScale(Vector3.one, flt_AnimaitonDuration)).SetDelay(flt_AnimaitonDuration / 2).
+			Append(killCountPanel.transform.DOScale(Vector3.one, flt_AnimaitonDuration)).SetDelay(flt_AnimaitonDuration).
+			Append(coinPanel.transform.DOScale(Vector3.one, flt_AnimaitonDuration)).SetDelay(flt_AnimaitonDuration + 1.5f).
 			Append(coinPanel.transform.DOScale(Vector3.one, flt_AnimaitonDuration)).
-			Append(btn_2XReward.transform.DOScale(Vector3.one, flt_AnimaitonDuration)).
-			Append(btn_Continue.transform.DOScale(Vector3.one, flt_AnimaitonDuration));
+			Append(btn_Continue.transform.DOScale(Vector3.one, flt_AnimaitonDuration));*/
     }
+
+
+	private IEnumerator DelayTimer()
+    {
+
+		for(int i = 0; i < all_ObjectsForAnimate.Length; i++)
+        {
+			GameObject currentObjectToAnimate = all_ObjectsForAnimate[i];
+
+			if( i == 0)
+            {
+				txt_GameplayTimer.DOFade(1f, flt_AnimaitonDuration);
+            }
+            else
+            {
+				currentObjectToAnimate.transform.DOScale(Vector3.one, flt_AnimaitonDuration);
+            }
+
+			yield return new WaitForSeconds(flt_AnimaitonDuration / 2);
+		}
+
+
+	}
 
 	private void ResetAnimation()
     {

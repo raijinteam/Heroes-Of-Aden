@@ -20,6 +20,8 @@ public class DataManager : MonoBehaviour
 	public bool isNOAdPurchase;
 	private bool isSFXOn;
 
+	public int gameCountForShowSpecialItem;
+
 	[HideInInspector]
 	public int activePlayerIndex; //ACTIVE PLAYER INDEX 
 
@@ -83,6 +85,9 @@ public class DataManager : MonoBehaviour
 		PlayerPrefs.SetFloat(PlayerPrefsData.KEY_GAME_ACTIVE_TIME, 0); // set active game time for time based reward
 
 
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_SPECIAL_POPUP_BOX_SHOW, 0);
+
+
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_NOAD, 0); // set no ad false
 		isNOAdPurchase = false;
 
@@ -118,12 +123,19 @@ public class DataManager : MonoBehaviour
 
 		PlayerPrefs.GetInt(PlayerPrefsData.KEY_MUSIC);
 		PlayerPrefs.GetInt(PlayerPrefsData.KEY_SFX);
-
+		gameCountForShowSpecialItem = PlayerPrefs.GetInt(PlayerPrefsData.KEY_SPECIAL_POPUP_BOX_SHOW);
+		gameCountForShowSpecialItem++;
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_SPECIAL_POPUP_BOX_SHOW, gameCountForShowSpecialItem);
+        
 
 		CheckForSpecialItemPurchase();
 		CheckForNoAdPurchase();
 	}
 
+	public void ResetPlayerPrefsSpecialBoxCount()
+    {
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_SPECIAL_POPUP_BOX_SHOW, 0);
+	}
 
 	private void SetAllPassiveUpgradeLevels()
 	{
@@ -144,8 +156,9 @@ public class DataManager : MonoBehaviour
 
 	public void PurchaseSpecialItem()
     {
+		Debug.Log("Special Item Purchased");
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_SPECIAL_ITEM_PURCHASE, 1);
-		CheckForNoAdPurchase();
+		CheckForSpecialItemPurchase();
     }
 
 

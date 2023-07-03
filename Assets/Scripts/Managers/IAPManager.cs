@@ -11,9 +11,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
     private static IStoreController m_StoreController;
     private static IExtensionProvider m_StoreExtensionProvider;
 
-    //public static string[] Products = { "com.parth.StairMaster.noads", "com.parth.StairMaster.coinpack1" , "com.parth.StairMaster.coinpack2"
-    //      , "com.parth.StairMaster.coinpack3","com.parth.StairMaster.coinpack4"};
-
+    
     public static string[] Products =
     {
         "com.shubham.HeroesofAden.NoAds" , "com.subham.HeroesofAden.SpecialItem" ,
@@ -22,6 +20,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
         "com.shubham.HeroesofAden.EnergyPack3" , "com.shubham.HeroesofAden.EnergyPack4" , "com.shubham.HeroesofAden.EnergyPack5"
     };
 
+    public static string[] gemsProducts = { "com.shubham.HeroesofAden.GemsPack1", "com.shubham.HeroesofAden.GemsPack2", "com.shubham.HeroesofAden.GemsPack3", "com.shubham.HeroesofAden.GemsPack4", "com.shubham.HeroesofAden.GemsPack5" };
 
     private void Awake()
     {
@@ -100,6 +99,9 @@ public class IAPManager : MonoBehaviour, IStoreListener
         {
             Debug.Log("BuyProductID FAIL. Not initialized.");
         }
+
+
+
     }
 
 
@@ -134,6 +136,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
             //Special Item Code Here
           //  DataManager.instance.SetCoin(100);
             Debug.Log("Purchase Special Item");
+            UIManager.Instance.ui_RewardSummary.SetRewardSummaryData(UIManager.Instance.ui_Shop.list_SpecialItemIcons, UIManager.Instance.ui_Shop.list_SpecialItemRewardAmount);
             DataManager.Instance.PurchaseSpecialItem();
             DataManager.Instance.IncreaseCoins(UIManager.Instance.ui_Shop.specialItemCoinReward);
             DataManager.Instance.IncreaseGems(UIManager.Instance.ui_Shop.specialItemGemsReward);
