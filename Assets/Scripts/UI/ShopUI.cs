@@ -27,20 +27,24 @@ public class ShopUI : MonoBehaviour
 
     [Space]
     [Header("Coins Section")]
+    public int[] all_CoinsAmount;
     [SerializeField] private Image[] all_CoinsIcons;
-    [SerializeField] private TextMeshProUGUI[] all_CoinsAmount;
-
+    [SerializeField] private TextMeshProUGUI[] all_RewaredCoinAmount;
+    [SerializeField] private TextMeshProUGUI[] all_RequiredResourceForReward;
 
     [Space]
     [Header("Gems Section")]
+    public int[] all_GemsAmount;
     [SerializeField] private Image[] all_GemsIcons;
-    [SerializeField] private TextMeshProUGUI[] all_GemsAmount;
+    [SerializeField] private TextMeshProUGUI[] all_RewardGemsAmount;
 
 
     [Space]
     [Header("Energy Section")]
+    public int[] all_EnergyAmount;
     [SerializeField] private Image[] all_EnergiesIcons;
-    [SerializeField] private TextMeshProUGUI[] all_EnergiesAmount;
+    [SerializeField] private TextMeshProUGUI[] all_RewardEnergiesAmount;
+    [SerializeField] private TextMeshProUGUI[] all_RequiredResourceForRewardEnergy;
 
 
     private void OnEnable()
@@ -50,7 +54,13 @@ public class ShopUI : MonoBehaviour
         {
             specialItemSection.SetActive(false);
         }
+
+
+        SetAllrewardAmountToArray();
     }
+
+
+
 
     private void Start()
     {
@@ -74,6 +84,23 @@ public class ShopUI : MonoBehaviour
     }
 
 
+    private void SetAllrewardAmountToArray()
+    {
+        //Set Coins Reward text
+        for (int i = 0; i < all_RewaredCoinAmount.Length; i++)
+        {
+            all_RewaredCoinAmount[i].text = all_CoinsAmount[i].ToString();
+        }
+        for (int i = 0; i < all_RewardGemsAmount.Length; i++)
+        {
+            all_RewardGemsAmount[i].text = all_GemsAmount[i].ToString();
+        }
+        for (int i = 0; i < all_RewardEnergiesAmount.Length; i++)
+        {
+            all_RewardEnergiesAmount[i].text = all_EnergyAmount[i].ToString();
+        }
+    }
+
     public void ScrollDownAnimation(Vector2 position)
     {
         if (this.gameObject.activeInHierarchy)
@@ -85,21 +112,56 @@ public class ShopUI : MonoBehaviour
 
     public void OnClick_PurchaseCoins(int index)
     {
-        UIManager.Instance.ui_RewardSummary.SetRewardSummarySingleData(all_CoinsIcons[index].sprite, int.Parse( all_CoinsAmount[index].text));
-        UIManager.Instance.ui_RewardSummary.gameObject.SetActive(true);
-        DataManager.Instance.IncreaseCoins(int.Parse(all_CoinsAmount[index].text));
+        if(index == 0)
+        {
+            AdsManager.Instance.rewarsState = RewardState.coinReward;
+            AdsManager.Instance.ShowRewardedAd();
+        }
+        else
+        {
+            if (int.Parse(all_RequiredResourceForReward[index].text) >= DataManager.Instance.totalGems)
+            {
+                UIManager.Instance.SpawnPopUpBox("Not Enough Gems");
+                return;
+            }
+
+            UIManager.Instance.ui_RewardSummary.SetRewardSummarySingleData(all_CoinsIcons[index].sprite, int.Parse(all_RewaredCoinAmount[index].text));
+            UIManager.Instance.ui_RewardSummary.gameObject.SetActive(true);
+            DataManager.Instance.SubstractGames(int.Parse(all_RequiredResourceForReward[index].text));
+            DataManager.Instance.IncreaseCoins(int.Parse(all_RewaredCoinAmount[index].text));
+        }
+
+      
     }
 
     public void OnClick_PurchaseEnergy(int index)
     {
-        UIManager.Instance.ui_RewardSummary.SetRewardSummarySingleData(all_EnergiesIcons[index].sprite, int.Parse(all_EnergiesAmount[index].text));
-        UIManager.Instance.ui_RewardSummary.gameObject.SetActive(true);
-        DataManager.Instance.IncreaseEnergy(int.Parse(all_EnergiesAmount[index].text));
+
+        if(index == 0)
+        {
+            AdsManager.Instance.rewarsState = RewardState.energyReward;
+            AdsManager.Instance.ShowRewardedAd();
+        }
+        else
+        {
+            if (int.Parse(all_RequiredResourceForRewardEnergy[index].text) >= DataManager.Instance.totalGems)
+            {
+                UIManager.Instance.SpawnPopUpBox("Not Enough Gems");
+                return;
+            }
+
+            UIManager.Instance.ui_RewardSummary.SetRewardSummarySingleData(all_EnergiesIcons[index].sprite, int.Parse(all_RewardEnergiesAmount[index].text));
+            UIManager.Instance.ui_RewardSummary.gameObject.SetActive(true);
+            DataManager.Instance.SubstractGames(int.Parse(all_RequiredResourceForRewardEnergy[index].text));
+            DataManager.Instance.IncreaseEnergy(int.Parse(all_RewardEnergiesAmount[index].text));
+        }
+
+       
     }
 
     public void OnClick_PurchaseGems(int index)
     {
-        UIManager.Instance.ui_RewardSummary.SetRewardSummarySingleData(all_GemsIcons[index].sprite, int.Parse(all_GemsAmount[index].text));
+        UIManager.Instance.ui_RewardSummary.SetRewardSummarySingleData(all_GemsIcons[index].sprite, int.Parse(all_RewardGemsAmount[index].text));
         UIManager.Instance.ui_RewardSummary.gameObject.SetActive(true);
     }
 

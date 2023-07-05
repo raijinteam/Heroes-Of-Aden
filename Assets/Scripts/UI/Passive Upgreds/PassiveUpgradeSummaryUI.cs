@@ -47,7 +47,7 @@ public class PassiveUpgradeSummaryUI : MonoBehaviour
 
     private void ResetAnimation()
     {
-        img_UpgradeIcon.transform.DOScale(Vector3.zero, 0.1f);
+        img_UpgradeIconBG.transform.DOScale(Vector3.zero, 0.1f);
         txt_UpgradeName.transform.DOScale(Vector3.zero, .1f);
         txt_UpgradeLevel.transform.DOScale(Vector3.zero, .1f);
         txt_UpgradeCurrentValue.transform.DOScale(Vector3.zero, .1f);

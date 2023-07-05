@@ -9,7 +9,7 @@ public class PlayerSelectorUI : MonoBehaviour
 
     [SerializeField] private PlayerDetailsUI selectPlayerUI;
 
-    [SerializeField] private Image[] img_PlayerIcon;
+    [SerializeField] private Image[] all_PlayerIcons;
     public PlayerUI[] all_Player;
 
     private int activePlayerIndex;
@@ -21,15 +21,15 @@ public class PlayerSelectorUI : MonoBehaviour
 
         activePlayerIndex = PlayerPrefs.GetInt(PlayerPrefsData.KEY_ACTIVE_PLAYER_INDEX);
 
-        for (int i = 0; i < img_PlayerIcon.Length; i++)
+        for (int i = 0; i < all_PlayerIcons.Length; i++)
         {
             if (i == activePlayerIndex)
             {
-                img_PlayerIcon[i].gameObject.SetActive(true);
+                all_PlayerIcons[i].gameObject.SetActive(true);
             }
             else
             {
-                img_PlayerIcon[i].gameObject.SetActive(false);
+                all_PlayerIcons[i].gameObject.SetActive(false);
             }
         }
 
@@ -68,22 +68,6 @@ public class PlayerSelectorUI : MonoBehaviour
             }
         }
 
-
-        /*for (int i = 0; i < all_Player.Length; i++)
-        {
-
-            if (PlayerDataManager.Instance.IsPlayerLocked(i))
-            {
-                all_Player[i].img_Lock.gameObject.SetActive(true);
-                all_Player[i].txt_PlayerLevel.gameObject.SetActive(false);
-            }
-            else
-            {
-                all_Player[i].img_Lock.gameObject.SetActive(false);
-                all_Player[i].txt_PlayerLevel.gameObject.SetActive(true);
-            }
-
-        }*/
     }
 
     public void SetPlayerLevelText(int _selectedIndex)
@@ -103,18 +87,15 @@ public class PlayerSelectorUI : MonoBehaviour
             }
         }
         selectedIndex = _playerIndex;
-        for (int i = 0; i < img_PlayerIcon.Length; i++)
+
+        for(int i = 0; i < all_PlayerIcons.Length; i++)
         {
-            if (i == _playerIndex)
+            all_PlayerIcons[i].gameObject.SetActive(false);
+            if(i == _playerIndex)
             {
-                img_PlayerIcon[i].gameObject.SetActive(true);
-            }
-            else
-            {
-                img_PlayerIcon[i].gameObject.SetActive(false);
+                all_PlayerIcons[i].gameObject.SetActive(true);
             }
         }
-        //img_PlayerIcon.sprite = all_Player[selectedIndex].img_PlayerIcon.sprite;
     }
 
 

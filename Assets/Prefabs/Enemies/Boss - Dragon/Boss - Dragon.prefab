@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 677545385108002758}
   - component: {fileID: 2026370467178261720}
   - component: {fileID: 2026370467178261721}
-  - component: {fileID: 7007754496853748072}
+  - component: {fileID: 8312502443386087427}
   m_Layer: 9
   m_Name: Boss - Dragon
   m_TagString: Enemy
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 2026370467178261720}
   damageOffset: {fileID: 804582388412926600}
-  audioSource: {fileID: 7007754496853748072}
+  audioSource: {fileID: 8312502443386087427}
   clip_Death: {fileID: 8300000, guid: f6fa0be4ca226154384bf756de4042e6, type: 3}
   enemyDeathPartical: {fileID: 7381991694810440625, guid: 2d73c546a355820448619af74db888dd, type: 3}
   flt_Health: 40
@@ -122,7 +122,7 @@ MonoBehaviour:
   - {fileID: 5161726250556203613}
   - {fileID: 5161726249511053871}
   attackTime: 1.5
---- !u!82 &7007754496853748072
+--- !u!82 &8312502443386087427
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,9 +132,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f6fa0be4ca226154384bf756de4042e6, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0

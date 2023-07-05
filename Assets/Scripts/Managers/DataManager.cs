@@ -18,9 +18,13 @@ public class DataManager : MonoBehaviour
 	public bool isSpecialItemPurchase;
 	public float activeGameTime;
 	public bool isNOAdPurchase;
-	private bool isSFXOn;
+	public bool isSFXOn;
+	public bool isMusicOn;
+
+	public bool isRateusShow;
 
 	public int gameCountForShowSpecialItem;
+	public int gameCountForShowRateusBox;
 
 	[HideInInspector]
 	public int activePlayerIndex; //ACTIVE PLAYER INDEX 
@@ -45,8 +49,7 @@ public class DataManager : MonoBehaviour
 		
 	}
 
-
-    private void Start()
+    private void OnEnable()
     {
 		if (PlayerPrefs.HasKey(PlayerPrefsData.KEY_COINS))
 		{
@@ -57,10 +60,14 @@ public class DataManager : MonoBehaviour
 			SetFirstTimeData(); //SET DATA WHEN GAME FIRST TIME LOAD
 		}
 	}
+    private void Start()
+    {
+		
+	}
 
     private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.Tab))
 		{
 			ClearAllPlayerPrefsData();
 		}
@@ -68,13 +75,15 @@ public class DataManager : MonoBehaviour
 
 	public void SetFirstTimeData()
 	{
-		Debug.Log("Set Player all Data");
+		//Debug.Log("Set Player all Data");
 
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_COINS, totalCoins); // Set Total Coins
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_GAMES, totalGems); // Set Total Gems
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_ENERGY, totalEnergy); //Set Total Energy
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_MUSIC, 1); // Set music on
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_SFX, 1); // Set sfx on
+		isSFXOn = true;
+		isMusicOn = true;
 		PlayerPrefs.SetFloat(PlayerPrefsData.KEY_BESTTIME, 0.0f); // set Best time
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_ACTIVE_PLAYER_INDEX, 0); // set active player index
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_SPECIAL_ITEM_PURCHASE, 0); // set special item purchase false
@@ -84,6 +93,9 @@ public class DataManager : MonoBehaviour
 		PlayerPrefs.SetString(PlayerPrefsData.KEY_GAME_CURRENT_TIME, ""); // set current active gamme time for time based reward
 		PlayerPrefs.SetFloat(PlayerPrefsData.KEY_GAME_ACTIVE_TIME, 0); // set active game time for time based reward
 
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_RATEUS_MENU, 0);
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_RATEUS_COUNT, 0);
+		gameCountForShowRateusBox = 0;
 
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_SPECIAL_POPUP_BOX_SHOW, 0);
 
@@ -112,7 +124,7 @@ public class DataManager : MonoBehaviour
 
 	public void GetAllData()
 	{
-		Debug.Log("Load Already Created  Data");
+	//	Debug.Log("Load Already Created  Data");
 
 		totalCoins = PlayerPrefs.GetInt(PlayerPrefsData.KEY_COINS);
 		totalGems = PlayerPrefs.GetInt(PlayerPrefsData.KEY_GAMES);
@@ -126,11 +138,66 @@ public class DataManager : MonoBehaviour
 		gameCountForShowSpecialItem = PlayerPrefs.GetInt(PlayerPrefsData.KEY_SPECIAL_POPUP_BOX_SHOW);
 		gameCountForShowSpecialItem++;
 		PlayerPrefs.SetInt(PlayerPrefsData.KEY_SPECIAL_POPUP_BOX_SHOW, gameCountForShowSpecialItem);
-        
+
+		CheckForRateusShow();
 
 		CheckForSpecialItemPurchase();
 		CheckForNoAdPurchase();
+		CheckForSoundON();
+		CheckForMusicOn();
 	}
+
+
+	public void CheckForMusicOn()
+    {
+		isMusicOn = false;
+		if(PlayerPrefs.GetInt(PlayerPrefsData.KEY_MUSIC) == 1)
+        {
+			isMusicOn = true;
+        }
+    }
+
+	public void CheckForSoundON()
+    {
+		isSFXOn = false;
+		if(PlayerPrefs.GetInt(PlayerPrefsData.KEY_SFX) == 1)
+        {
+		isSFXOn = true;
+
+        }
+    }
+
+	public void SetSFXPlayerPrefsData(bool _value)
+    {
+		if(_value == true)
+        {
+			PlayerPrefs.SetInt(PlayerPrefsData.KEY_SFX, 1);
+        }
+        else
+        {
+			PlayerPrefs.SetInt(PlayerPrefsData.KEY_SFX, 0);
+        }
+    }
+
+	public void IncreaseRateusGameCount()
+    {
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_RATEUS_COUNT, gameCountForShowRateusBox);
+    }
+
+	public void CheckForRateusShow()
+    {
+		
+
+		if(PlayerPrefs.GetInt(PlayerPrefsData.KEY_RATEUS_MENU) == 1)
+        {
+			isRateusShow = true;
+        }
+	}
+
+	public void HideRateUSBox()
+    {
+		PlayerPrefs.SetInt(PlayerPrefsData.KEY_RATEUS_MENU, 1);
+    }
 
 	public void ResetPlayerPrefsSpecialBoxCount()
     {

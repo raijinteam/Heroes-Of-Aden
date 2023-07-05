@@ -9,7 +9,21 @@ public class LightningNovaController : MonoBehaviour
     [SerializeField] private ParticleSystem ps_NovaEffect;
     [SerializeField] private float radius;
     [SerializeField] private LayerMask enemyLayer;
+
+    [SerializeField] private AudioSource audioSource;
+    
+
     private string tag_Enemy = "Enemy";
+
+
+    private void Start()
+    {
+        if (DataManager.Instance.isSFXOn)
+        {
+            audioSource.Play();
+        }
+    }
+
 
     public void SetData(int _damage)
 	{

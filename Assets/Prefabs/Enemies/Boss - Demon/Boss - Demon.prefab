@@ -179,7 +179,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1958934124387815354
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,7 +255,7 @@ GameObject:
   - component: {fileID: 1958934124401778298}
   - component: {fileID: 1958934124401778301}
   - component: {fileID: 1958934124401778273}
-  - component: {fileID: -6768641410164602924}
+  - component: {fileID: -3651915982288974592}
   m_Layer: 9
   m_Name: Boss - Demon
   m_TagString: Enemy
@@ -356,12 +355,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 1958934124401778298}
   damageOffset: {fileID: 3299320436765039461}
-  audioSource: {fileID: -6768641410164602924}
+  audioSource: {fileID: -3651915982288974592}
   clip_Death: {fileID: 8300000, guid: f6fa0be4ca226154384bf756de4042e6, type: 3}
   enemyDeathPartical: {fileID: 8962308011866409440, guid: 9707751c113db354c97779e96454d62c, type: 3}
   flt_Health: 40
   deathCOunt: 0
---- !u!82 &-6768641410164602924
+--- !u!82 &-3651915982288974592
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -371,9 +370,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f6fa0be4ca226154384bf756de4042e6, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -41,13 +41,12 @@ public class ReviveUI : MonoBehaviour
 
     public void OnClick_Revive()
     {
-        GameManager.Instance.isGameRunning = true;
-        GameManager.Instance.player.gameObject.SetActive(true);
-        currentReviveScreenTimer = reviveScreenTimer;
         this.gameObject.SetActive(false);
-        GameManager.Instance.GiveAllPointsAndCoinOnRevive();
-        GameManager.Instance.DestoryAllEnemies();
-        GameManager.Instance.DestoryAllPlayerBullet();
+        AdsManager.Instance.rewarsState = RewardState.reviveReward;
+        AdsManager.Instance.ShowRewardedAd();
+        currentReviveScreenTimer = reviveScreenTimer;
+        GameManager.Instance.isGameRunning = true;
+       
     }
 
 

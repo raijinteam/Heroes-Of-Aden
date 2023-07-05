@@ -4,8 +4,22 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+
+public enum RewardState
+{
+    coinReward,
+    energyReward,
+    doubkeCoinReward,
+    reviveReward
+}
+
+
 public class AdsManager : MonoBehaviour
 {
+    public static AdsManager Instance;
+
+    public RewardState rewarsState;
+
     private BannerView bannerView = null;
     private InterstitialAd interstitialAd = null;
     private RewardedAd rewardedAd = null;
@@ -17,6 +31,24 @@ public class AdsManager : MonoBehaviour
 
     private bool shouldBeRewarded = false;
 
+
+    private void Awake()
+    {
+        if (FindObjectsOfType(GetType()).Length > 1)
+        {
+            Destroy(gameObject);
+        }
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     private void Start()
     {
@@ -30,13 +62,13 @@ public class AdsManager : MonoBehaviour
         });
     }
 
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-            ShowInterstitialAd();
-		}
-	}
+	//private void Update()
+	//{
+	//	if (Input.GetKeyDown(KeyCode.Space))
+	//	{
+ //           ShowInterstitialAd();
+	//	}
+	//}
 
 	private void AdsInitializeComplete()
 	{
@@ -46,7 +78,7 @@ public class AdsManager : MonoBehaviour
 
     public void LoadInterstitialAndBannerAd()
 	{
-        LoadAndShowBannerAd();
+        //LoadAndShowBannerAd();
         LoadInterstitialAd();
 	}
 
@@ -220,6 +252,7 @@ public class AdsManager : MonoBehaviour
 
     private void UserWatchedFullAd()
 	{
+        Debug.Log("User Watch full ad");
         shouldBeRewarded = true;
 	}
 
@@ -227,7 +260,34 @@ public class AdsManager : MonoBehaviour
 	{
 		if (shouldBeRewarded)
         { 
-         
+            if(rewarsState == RewardState.coinReward)
+            {
+                //Give Coins As reward
+                Debug.Log("Coin Based Reward");
+                DataManager.Instance.IncreaseCoins(UIManager.Instance.ui_Shop.all_CoinsAmount[0]);
+            }
+
+            else if(rewarsState == RewardState.doubkeCoinReward)
+            {
+                //Give Double Coins as reward
+                UIManager.Instance.ui_GameOver.txt_collectedCoins.text = (GameManager.Instance.coinsCollectedInThisRound * 2).ToString();
+                DataManager.Instance.IncreaseCoins(GameManager.Instance.coinsCollectedInThisRound * 2);
+            }
+
+            else if(rewarsState == RewardState.energyReward)
+            {
+                //Give energy As reward
+                DataManager.Instance.IncreaseEnergy(UIManager.Instance.ui_Shop.all_EnergyAmount[0]);
+            }
+
+            else if(rewarsState == RewardState.reviveReward)
+            {
+                //give revive as reward
+                GameManager.Instance.player.gameObject.SetActive(true);
+                GameManager.Instance.GiveAllPointsAndCoinOnRevive();
+                GameManager.Instance.DestoryAllEnemies();
+                GameManager.Instance.DestoryAllPlayerBullet();
+            }
         }
 	
 

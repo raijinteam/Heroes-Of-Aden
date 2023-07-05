@@ -44,12 +44,14 @@ public class RateUsUI : MonoBehaviour
     public void OnClick_Continue()
     {
         this.gameObject.SetActive(false);
-        UIManager.Instance.ui_GameOver.gameObject.SetActive(true);
+        DataManager.Instance.HideRateUSBox();
+        DataManager.Instance.CheckForRateusShow();
     }
 
     public void OnClick_Close()
     {
         this.gameObject.SetActive(false);
-        UIManager.Instance.ui_GameOver.gameObject.SetActive(true);
+        DataManager.Instance.gameCountForShowRateusBox = 0;
+        DataManager.Instance.IncreaseRateusGameCount();
     }
 }

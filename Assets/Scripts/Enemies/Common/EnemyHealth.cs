@@ -71,9 +71,7 @@ public class EnemyHealth : MonoBehaviour
             //play death sound
             if (DataManager.Instance.IsSFXON() == true)
             {
-				//Debug.Log("Player Enemy Death Sound");
-				SoundManager.Instance.PlayEnemyDeathSound(clip_Death);
-				//audioSource.PlayOneShot(clip_Death);
+				audioSource.PlayOneShot(clip_Death);
 			}
 
 			// enemy died

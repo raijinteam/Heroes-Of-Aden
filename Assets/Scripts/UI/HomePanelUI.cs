@@ -9,7 +9,7 @@ public class HomePanelUI : MonoBehaviour
 {
     public Image[] all_SelectedPlayerImg;
     [SerializeField] private TextMeshProUGUI txt_RequireEneries;
-    [SerializeField] private int requireEnergyToStart = 5;
+    [SerializeField] private int requireEnergyToStart = 10;
     private int activePlayerIndex;
 
     private void OnEnable()
@@ -42,6 +42,10 @@ public class HomePanelUI : MonoBehaviour
             UIManager.Instance.SpawnPopUpBox("Not Enough Energy");
             return;
         }
+
+        //FOR SHOW RATE US BOX EVERY 2 GAMES
+        DataManager.Instance.gameCountForShowRateusBox++;
+        DataManager.Instance.IncreaseRateusGameCount();
 
         GameManager.Instance.InstantiateActivePlayer();
         this.gameObject.SetActive(false);

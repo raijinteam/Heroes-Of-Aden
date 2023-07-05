@@ -9,6 +9,12 @@ public class EnemyBulletController : MonoBehaviour
 	[SerializeField] private GameObject body;
 	[SerializeField] private GameObject hitEffect;
 
+	[Space]
+	[Header("Sounds")]
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip clip_Shoot;
+	[SerializeField] private AudioClip clip_Exploid;
+
 	private bool hasCollided = false;
 
 	public void SetPowerData(int _damage)
@@ -18,6 +24,7 @@ public class EnemyBulletController : MonoBehaviour
 
 	private void Start()
 	{
+		audioSource.PlayOneShot(clip_Shoot);
 		Destroy(gameObject, 8f);
 	}
 
@@ -40,6 +47,8 @@ public class EnemyBulletController : MonoBehaviour
 		hasCollided = true;
 		body.SetActive(false);
 		hitEffect.SetActive(true);
+
+		audioSource.PlayOneShot(clip_Exploid);
 
 		GameManager.Instance.player.TakeDamageFromEnemy(damage);
 	}

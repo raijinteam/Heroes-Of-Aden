@@ -24,6 +24,9 @@ public class PlayerPrefsData
 
     public static string KEY_SPECIAL_ITEM_PURCHASE = "SpecialItemPurchase";
 
+    public static string KEY_RATEUS_MENU = "ShowRateUsMenu";
+    public static string KEY_RATEUS_COUNT = "RateusMenuCount";
+
     public static string KEY_SPECIAL_POPUP_BOX_SHOW = "CountOfShowPopupBox";
 
     public static string KEY_GAME_CURRENT_TIME = "GameCurrentTime";

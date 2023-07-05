@@ -11,7 +11,7 @@ public class GameOverUI : MonoBehaviour
 
 	[SerializeField] private TextMeshProUGUI txt_GameplayTimer;
 	[SerializeField] private TextMeshProUGUI txt_Besttime;
-	[SerializeField] private TextMeshProUGUI txt_collectedCoins;
+	public TextMeshProUGUI txt_collectedCoins;
 	[SerializeField] private TextMeshProUGUI txt_killedCount;
 	[SerializeField] private Button btn_2XReward;
 	[SerializeField] private Button btn_Continue;
@@ -96,13 +96,16 @@ public class GameOverUI : MonoBehaviour
             else
             {
 				currentObjectToAnimate.transform.DOScale(Vector3.one, flt_AnimaitonDuration);
+				if( i == all_ObjectsForAnimate.Length - 1)
+                {
+					currentObjectToAnimate.transform.DOScale(Vector3.one, flt_AnimaitonDuration).OnComplete(AdsManager.Instance.ShowInterstitialAd);
+                }
             }
 
 			yield return new WaitForSeconds(flt_AnimaitonDuration / 2);
 		}
-
-
 	}
+
 
 	private void ResetAnimation()
     {
@@ -142,7 +145,9 @@ public class GameOverUI : MonoBehaviour
 	public void OnClick_2XCoin()
     {
 		btn_2XReward.gameObject.SetActive(false);
-		txt_collectedCoins.text = (GameManager.Instance.coinsCollectedInThisRound * 2).ToString();
-		DataManager.Instance.IncreaseCoins(GameManager.Instance.coinsCollectedInThisRound * 2);
+		AdsManager.Instance.rewarsState = RewardState.doubkeCoinReward;
+		AdsManager.Instance.ShowRewardedAd();
+		
+
 	}
 }

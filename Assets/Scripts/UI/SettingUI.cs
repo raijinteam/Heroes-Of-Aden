@@ -24,11 +24,13 @@ public class SettingUI : MonoBehaviour
         {
             isMusicOn = true;
             img_MusicTick.gameObject.SetActive(true);
+            DataManager.Instance.isMusicOn = true;
         }
         else
         {
             isMusicOn = false;
             img_MusicTick.gameObject.SetActive(false);
+            DataManager.Instance.isMusicOn = false;
         }
     }
 
@@ -38,11 +40,13 @@ public class SettingUI : MonoBehaviour
         {
             isSFXOn = true;
             img_SFXTick.gameObject.SetActive(true);
+            DataManager.Instance.isSFXOn = true;
         }
         else
         {
             isSFXOn = false;
             img_SFXTick.gameObject.SetActive(false);
+            DataManager.Instance.isSFXOn = false;
         }
     }
 
@@ -61,6 +65,7 @@ public class SettingUI : MonoBehaviour
 
     public void OnClick_SFX()
     {
+        
         if (PlayerPrefs.GetInt(PlayerPrefsData.KEY_SFX) == 0)
         {
             PlayerPrefs.SetInt(PlayerPrefsData.KEY_SFX, 1);
@@ -76,6 +81,8 @@ public class SettingUI : MonoBehaviour
     public void OnClick_Rateus()
     {
         Debug.Log("Rate US");
+        DataManager.Instance.HideRateUSBox();
+        DataManager.Instance.CheckForRateusShow();
     }
 }
 

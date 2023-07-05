@@ -40,7 +40,7 @@ public class PlayerDetailsUI : MonoBehaviour
     private int targetDamage;
     private bool canIncreaseDamage;
     private float currentFirerate;
-    private int targetFirerate;
+    private float targetFirerate;
     private bool canIncreaseFirerate;
 
     private void OnEnable()
@@ -143,39 +143,39 @@ public class PlayerDetailsUI : MonoBehaviour
         float timer = 0;
         float startingValue = currentHealth;
 
+        //this is for health
+
         txt_PlayerHealth.color = Color.white;
         txt_Damage.color = Color.white;
         txt_Firerate.color = Color.white;
-
+        Sequence seq = DOTween.Sequence();
+        seq.Append(txt_PlayerHealth.transform.DOScale(1.2f, 0.2f).SetEase(Ease.Linear)).Append(txt_PlayerHealth.transform.DOScale(1f, 0.2f).SetEase(Ease.Linear)).SetLoops(3);
         while (timer <= 1)
         {
 
             timer += Time.deltaTime / flt_PlayerStateAnimationDuration;
-            Sequence seq = DOTween.Sequence();
-            seq.Append(txt_PlayerHealth.transform.DOScale(1.2f, 0.2f).SetEase(Ease.Linear)).Append(txt_PlayerHealth.transform.DOScale(1f, 0.2f).SetEase(Ease.Linear)).SetLoops(5);
+            
             currentHealth = Mathf.Lerp(startingValue, targetHealth, timer);
-            txt_PlayerHealth.text = ((int)currentHealth).ToString();
+            txt_PlayerHealth.text = (currentHealth).ToString("F0");
             txt_PlayerHealth.color = Color.green;
             yield return null;
         }
         txt_PlayerHealth.color = Color.white;
-        txt_PlayerHealth.transform.DOScale(Vector3.one, 0.1f);
-        //Debug.Log("While End");
-       // yield return new WaitForSeconds(0.2f);
+        txt_PlayerHealth.transform.DOScale(Vector3.one, 0.1f);;
 
-       // Debug.Log("Start Damage ");
+        //this is for damage
 
         timer = 0;
         startingValue = currentDamage;
+        Sequence seq1 = DOTween.Sequence();
+        seq1.Append(txt_Damage.transform.DOScale(1.2f, 0.2f).SetEase(Ease.Linear)).Append(txt_Damage.transform.DOScale(1f, 0.2f).SetEase(Ease.Linear)).SetLoops(3);
         while (timer <= 1)
         {
 
             timer += Time.deltaTime / flt_PlayerStateAnimationDuration;
-            Sequence seq = DOTween.Sequence();
-            seq.Append(txt_Damage.transform.DOScale(1.2f, 0.2f).SetEase(Ease.Linear)).Append(txt_Damage.transform.DOScale(1f, 0.2f).SetEase(Ease.Linear)).SetLoops(5);
 
             currentDamage = Mathf.Lerp(startingValue, targetDamage, timer);
-            txt_Damage.text = ((int)currentDamage).ToString();
+            txt_Damage.text = (currentDamage).ToString("F0");
             txt_Damage.color = Color.green;
             yield return null;
         }
@@ -184,17 +184,19 @@ public class PlayerDetailsUI : MonoBehaviour
         txt_Damage.transform.DOScale(Vector3.one, 0.1f);
         //Debug.Log("Start third loop");
 
+        //this is for firerate
 
         timer = 0;
         startingValue = currentFirerate;
+        Sequence seq2 = DOTween.Sequence();
+        seq2.Append(txt_Firerate.transform.DOScale(1.2f, 0.2f).SetEase(Ease.Linear)).Append(txt_Firerate.transform.DOScale(1f, 0.2f).SetEase(Ease.Linear)).SetLoops(3);
         while (timer <= 1)
         {
 
             timer += Time.deltaTime / flt_PlayerStateAnimationDuration;
-            Sequence seq = DOTween.Sequence();
-            seq.Append(txt_Firerate.transform.DOScale(1.2f, 0.2f).SetEase(Ease.Linear)).Append(txt_Firerate.transform.DOScale(1f, 0.2f).SetEase(Ease.Linear)).SetLoops(5);
+            
             currentFirerate = Mathf.Lerp(startingValue, targetFirerate, timer);
-            txt_Firerate.text = ((int)currentFirerate).ToString();
+            txt_Firerate.text = (currentFirerate).ToString("0.00") + " s";
             txt_Firerate.color = Color.green;
             yield return null;
         }
@@ -268,7 +270,7 @@ public class PlayerDetailsUI : MonoBehaviour
             targetDamage = (int)PlayerDataManager.Instance.all_CharchterData[selectedIndex].damage[selectedPlayerLevel];
 
            // txt_Firerate.text = PlayerDataManager.Instance.all_CharchterData[selectedIndex].firerate[selectedPlayerLevel].ToString();
-            targetFirerate = (int)PlayerDataManager.Instance.all_CharchterData[selectedIndex].firerate[selectedPlayerLevel];
+            targetFirerate = PlayerDataManager.Instance.all_CharchterData[selectedIndex].firerate[selectedPlayerLevel];
 
             txt_UpgradeButton.text = PlayerDataManager.Instance.all_CharchterData[selectedIndex].upgradeAmount[PlayerDataManager.Instance.GetPlayerLevel(selectedIndex)].ToString();
 

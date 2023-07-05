@@ -56,9 +56,12 @@ public class GameTimeManager : MonoBehaviour
 
                     float totalTime = perviousActiveGameSeconds + totalSeconds;
 
-                    int tempEnergy = PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY) + AddEnergyCount((int)totalTime / 60);
+                    Debug.Log("Total Time for energy give : " + (int)totalTime / 180);
 
-                    float energyCount = AddEnergyCount((int)totalTime / 60);
+                    int tempEnergy = PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY) + (int)totalTime / (minutesForIncreaseEnergyOverTime * 60);
+
+                    float energyCount = (int)totalTime / (minutesForIncreaseEnergyOverTime * 60);
+                    Debug.Log("Energy Count For adding : " + energyCount);
                     if (tempEnergy > 30)
                     {
                         float requiredEnergy = 30 - PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY);
@@ -71,18 +74,21 @@ public class GameTimeManager : MonoBehaviour
                     DataManager.Instance.IncreaseEnergy((int)energyCount);
 
                     Debug.Log("Quit For " + timeSpan.TotalSeconds + " Seconds");
-                    Debug.Log("Total Time : " + timeSpan);
+                   // Debug.Log("Total Time : " + timeSpan);
                 }
 
                 PlayerPrefs.SetString(PlayerPrefsData.KEY_QUIT_TIME, "");
             }
 
             Debug.Log("Previous Game Active Time : " + PlayerPrefs.GetFloat(PlayerPrefsData.KEY_GAME_ACTIVE_TIME));
-
+          
             PlayerPrefs.SetFloat(PlayerPrefsData.KEY_GAME_ACTIVE_TIME, gameStartTime);
             gameStartTime = perviousActiveGameSeconds + timeSpan.Seconds;
+            if(gameStartTime >= 180)
+            {
+                gameStartTime -= 180;
+            }
         }
-
 
     }
 
@@ -95,11 +101,10 @@ public class GameTimeManager : MonoBehaviour
         if (PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY) < 30)
         {
             gameStartTime += Time.deltaTime;
-            int gameMinutes = Mathf.FloorToInt(gameStartTime / 60f);
+            int gameMinutes = Mathf.FloorToInt(gameStartTime / (minutesForIncreaseEnergyOverTime * 60));
             if (gameMinutes == minutesForIncreaseEnergyOverTime)
             {
-                DataManager.Instance.IncreaseEnergy((int)gameMinutes);
-                IncreaseEnergyOverTime(AddEnergyCount((int)gameMinutes));
+                DataManager.Instance.IncreaseEnergy(1);
                 gameStartTime = 0;
             }
         }
@@ -117,105 +122,4 @@ public class GameTimeManager : MonoBehaviour
     {
         return _totalMinites / minutesForIncreaseEnergyOverTime;
     }
-
-
-    //INCREASE ENERGY OVER TIME 
-    private void IncreaseEnergyOverTime(int _countsOfEnergy)
-    {
-        //DataManager.Instance.IncreaseEnergy(_countsOfEnergy);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //Not Working Code
-
-    /*  private void Start()
-      {
-          string dateQuitString = PlayerPrefs.GetString(PlayerPrefsData.KEY_GAME_CURRENT_TIME);
-
-          DateTime dateQuit = DateTime.Parse(dateQuitString);
-          DateTime timeNow = DateTime.Now;
-
-          if (timeNow > dateQuit)
-          {
-              timeSpan = timeNow - dateQuit;
-
-              Debug.Log("Quit Time : " + timeSpan);
-              Debug.Log("Quit Seconds : " + timeSpan.TotalMinutes);
-
-              if (timeSpan.TotalMinutes >= minutesToGiveEnergy)
-              {
-                  int totalEnergyToGive = (int)timeSpan.TotalMinutes / minutesToGiveEnergy;
-                  Debug.Log("Total Energy to give : " + totalEnergyToGive);
-                  GiveEnergyOverTimeBG(totalEnergyToGive);
-              }
-              Debug.Log("Count of Give Energy : " + timeSpan.TotalMinutes / minutesToGiveEnergy);
-          }
-
-          startGameTime = timeSpan.Seconds;
-          Debug.Log("Start Game time when on : " + startGameTime);
-
-      }
-
-      // Update is called once per frame
-      void Update()
-      {
-          startGameTime += Time.deltaTime;
-
-          if(startGameTime >= (minutesToGiveEnergy * 60))
-          {
-              Debug.Log("Increase Energy");
-              DataManager.Instance.IncreaseEnergy(1);
-              startGameTime = 0;
-          }
-      }
-
-      public void GiveEnergyOverTimeBG(int _energyCount)
-      {
-          DataManager.Instance.totalEnergy += _energyCount;
-          PlayerPrefs.SetInt(PlayerPrefsData.KEY_ENERGY, DataManager.Instance.totalEnergy);
-          Debug.Log(PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY));
-      }
-
-
-
-      private void OnDisable()
-      {
-          PlayerPrefs.SetFloat(PlayerPrefsData.KEY_GAME_ACTIVE_TIME, startGameTime);
-          DateTime currentTime = DateTime.Now;
-          PlayerPrefs.SetString(PlayerPrefsData.KEY_GAME_CURRENT_TIME, currentTime.ToString());
-      }
-
-
-      //SUDO
-      *//*
-       * gameactive ne save kare 
-       * 
-       * 
-       * 
-       * 
-       * 
-       * 
-       */
-
 }

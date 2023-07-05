@@ -14,6 +14,7 @@ public class RewardSummartUI : MonoBehaviour
 
     [SerializeField] private float flt_ScaleDuration = 0.3f;
 
+
     private void OnDisable()
     {
         for(int i = 0; i < all_Rewards.Length; i++)

@@ -11,6 +11,12 @@ public class MinotaurMeteor : MonoBehaviour
 	[SerializeField] private float radius;
 	[SerializeField] private LayerMask playerLayer;
 
+	[Space]
+	[Header("Sounds")]
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip clip_Shoot;
+	[SerializeField] private AudioClip clip_Exploid;
+
 	public void SetData(int _damage)
 	{
 		damage = _damage;
@@ -18,6 +24,7 @@ public class MinotaurMeteor : MonoBehaviour
 
 	private void Start()
 	{
+		audioSource.PlayOneShot(clip_Shoot);
 		StartCoroutine(MissileLanding());
 	}
 
@@ -53,7 +60,7 @@ public class MinotaurMeteor : MonoBehaviour
 		{
 			GameManager.Instance.player.TakeDamageFromEnemy(damage);
 		}
-
+		audioSource.PlayOneShot(clip_Exploid);
 		Destroy(gameObject, 2f);
 	}
 }

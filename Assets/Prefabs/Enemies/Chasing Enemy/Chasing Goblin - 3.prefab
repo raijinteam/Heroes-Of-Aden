@@ -213,7 +213,7 @@ GameObject:
   - component: {fileID: 1460347251515010080}
   - component: {fileID: 8135680852652135637}
   - component: {fileID: 7885315767993495620}
-  - component: {fileID: 6373277475890273103}
+  - component: {fileID: -8544606150812308029}
   m_Layer: 9
   m_Name: Chasing Goblin - 3
   m_TagString: Enemy
@@ -313,12 +313,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 1460347251515010080}
   damageOffset: {fileID: 2837596332585196055}
-  audioSource: {fileID: 6373277475890273103}
+  audioSource: {fileID: 3948302503609090247, guid: 7b6de84d6b1f21340bd6c8c6712a8240, type: 3}
   clip_Death: {fileID: 8300000, guid: f6fa0be4ca226154384bf756de4042e6, type: 3}
   enemyDeathPartical: {fileID: 7013798489373420250, guid: 0d039f9a569c80040a04410609456dc4, type: 3}
   flt_Health: 40
   deathCOunt: 0
---- !u!82 &6373277475890273103
+--- !u!82 &-8544606150812308029
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -330,7 +330,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0

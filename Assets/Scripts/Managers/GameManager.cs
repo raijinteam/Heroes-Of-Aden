@@ -81,6 +81,11 @@ public class GameManager : MonoBehaviour
 		//StartGame();
 		//ShowRandomPowerUps();
 
+		if(DataManager.Instance.gameCountForShowRateusBox == 2  && !DataManager.Instance.isRateusShow)
+        {
+			UIManager.Instance.ui_RateUs.gameObject.SetActive(true);
+        }
+
 		if(DataManager.Instance.gameCountForShowSpecialItem >= 1 && !DataManager.Instance.isSpecialItemPurchase)
         {
 			UIManager.Instance.ui_SpecialItem.gameObject.SetActive(true);
@@ -401,6 +406,9 @@ public class GameManager : MonoBehaviour
 
 		currentPlayerPoints += _pointValue;
 
+		//Play Point Collected Sound
+		SoundManager.Instance.PlayPointCollectSound();
+
 		if(currentPlayerPoints >= pointsRequiredToLevelUp)
 		{
 			// level up
@@ -615,8 +623,8 @@ public class GameManager : MonoBehaviour
 			}
 
 			UIManager.Instance.ui_Gameplay.gameObject.SetActive(false);
-			UIManager.Instance.ui_RateUs.gameObject.SetActive(true);
-			//UIManager.Instance.ui_GameOver.gameObject.SetActive(true);
+            
+			UIManager.Instance.ui_GameOver.gameObject.SetActive(true);
 		}
 	}
 

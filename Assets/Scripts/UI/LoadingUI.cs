@@ -16,8 +16,8 @@ public class LoadingUI : MonoBehaviour
     {
 
         //Invoke("Loadscene", 2f);
-        StartCoroutine(StartLoading());
-        //StartCoroutine(LoadAsync());
+       // StartCoroutine(StartLoading());
+        StartCoroutine(LoadAsync());
     }
 
     private void Loadscene()
@@ -58,14 +58,14 @@ public class LoadingUI : MonoBehaviour
             slider_Loading.value = progress;
            
             yield return null;
-            Debug.Log("End while");
+            //Debug.Log("End while");
         }
 
         Sequence sec = DOTween.Sequence();
         sec.Append(ui_FadeBG.img_FadeBG.DOFade(1,0.3f)).OnComplete(ChangeScean);
 
 
-        Debug.Log("Change scene");
+        //Debug.Log("Change scene");
     }
 
     public void ChangeScean()

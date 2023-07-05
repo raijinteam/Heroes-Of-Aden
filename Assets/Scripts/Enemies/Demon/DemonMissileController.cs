@@ -11,6 +11,12 @@ public class DemonMissileController : MonoBehaviour
 	private int damage;
 	[SerializeField] private float flt_Speed;
 
+	[Space]
+	[Header("Sounds")]
+	[SerializeField] private AudioSource audioSource;
+	[SerializeField] private AudioClip clip_Shoot;
+	[SerializeField] private AudioClip clip_Exploid;
+
 	private string tag_Player = "Player";
 
 	public void SetData(int _damage)
@@ -21,6 +27,7 @@ public class DemonMissileController : MonoBehaviour
 	private void Start()
 	{
 		Destroy(gameObject, 8f);
+		audioSource.PlayOneShot(clip_Shoot);
 	}
 
 	private void Update()
@@ -39,6 +46,8 @@ public class DemonMissileController : MonoBehaviour
 			return;
 		}
 		hasCollided = true;
+
+		audioSource.PlayOneShot(clip_Exploid);
 
 		if (collision.gameObject.tag.Equals(tag_Player))
 		{
