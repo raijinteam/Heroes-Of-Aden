@@ -76,7 +76,7 @@ public class SoundManager : MonoBehaviour
     {
         if (ServiceManager.Instance.dataManager.isSFXOn)
         {
-            Debug.Log("Sound Play");
+            //Debug.Log("Sound Play");
             pointCollectSound.PlayOneShot(clip_PointCollect);
         }
     }

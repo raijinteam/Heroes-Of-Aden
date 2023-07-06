@@ -12,7 +12,7 @@ public class PassiveUpgradeData : MonoBehaviour
 
     public float GetMyPercentage()
     {
-        float percentage = all_Values[currentLevel - 1] / 100;
+        float percentage = all_Values[currentLevel - 1];
         return percentage;
     }
 }

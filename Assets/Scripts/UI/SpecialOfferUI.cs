@@ -21,6 +21,7 @@ public class SpecialOfferUI : MonoBehaviour
 
     public void OnClick_BuyItem()
     {
+        this.gameObject.SetActive(false);
         ServiceManager.Instance.iapManager.BuyConsumable(1);
     }
 

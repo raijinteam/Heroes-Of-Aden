@@ -62,8 +62,12 @@ public class PlayerData : MonoBehaviour
 	public void UpdateMaxHealthForPlayer(float _percentage)
 	{
 		maxHealthIncreasePercent += _percentage;
+		
+		float baseMaxHealth = PlayerDataManager.Instance.all_CharchterData[ServiceManager.Instance.dataManager.activePlayerIndex].GetPlayerHealth();
 
-		CalculatePlayerMaxHealth();
+
+		health.flt_MaxHealth = baseMaxHealth + ((baseMaxHealth) * (maxHealthIncreasePercent / 100));
+		//CalculatePlayerMaxHealth();
 	}
 
 	private void CalculatePlayerMaxHealth()
@@ -72,8 +76,10 @@ public class PlayerData : MonoBehaviour
 
 		maxHealthIncreasePercent = PassiveUpgradeManager.Instance.all_PassiveData[1].GetMyPercentage();
 
-		health.flt_MaxHealth = baseMaxHealth + maxHealthIncreasePercent;
 
+		Debug.Log("Base Max Heealth : " + baseMaxHealth + " increase Per : " + maxHealthIncreasePercent + " Final Healht : " + (baseMaxHealth) * (maxHealthIncreasePercent / 100));
+
+		health.flt_MaxHealth = baseMaxHealth + ((baseMaxHealth) * (maxHealthIncreasePercent / 100));
 	}
 	#endregion
 
@@ -83,6 +89,10 @@ public class PlayerData : MonoBehaviour
 	public void UpdateDamageForPlayer(float _percentage)
 	{
 		damageBoostPercent += _percentage;
+
+		float baseDamage = PlayerDataManager.Instance.all_CharchterData[ServiceManager.Instance.dataManager.activePlayerIndex].GetPlayerDamage();
+
+		shooting.normalPowerDamage = (int)baseDamage + (int)(baseDamage * (damageBoostPercent / 100));
 		//CalculatePlayerDamage();
 
 	}
@@ -91,9 +101,9 @@ public class PlayerData : MonoBehaviour
 		float baseDamage = PlayerDataManager.Instance.all_CharchterData[ServiceManager.Instance.dataManager.activePlayerIndex].GetPlayerDamage();
 		damageBoostPercent = PassiveUpgradeManager.Instance.all_PassiveData[3].GetMyPercentage();
 
-		shooting.normalPowerDamage = (int)baseDamage + (int)damageBoostPercent;
+		Debug.Log("Base Max Damage : " + baseDamage + " increase Per : " + damageBoostPercent + " Final Damage : " + (int)(baseDamage * (damageBoostPercent / 100)));
 
-
+		shooting.normalPowerDamage = (int)baseDamage + (int)(baseDamage * (damageBoostPercent / 100));
 	}
 
 	#endregion
@@ -103,6 +113,11 @@ public class PlayerData : MonoBehaviour
 	public void UpdateMovementSpeedForPlayer(float _percentage)
 	{
 		movementSpeedPercent += _percentage;
+
+		float baseMoveSpeed = PlayerDataManager.Instance.all_CharchterData[currentActivePlayerIndex].GetPlayerMovementSpeed();
+
+		movement.flt_MoveSpeed = baseMoveSpeed + (baseMoveSpeed * (movementSpeedPercent / 100));
+
 		//CalculatePlayerMovementSpeed();
 	}
 
@@ -112,7 +127,9 @@ public class PlayerData : MonoBehaviour
 
 		movementSpeedPercent = PassiveUpgradeManager.Instance.all_PassiveData[2].GetMyPercentage();
 
-		movement.flt_MoveSpeed = baseMoveSpeed + movementSpeedPercent;
+		Debug.Log("Base Max MoveSpeed : " + baseMoveSpeed + " increase Per : " + movementSpeedPercent + " Final MoveSpeed : " + (baseMoveSpeed * (movementSpeedPercent / 100)));
+
+		movement.flt_MoveSpeed = baseMoveSpeed + (baseMoveSpeed * (movementSpeedPercent / 100));
 
 
 
@@ -125,6 +142,11 @@ public class PlayerData : MonoBehaviour
 	public void UpdateFireRateForPlayer(float _percentage)
 	{
 		fireRateReducePercentage += _percentage;
+
+		float baseFirerate = PlayerDataManager.Instance.all_CharchterData[ServiceManager.Instance.dataManager.activePlayerIndex].GetPlayerFirerate();
+
+		shooting.currentFireRate = baseFirerate - (baseFirerate * (fireRateReducePercentage / 100));
+
 		// reduce player shooting firerate
 		//CalculatePlayerFirerate();
 	}
@@ -134,7 +156,9 @@ public class PlayerData : MonoBehaviour
 		float baseFirerate = PlayerDataManager.Instance.all_CharchterData[ServiceManager.Instance.dataManager.activePlayerIndex].GetPlayerFirerate();
 		fireRateReducePercentage = PassiveUpgradeManager.Instance.all_PassiveData[0].GetMyPercentage();
 
-		shooting.currentFireRate = baseFirerate - fireRateReducePercentage;
+		Debug.Log("Base Max Firerate : " + baseFirerate + " increase Per : " + fireRateReducePercentage + " Final Firerate : " + (baseFirerate * (fireRateReducePercentage / 100)));
+
+		shooting.maxFireRate = baseFirerate - (baseFirerate * (fireRateReducePercentage / 100));
 
 
 	}
@@ -146,6 +170,7 @@ public class PlayerData : MonoBehaviour
 	public void UpdateCriticalDamageForPlayer(int _percentage)
 	{
 		criticalDamagePercent += _percentage;
+		Debug.Log("Critical Damage Method Called");
 		///CalculateCriticalDamageForPlayer();
 	}
 
@@ -155,7 +180,7 @@ public class PlayerData : MonoBehaviour
 
 		float criticalDamage = PassiveUpgradeManager.Instance.all_PassiveData[5].GetMyPercentage();
 
-		criticalDamagePercent = baseCriticalDamage + criticalDamage;
+		criticalDamagePercent = baseCriticalDamage + (baseCriticalDamage * (criticalDamage / 100));
 
 
 
@@ -177,7 +202,7 @@ public class PlayerData : MonoBehaviour
 
 		int criticalChance = (int)PassiveUpgradeManager.Instance.all_PassiveData[4].GetMyPercentage();
 
-		criticalChancePercent = (int)baseCriticalChance + criticalChance;
+		criticalChancePercent = (int)baseCriticalChance + (int)(baseCriticalChance * (criticalChance / 100));
 
 	}
 

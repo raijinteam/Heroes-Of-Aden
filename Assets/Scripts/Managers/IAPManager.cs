@@ -136,7 +136,8 @@ public class IAPManager : MonoBehaviour, IStoreListener
             //Special Item Code Here
           //  DataManager.instance.SetCoin(100);
             Debug.Log("Purchase Special Item");
-            UIManager.Instance.ui_RewardSummary.SetRewardSummaryData(UIManager.Instance.ui_Shop.list_SpecialItemIcons, UIManager.Instance.ui_Shop.list_SpecialItemRewardAmount);
+
+            UIManager.Instance.ui_RewardSummary.SetRewardSummaryData(GameManager.Instance.list_SpecialItemIcons,GameManager.Instance.list_SpecialItemAmount);
             ServiceManager.Instance.dataManager.PurchaseSpecialItem();
             ServiceManager.Instance.dataManager.IncreaseCoins(UIManager.Instance.ui_Shop.specialItemCoinReward);
             ServiceManager.Instance.dataManager.IncreaseGems(UIManager.Instance.ui_Shop.specialItemGemsReward);

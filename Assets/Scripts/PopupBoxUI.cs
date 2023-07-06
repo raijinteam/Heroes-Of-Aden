@@ -11,6 +11,9 @@ public class PopupBoxUI : MonoBehaviour
     public float flt_TimeForAnimation = 0.2f;
 
 
+    private float screenWidth;
+    private float screenHeight;
+
     private void OnEnable()
     {
         StartCoroutine(PopUpBoxShow());
@@ -18,9 +21,11 @@ public class PopupBoxUI : MonoBehaviour
 
     public IEnumerator PopUpBoxShow()
     {
-        this.gameObject.transform.DOMoveY(250, flt_TimeForAnimation);
+        screenHeight = Screen.height;
+
+        this.gameObject.transform.DOMoveY(screenHeight / 2, flt_TimeForAnimation);
         yield return new WaitForSeconds(flt_TimeForShow);
-        this.gameObject.transform.DOMoveY(700, flt_TimeForAnimation);
+        this.gameObject.transform.DOMoveY(screenHeight * 2, flt_TimeForAnimation);
         UIManager.Instance.canPopupBoxSpawn = true;
         Destroy(gameObject , 0.5f);
     }

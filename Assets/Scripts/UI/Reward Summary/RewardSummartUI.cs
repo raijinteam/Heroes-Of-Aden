@@ -35,9 +35,18 @@ public class RewardSummartUI : MonoBehaviour
     {
 
         this.gameObject.SetActive(true);
-        for(int i = 0; i < _rewardIcons.Count; i++)
+
+        Sequence seq = DOTween.Sequence();
+
+        /*seq.Append(all_Rewards[0].transform.DOScale(1, flt_ScaleDuration)).
+            Append(all_Rewards[1].transform.DOScale(1, flt_ScaleDuration)).
+            Append(all_Rewards[2].transform.DOScale(1, flt_ScaleDuration));
+*/
+        for (int i = 0; i < _rewardIcons.Count; i++)
         {
+            Debug.Log("In For Loop");
             all_Rewards[i].gameObject.SetActive(true);
+            all_Rewards[i].transform.DOScale(1, flt_ScaleDuration);
             all_Rewards[i].img_RewardIcon.sprite = _rewardIcons[i];
             if(i != _rewardIcons.Count - 1)
             {
@@ -48,11 +57,7 @@ public class RewardSummartUI : MonoBehaviour
                 all_Rewards[i].txt_RewardAmount.gameObject.SetActive(false);
             }
         }
-        Sequence seq = DOTween.Sequence();
-
-        seq.Append(all_Rewards[0].transform.DOScale(1, flt_ScaleDuration)).
-            Append(all_Rewards[1].transform.DOScale(1, flt_ScaleDuration)).
-            Append(all_Rewards[2].transform.DOScale(1, flt_ScaleDuration));
+        
     }
 
     public void OnClick_Continue()

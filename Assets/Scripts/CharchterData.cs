@@ -28,7 +28,7 @@ public class CharchterData : MonoBehaviour
 
     public float GetPlayerHealth()
     {
-        return health[level - 1];
+        return health[level];
     }
 
     public float GetPlayerDamage()
@@ -43,13 +43,13 @@ public class CharchterData : MonoBehaviour
 
     public float GetCriticalDamage()
     {
-        float percentage = criticalDamage[level - 1] / 100;
+        float percentage = criticalDamage[level - 1];
         return percentage;
     }
 
     public float GetCriticalChance()
     {
-        float percentage = criticalChance[level - 1] / 100;
+        float percentage = criticalChance[level - 1] ;
         return percentage;
     }
 }

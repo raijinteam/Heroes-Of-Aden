@@ -16,6 +16,11 @@ public class ReviveUI : MonoBehaviour
 
     private void OnEnable()
     {
+        
+    }
+
+    private void Start()
+    {
         currentReviveScreenTimer = reviveScreenTimer;
         GameManager.Instance.player.gameObject.SetActive(false);
     }
@@ -45,8 +50,8 @@ public class ReviveUI : MonoBehaviour
         ServiceManager.Instance.adsManager.rewarsState = RewardState.reviveReward;
         ServiceManager.Instance.adsManager.ShowRewardedAd();
         currentReviveScreenTimer = reviveScreenTimer;
-        GameManager.Instance.isGameRunning = true;
-       
+        
+
     }
 
 

@@ -28,6 +28,11 @@ public class GameManager : MonoBehaviour
 	public bool isPlayerTakeRevive;
 	public CinemachineVirtualCamera virtual_Camera;
 
+
+	[Header("Shop Special Items")]
+	public List<Sprite> list_SpecialItemIcons;
+	public List<int> list_SpecialItemAmount;
+
 	[Header("Game Abilities Selection Handler")]
 	public List<int> list_PowerUpIndexesToChooseFrom = new List<int>();
 	public List<int> list_PowerUpIndexesChosen = new List<int>();
@@ -81,10 +86,20 @@ public class GameManager : MonoBehaviour
     private void Start()
 	{
 
+		//Set SPecial Item Itesm to list
+		for (int i = 0; i < UIManager.Instance.ui_Shop.all_SpecialItemRewardIcons.Length; i++)
+		{
+			list_SpecialItemIcons.Add(UIManager.Instance.ui_Shop.all_SpecialItemRewardIcons[i].sprite);
+		}
+		list_SpecialItemAmount.Add(UIManager.Instance.ui_Shop.specialItemGemsReward);
+		list_SpecialItemAmount.Add(UIManager.Instance.ui_Shop.specialItemCoinReward);
+
+
+
 		//StartGame();
 		//ShowRandomPowerUps();
 
-		if(ServiceManager.Instance.dataManager.gameCountForShowRateusBox == 2  && !ServiceManager.Instance.dataManager.isRateusShow)
+		if (ServiceManager.Instance.dataManager.gameCountForShowRateusBox == 2  && !ServiceManager.Instance.dataManager.isRateusShow)
         {
 			UIManager.Instance.ui_RateUs.gameObject.SetActive(true);
         }
@@ -161,7 +176,7 @@ public class GameManager : MonoBehaviour
 
 	public void AddEnemyToActiveList(Transform _enemy)
 	{
-		Debug.Log("Enemy Spawned : "+ _enemy.gameObject.name);
+		//Debug.Log("Enemy Spawned : "+ _enemy.gameObject.name);
 
 		enemySpawnCount += 1;
 		list_ActiveEnemies.Add(_enemy);
@@ -188,6 +203,10 @@ public class GameManager : MonoBehaviour
     {
 		foreach(Transform enemy in EnemyManager.Instance.enemySpawnParent)
         {
+            if (enemy.GetComponent<EnemyAbstractData>().isBoss)
+            {
+				return;
+            }
 			killCountInThisRound += EnemyManager.Instance.enemySpawnParent.childCount;
 			enemy.GetComponent<EnemyHealth>().ForceDie();
 			//Destroy(enemy.gameObject);
@@ -205,7 +224,7 @@ public class GameManager : MonoBehaviour
 
     public void EnemyDied(Transform _enemy, int _pointValue)
 	{
-		Debug.Log("Enemy Killed : " + _enemy.gameObject.name);
+		
 
 		//enemyKilled += 1;
 		//Changes 

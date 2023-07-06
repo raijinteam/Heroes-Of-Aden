@@ -9,12 +9,17 @@ public class PlayerShooting : MonoBehaviour
     [Header("Normal Power")]
     [SerializeField] private PlayerNormalPower power;
     [SerializeField] private Transform normalPowerSpawnPoint;
-    [SerializeField] private float maxFireRate;
+    public float maxFireRate;
     public float currentFireRate;
     public int normalPowerDamage;
     private float currentTimePassedForNormalPower = 0f;
     private bool shouldShootTowardsTarget = false;
 
+    private void Start()
+    {
+        
+        currentFireRate = maxFireRate;
+    }
 
     public void SetBaseData(float flt_PercentageDecrease)
 	{

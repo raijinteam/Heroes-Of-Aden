@@ -13,6 +13,7 @@ public class PlayerDetailsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI txt_PlayerName;
     [SerializeField] private Image img_PlayerIcon;
     [SerializeField] private TextMeshProUGUI txt_PlayerLevel;
+    [SerializeField] private Image img_Locked;
     [SerializeField] private TextMeshProUGUI txt_PlayerDesctiption;
     [SerializeField] private TextMeshProUGUI txt_PlayerHealth;
     [SerializeField] private TextMeshProUGUI txt_Damage;
@@ -22,6 +23,7 @@ public class PlayerDetailsUI : MonoBehaviour
 
     [SerializeField] private Button btn_Select;
     [SerializeField] private Button btn_Upgrade;
+    [SerializeField] private Button btn_Close;
 
     [SerializeField] private TextMeshProUGUI txt_UpgradeButton;
 
@@ -91,13 +93,16 @@ public class PlayerDetailsUI : MonoBehaviour
         if (PlayerDataManager.Instance.IsPlayerLocked(_selectedIndex))
         {
             btn_Select.gameObject.SetActive(false);
-            txt_PlayerLevel.text = "Locked";
+            txt_PlayerLevel.gameObject.SetActive(false);
+            img_Locked.gameObject.SetActive(true);
             Debug.Log("Plyaer Locked");
         }
         else
         {
             btn_Select.gameObject.SetActive(true);
             Debug.Log("Plyaer Unlocked");
+            txt_PlayerLevel.gameObject.SetActive(true);
+            img_Locked.gameObject.SetActive(false);
             txt_PlayerLevel.text = "LV." + (PlayerDataManager.Instance.GetPlayerLevel(_selectedIndex)).ToString();
         }
 
@@ -139,6 +144,10 @@ public class PlayerDetailsUI : MonoBehaviour
 
     private IEnumerator IncreasePlayerStartAnimation()
     {
+        btn_Select.interactable = false;
+        btn_Upgrade.interactable = false;
+        btn_Close.interactable = false;
+        
 
         float timer = 0;
         float startingValue = currentHealth;
@@ -202,6 +211,11 @@ public class PlayerDetailsUI : MonoBehaviour
         }
         txt_Firerate.color = Color.white;
         txt_Firerate.transform.DOScale(Vector3.one, 0.1f);
+
+        btn_Select.interactable = true;
+        btn_Upgrade.interactable = true;
+        btn_Close.interactable = true;
+
     }
 
     private void SetActiveFalseMenu()
@@ -214,6 +228,7 @@ public class PlayerDetailsUI : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         PlayerPrefs.SetInt(PlayerPrefsData.KEY_ACTIVE_PLAYER_INDEX, selectedIndex);
+        ServiceManager.Instance.dataManager.activePlayerIndex = selectedIndex;
         UIManager.Instance.ui_HomePanel.SetActivePlayerImage(selectedIndex);
     }
 
@@ -246,7 +261,7 @@ public class PlayerDetailsUI : MonoBehaviour
       
        
 
-
+        //CHECK IF PLAYER IS LOCKED
         if (PlayerDataManager.Instance.IsPlayerLocked(selectedIndex))
         {
             PlayerDataManager.Instance.SetUnlockPlayer(selectedIndex);
@@ -254,6 +269,8 @@ public class PlayerDetailsUI : MonoBehaviour
             PlayerDataManager.Instance.SetPlayerLevel(selectedIndex);
             UIManager.Instance.ui_PlayerSelector.SetPlayerLevelText(selectedIndex);
             UIManager.Instance.ui_PlayerSelector.CheckForPlayerUnlocked();
+            txt_PlayerLevel.gameObject.SetActive(true);
+            img_Locked.gameObject.SetActive(false);
             txt_PlayerLevel.text = "LV." + (PlayerDataManager.Instance.GetPlayerLevel(selectedIndex)).ToString();
         }
         else

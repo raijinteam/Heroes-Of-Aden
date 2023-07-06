@@ -26,7 +26,7 @@ public class DataManager : MonoBehaviour
 	public int gameCountForShowSpecialItem;
 	public int gameCountForShowRateusBox;
 
-	[HideInInspector]
+	
 	public int activePlayerIndex; //ACTIVE PLAYER INDEX 
 
 	

@@ -21,8 +21,19 @@ public class PassiveUpgradeManager : MonoBehaviour
     }
 
 
+    private void OnEnable()
+    {
+        SetAllPassiveLevel();
+    }
 
-    
+    private void SetAllPassiveLevel()
+    {
+        for(int i = 0; i < all_PassiveData.Length; i++)
+        {
+            all_PassiveData[i].currentLevel = PlayerPrefs.GetInt(PlayerPrefsData.KEY_UPGRADE_LEVEL + i);
+        }
+    }
+
 
     //CHECK IF PLAYER HAS ENOUGH COINS FOR UPGRADE 
     public bool hasEnoughCoinsForUpgrade()

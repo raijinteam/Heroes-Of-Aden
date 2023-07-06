@@ -283,6 +283,7 @@ public class AdsManager : MonoBehaviour
             else if(rewarsState == RewardState.reviveReward)
             {
                 //give revive as reward
+                GameManager.Instance.isGameRunning = true;
                 GameManager.Instance.player.gameObject.SetActive(true);
                 GameManager.Instance.GiveAllPointsAndCoinOnRevive();
                 GameManager.Instance.DestoryAllEnemies();
