@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance;
+    //public static SoundManager Instance;
     [SerializeField] private AudioSource bgSound;
     [SerializeField] private AudioSource magnetPickupSound;
     [SerializeField] private AudioClip clip_MagnetCollect;
@@ -18,22 +18,22 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip clip_PointCollect;
     [SerializeField] private AudioSource playerShootingSound;
 
-    private void Awake()
-    {
-        if(Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(this.gameObject);
-    }
+    //private void Awake()
+    //{
+    //    if(Instance == null)
+    //    {
+    //        Instance = this;
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
 
     public void PlayBGSound()
     {
-        if (DataManager.Instance.isMusicOn)
+        if (ServiceManager.Instance.dataManager.isMusicOn)
         {
             bgSound.Play();
         }
@@ -41,7 +41,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayPlayerShootingSound(AudioClip _clip)
     {
-        if(DataManager.Instance.isSFXOn == true)
+        if(ServiceManager.Instance.dataManager.isSFXOn)
         {
             playerShootingSound.PlayOneShot(_clip);
         }
@@ -49,7 +49,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayPlayerDeathSound(AudioClip _clip)
     {
-        if(DataManager.Instance.isSFXOn == true)
+        if(ServiceManager.Instance.dataManager.isSFXOn)
         {
             playerDeath.PlayOneShot(_clip);
         }
@@ -57,7 +57,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayEnemyDeathSound(AudioClip _clip)
     {
-        if (DataManager.Instance.isSFXOn == true)
+        if (ServiceManager.Instance.dataManager.isSFXOn)
         {
             enemyDeath.PlayOneShot(_clip);
         }
@@ -66,7 +66,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayCoinPickupSound()
     {
-        if (DataManager.Instance.isSFXOn == true)
+        if (ServiceManager.Instance.dataManager.isSFXOn)
         {
             coinPickUp.PlayOneShot(clip_CoinCollect);
         }
@@ -74,7 +74,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayPointCollectSound()
     {
-        if (DataManager.Instance.isSFXOn == true)
+        if (ServiceManager.Instance.dataManager.isSFXOn)
         {
             Debug.Log("Sound Play");
             pointCollectSound.PlayOneShot(clip_PointCollect);
@@ -83,7 +83,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayMagnetPickupSound()
     {
-        if (DataManager.Instance.isSFXOn == true)
+        if (ServiceManager.Instance.dataManager.isSFXOn)
         {
             magnetPickupSound.PlayOneShot(clip_MagnetCollect);
         }
@@ -91,7 +91,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayHealthPickupSound()
     {
-        if (DataManager.Instance.IsSFXON() == true)
+        if (ServiceManager.Instance.dataManager.IsSFXON())
         {
             healthPickUp.PlayOneShot(clip_HealthCollect);
         }

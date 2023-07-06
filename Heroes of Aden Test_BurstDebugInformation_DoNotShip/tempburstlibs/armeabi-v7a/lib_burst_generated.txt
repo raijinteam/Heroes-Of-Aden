@@ -1,4 +1,4 @@
-Library: D:\WorkSpace\Unity Projects\Surviver.IO-Clone\Temp\StagingArea\tempburstlibs\armeabi-v7a\lib_burst_generated
+Library: D:\WorkSpace\Unity Projects\Heroes-Of-Aden\Temp\StagingArea\tempburstlibs\armeabi-v7a\lib_burst_generated
 --platform=Android
 --backend=burst-llvm-14
 --target=ARMV7A_NEON32
@@ -145,10 +145,10 @@ Library: D:\WorkSpace\Unity Projects\Surviver.IO-Clone\Temp\StagingArea\tempburs
 --compilation-defines=CINEMACHINE_UNITY_IMGUI
 --compilation-defines=TIMELINE_FRAMEACCURATE
 --generate-link-xml=Temp\burst.link.xml
---temp-folder=D:\WorkSpace\Unity Projects\Surviver.IO-Clone\Temp\Burst
+--temp-folder=D:\WorkSpace\Unity Projects\Heroes-Of-Aden\Temp\Burst
 --key-folder=C:/Program Files/Unity/Hub/Editor/2021.3.25f1/Editor/Data/PlaybackEngines/AndroidPlayer
---decode-folder=D:\WorkSpace\Unity Projects\Surviver.IO-Clone\Library\Burst
---output=D:\WorkSpace\Unity Projects\Surviver.IO-Clone\Temp\StagingArea\tempburstlibs\armeabi-v7a\lib_burst_generated
+--decode-folder=D:\WorkSpace\Unity Projects\Heroes-Of-Aden\Library\Burst
+--output=D:\WorkSpace\Unity Projects\Heroes-Of-Aden\Temp\StagingArea\tempburstlibs\armeabi-v7a\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10

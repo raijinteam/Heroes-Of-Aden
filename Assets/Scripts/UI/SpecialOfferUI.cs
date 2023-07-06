@@ -21,12 +21,12 @@ public class SpecialOfferUI : MonoBehaviour
 
     public void OnClick_BuyItem()
     {
-        IAPManager.Instance.BuyConsumable(1);
+        ServiceManager.Instance.iapManager.BuyConsumable(1);
     }
 
     public void OnClick_Close()
     {
         this.gameObject.SetActive(false);
-        DataManager.Instance.gameCountForShowSpecialItem = 0; 
+        ServiceManager.Instance.dataManager.gameCountForShowSpecialItem = 0; 
     }
 }

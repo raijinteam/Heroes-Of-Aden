@@ -16,7 +16,7 @@ public enum RewardState
 
 public class AdsManager : MonoBehaviour
 {
-    public static AdsManager Instance;
+    //public static AdsManager Instance;
 
     public RewardState rewarsState;
 
@@ -32,23 +32,23 @@ public class AdsManager : MonoBehaviour
     private bool shouldBeRewarded = false;
 
 
-    private void Awake()
-    {
-        if (FindObjectsOfType(GetType()).Length > 1)
-        {
-            Destroy(gameObject);
-        }
+    //private void Awake()
+    //{
+    //    if (FindObjectsOfType(GetType()).Length > 1)
+    //    {
+    //        Destroy(gameObject);
+    //    }
 
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(this.gameObject);
-    }
+    //    if (Instance == null)
+    //    {
+    //        Instance = this;
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
 
     private void Start()
     {
@@ -264,20 +264,20 @@ public class AdsManager : MonoBehaviour
             {
                 //Give Coins As reward
                 Debug.Log("Coin Based Reward");
-                DataManager.Instance.IncreaseCoins(UIManager.Instance.ui_Shop.all_CoinsAmount[0]);
+                ServiceManager.Instance.dataManager.IncreaseCoins(UIManager.Instance.ui_Shop.all_CoinsAmount[0]);
             }
 
             else if(rewarsState == RewardState.doubkeCoinReward)
             {
                 //Give Double Coins as reward
                 UIManager.Instance.ui_GameOver.txt_collectedCoins.text = (GameManager.Instance.coinsCollectedInThisRound * 2).ToString();
-                DataManager.Instance.IncreaseCoins(GameManager.Instance.coinsCollectedInThisRound * 2);
+                ServiceManager.Instance.dataManager.IncreaseCoins(GameManager.Instance.coinsCollectedInThisRound * 2);
             }
 
             else if(rewarsState == RewardState.energyReward)
             {
                 //Give energy As reward
-                DataManager.Instance.IncreaseEnergy(UIManager.Instance.ui_Shop.all_EnergyAmount[0]);
+                ServiceManager.Instance.dataManager.IncreaseEnergy(UIManager.Instance.ui_Shop.all_EnergyAmount[0]);
             }
 
             else if(rewarsState == RewardState.reviveReward)

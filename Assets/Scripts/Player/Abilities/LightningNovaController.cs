@@ -18,7 +18,7 @@ public class LightningNovaController : MonoBehaviour
 
     private void Start()
     {
-        if (DataManager.Instance.isSFXOn)
+        if (ServiceManager.Instance.dataManager.isSFXOn)
         {
             audioSource.Play();
         }

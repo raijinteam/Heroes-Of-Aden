@@ -120,7 +120,7 @@ public class PassiveUpgradeSelectonUI : MonoBehaviour
         btn_Upgrade.interactable = false;
 
         StartCoroutine(SetRandomPassiveUpgradeSelectionEffect());
-        DataManager.Instance.SubstractCoins(PassiveUpgradeManager.Instance.coinsForUpgrade);
+        ServiceManager.Instance.dataManager.SubstractCoins(PassiveUpgradeManager.Instance.coinsForUpgrade);
         Sequence seq = DOTween.Sequence();
         seq.Append(btn_Upgrade.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), flt_UpgradeButtonAnimationDuration).SetEase(Ease.OutSine)).
                     Append(btn_Upgrade.transform.DOScale(new Vector3(1f, 1f, 1f), flt_UpgradeButtonAnimationDuration).SetEase(Ease.InSine));

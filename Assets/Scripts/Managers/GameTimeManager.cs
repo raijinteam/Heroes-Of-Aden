@@ -6,30 +6,30 @@ using UnityEngine;
 public class GameTimeManager : MonoBehaviour
 {
 
-    public static GameTimeManager Instance;
+    //public static GameTimeManager Instance;
 
     public float gameStartTime;
 
     public int minutesForIncreaseEnergyOverTime = 1;
     private TimeSpan timeSpan;
 
-    private void Awake()
-    {
-        if (FindObjectsOfType(GetType()).Length > 1)
-        {
-            Destroy(gameObject);
-        }
+    //private void Awake()
+    //{
+    //    if (FindObjectsOfType(GetType()).Length > 1)
+    //    {
+    //        Destroy(gameObject);
+    //    }
 
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(this.gameObject);
-    }
+    //    if (Instance == null)
+    //    {
+    //        Instance = this;
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
 
 
     
@@ -71,7 +71,7 @@ public class GameTimeManager : MonoBehaviour
 
                     Debug.Log("Total Energy TO add : " + energyCount);
 
-                    DataManager.Instance.IncreaseEnergy((int)energyCount);
+                    ServiceManager.Instance.dataManager.IncreaseEnergy((int)energyCount);
 
                     Debug.Log("Quit For " + timeSpan.TotalSeconds + " Seconds");
                    // Debug.Log("Total Time : " + timeSpan);
@@ -104,7 +104,7 @@ public class GameTimeManager : MonoBehaviour
             int gameMinutes = Mathf.FloorToInt(gameStartTime / (minutesForIncreaseEnergyOverTime * 60));
             if (gameMinutes == minutesForIncreaseEnergyOverTime)
             {
-                DataManager.Instance.IncreaseEnergy(1);
+                ServiceManager.Instance.dataManager.IncreaseEnergy(1);
                 gameStartTime = 0;
             }
         }

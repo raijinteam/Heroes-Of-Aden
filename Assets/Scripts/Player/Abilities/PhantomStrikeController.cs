@@ -24,7 +24,7 @@ public class PhantomStrikeController : MonoBehaviour
 
     private void OnEnable()
     {
-		if (DataManager.Instance.IsSFXON() == true)
+		if (ServiceManager.Instance.dataManager.IsSFXON() == true)
 		{
 			audioSource.PlayOneShot(clip_Shoot);
 		}
@@ -53,7 +53,7 @@ public class PhantomStrikeController : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 
-		if (DataManager.Instance.IsSFXON() == true)
+		if (ServiceManager.Instance.dataManager.IsSFXON())
 		{
 			audioSource.PlayOneShot(clip_Explod);
 		}

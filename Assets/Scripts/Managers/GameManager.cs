@@ -74,6 +74,9 @@ public class GameManager : MonoBehaviour
 	private string tag_PlayerPowers = "PlayerPower";
 	public Transform playerBulletSpawnParent;
 
+	[Header("Feel Tools")]
+	public GameObject FeelTextSpawner;
+
 
     private void Start()
 	{
@@ -81,17 +84,23 @@ public class GameManager : MonoBehaviour
 		//StartGame();
 		//ShowRandomPowerUps();
 
-		if(DataManager.Instance.gameCountForShowRateusBox == 2  && !DataManager.Instance.isRateusShow)
+		if(ServiceManager.Instance.dataManager.gameCountForShowRateusBox == 2  && !ServiceManager.Instance.dataManager.isRateusShow)
         {
 			UIManager.Instance.ui_RateUs.gameObject.SetActive(true);
         }
 
-		if(DataManager.Instance.gameCountForShowSpecialItem >= 1 && !DataManager.Instance.isSpecialItemPurchase)
+		if(ServiceManager.Instance.dataManager.gameCountForShowSpecialItem >= 1 && !ServiceManager.Instance.dataManager.isSpecialItemPurchase)
         {
 			UIManager.Instance.ui_SpecialItem.gameObject.SetActive(true);
 		}
+
+		Invoke("SpawnText", 1f);
 	}
 
+	private void SpawnText()
+	{
+		FeelTextSpawner.SetActive(true);
+	}
 
 
 	private void Update()
@@ -171,7 +180,7 @@ public class GameManager : MonoBehaviour
 			Destroy(point.gameObject);
         }
 
-		DataManager.Instance.IncreaseCoins(coinSpawnParent.childCount);
+		ServiceManager.Instance.dataManager.IncreaseCoins(coinSpawnParent.childCount);
 
     }
 
@@ -407,7 +416,7 @@ public class GameManager : MonoBehaviour
 		currentPlayerPoints += _pointValue;
 
 		//Play Point Collected Sound
-		SoundManager.Instance.PlayPointCollectSound();
+		ServiceManager.Instance.soundManager.PlayPointCollectSound();
 
 		if(currentPlayerPoints >= pointsRequiredToLevelUp)
 		{
@@ -596,9 +605,9 @@ public class GameManager : MonoBehaviour
 
 	public void CoinCollected()
 	{
-		DataManager.Instance.CollectedCoinInGame();
+		ServiceManager.Instance.dataManager.CollectedCoinInGame();
 		coinsCollectedInThisRound += 1;
-		SoundManager.Instance.PlayCoinPickupSound();
+		ServiceManager.Instance.soundManager.PlayCoinPickupSound();
 		UIManager.Instance.ui_Gameplay.IncreasegameplayCoinCount(coinsCollectedInThisRound);
 	}
 

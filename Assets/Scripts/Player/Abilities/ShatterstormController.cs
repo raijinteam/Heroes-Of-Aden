@@ -24,7 +24,7 @@ public class ShatterstormController : MonoBehaviour
 
     private void OnEnable()
     {
-        if (DataManager.Instance.IsSFXON() == true)
+        if (ServiceManager.Instance.dataManager.IsSFXON() == true)
         {
             audioSource.PlayOneShot(clip_ShootSound);
         }
@@ -59,7 +59,7 @@ public class ShatterstormController : MonoBehaviour
         explosion.SetActive(true);
 
         //PLAY EXPLOD SOUND
-        if (DataManager.Instance.IsSFXON() == true)
+        if (ServiceManager.Instance.dataManager.IsSFXON())
         {
             audioSource.PlayOneShot(clip_ExplodSound);
         }

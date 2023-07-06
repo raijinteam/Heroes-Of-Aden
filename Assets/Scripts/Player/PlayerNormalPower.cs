@@ -15,7 +15,7 @@ public class PlayerNormalPower : MonoBehaviour
 
 	private void Start()
 	{
-		SoundManager.Instance.PlayPlayerShootingSound(clip_Shoot);
+		ServiceManager.Instance.soundManager.PlayPlayerShootingSound(clip_Shoot);
 		Destroy(gameObject, 10f);
 	}
 
@@ -26,7 +26,7 @@ public class PlayerNormalPower : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		SoundManager.Instance.PlayPlayerShootingSound(clip_Destory);
+		ServiceManager.Instance.soundManager.PlayPlayerShootingSound(clip_Destory);
 		if (collision.gameObject.tag.Equals(tag_Enemy))
 		{
 			collision.GetComponent<CollisionControllerEnemy>().TakeDamage(damage);

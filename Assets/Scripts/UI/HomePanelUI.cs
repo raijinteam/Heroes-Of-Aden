@@ -44,12 +44,12 @@ public class HomePanelUI : MonoBehaviour
         }
 
         //FOR SHOW RATE US BOX EVERY 2 GAMES
-        DataManager.Instance.gameCountForShowRateusBox++;
-        DataManager.Instance.IncreaseRateusGameCount();
+        ServiceManager.Instance.dataManager.gameCountForShowRateusBox++;
+        ServiceManager.Instance.dataManager.IncreaseRateusGameCount();
 
         GameManager.Instance.InstantiateActivePlayer();
         this.gameObject.SetActive(false);
-        DataManager.Instance.SubstractEnergy(requireEnergyToStart);
+        ServiceManager.Instance.dataManager.SubstractEnergy(requireEnergyToStart);
         GameManager.Instance.StartGame();
     }
 }

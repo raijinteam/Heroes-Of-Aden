@@ -24,13 +24,13 @@ public class SettingUI : MonoBehaviour
         {
             isMusicOn = true;
             img_MusicTick.gameObject.SetActive(true);
-            DataManager.Instance.isMusicOn = true;
+            ServiceManager.Instance.dataManager.isMusicOn = true;
         }
         else
         {
             isMusicOn = false;
             img_MusicTick.gameObject.SetActive(false);
-            DataManager.Instance.isMusicOn = false;
+            ServiceManager.Instance.dataManager.isMusicOn = false;
         }
     }
 
@@ -40,13 +40,13 @@ public class SettingUI : MonoBehaviour
         {
             isSFXOn = true;
             img_SFXTick.gameObject.SetActive(true);
-            DataManager.Instance.isSFXOn = true;
+            ServiceManager.Instance.dataManager.isSFXOn = true;
         }
         else
         {
             isSFXOn = false;
             img_SFXTick.gameObject.SetActive(false);
-            DataManager.Instance.isSFXOn = false;
+            ServiceManager.Instance.dataManager.isSFXOn = false;
         }
     }
 
@@ -81,8 +81,8 @@ public class SettingUI : MonoBehaviour
     public void OnClick_Rateus()
     {
         Debug.Log("Rate US");
-        DataManager.Instance.HideRateUSBox();
-        DataManager.Instance.CheckForRateusShow();
+        ServiceManager.Instance.dataManager.HideRateUSBox();
+        ServiceManager.Instance.dataManager.CheckForRateusShow();
     }
 }
 

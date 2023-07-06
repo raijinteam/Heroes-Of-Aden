@@ -6,7 +6,7 @@ using UnityEngine.Purchasing;
 
 public class IAPManager : MonoBehaviour, IStoreListener
 {
-    public static IAPManager Instance;
+    //public static IAPManager Instance;
 
     private static IStoreController m_StoreController;
     private static IExtensionProvider m_StoreExtensionProvider;
@@ -22,25 +22,25 @@ public class IAPManager : MonoBehaviour, IStoreListener
 
     public static string[] gemsProducts = { "com.shubham.HeroesofAden.GemsPack1", "com.shubham.HeroesofAden.GemsPack2", "com.shubham.HeroesofAden.GemsPack3", "com.shubham.HeroesofAden.GemsPack4", "com.shubham.HeroesofAden.GemsPack5" };
 
-    private void Awake()
-    {
+    //private void Awake()
+    //{
 
 
-        if (FindObjectsOfType(GetType()).Length > 1)
-        {
-            Destroy(gameObject);
-        }
+    //    if (FindObjectsOfType(GetType()).Length > 1)
+    //    {
+    //        Destroy(gameObject);
+    //    }
 
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(this.gameObject);
-    }
+    //    if (Instance == null)
+    //    {
+    //        Instance = this;
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
 
     void Start()
     {
@@ -126,8 +126,8 @@ public class IAPManager : MonoBehaviour, IStoreListener
         if (String.Equals(args.purchasedProduct.definition.id, Products[0], StringComparison.Ordinal))
         {
             //NO Ads Code Here
-           // FindObjectOfType<AdsManager>().PurchasedNoAds();
-            DataManager.Instance.NoAds();
+            // FindObjectOfType<AdsManager>().PurchasedNoAds();
+            ServiceManager.Instance.dataManager.NoAds();
           //  UiManager.instance.uishop.noAdsPanel.SetActive(false);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
@@ -137,74 +137,74 @@ public class IAPManager : MonoBehaviour, IStoreListener
           //  DataManager.instance.SetCoin(100);
             Debug.Log("Purchase Special Item");
             UIManager.Instance.ui_RewardSummary.SetRewardSummaryData(UIManager.Instance.ui_Shop.list_SpecialItemIcons, UIManager.Instance.ui_Shop.list_SpecialItemRewardAmount);
-            DataManager.Instance.PurchaseSpecialItem();
-            DataManager.Instance.IncreaseCoins(UIManager.Instance.ui_Shop.specialItemCoinReward);
-            DataManager.Instance.IncreaseGems(UIManager.Instance.ui_Shop.specialItemGemsReward);
-            DataManager.Instance.UnlockedSpecialItemRewardPlayer(UIManager.Instance.ui_Shop.playerIndex);
+            ServiceManager.Instance.dataManager.PurchaseSpecialItem();
+            ServiceManager.Instance.dataManager.IncreaseCoins(UIManager.Instance.ui_Shop.specialItemCoinReward);
+            ServiceManager.Instance.dataManager.IncreaseGems(UIManager.Instance.ui_Shop.specialItemGemsReward);
+            ServiceManager.Instance.dataManager.UnlockedSpecialItemRewardPlayer(UIManager.Instance.ui_Shop.playerIndex);
             UIManager.Instance.ui_Shop.specialItemSection.SetActive(false);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
         else if (String.Equals(args.purchasedProduct.definition.id, Products[2], StringComparison.Ordinal))
         {
-            DataManager.Instance.IncreaseGems(10);
+            ServiceManager.Instance.dataManager.IncreaseGems(10);
             Debug.Log("Add Gems Ads manager" + 10);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
         else if (String.Equals(args.purchasedProduct.definition.id, Products[3], StringComparison.Ordinal))
         {
-            DataManager.Instance.IncreaseGems(50);
+            ServiceManager.Instance.dataManager.IncreaseGems(50);
             Debug.Log("Add Gems Ads manager" + 50);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
         else if (String.Equals(args.purchasedProduct.definition.id, Products[4], StringComparison.Ordinal)) {
-            DataManager.Instance.IncreaseGems(100);
+            ServiceManager.Instance.dataManager.IncreaseGems(100);
             Debug.Log("Add Gems Ads manager" + 100);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
         else if (String.Equals(args.purchasedProduct.definition.id, Products[5], StringComparison.Ordinal))
         {
-            DataManager.Instance.IncreaseGems(500);
+            ServiceManager.Instance.dataManager.IncreaseGems(500);
             Debug.Log("Add Gems Ads manager" + 500);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
         else if (String.Equals(args.purchasedProduct.definition.id, Products[6], StringComparison.Ordinal))
         {
-            DataManager.Instance.IncreaseGems(1000);
+            ServiceManager.Instance.dataManager.IncreaseGems(1000);
             Debug.Log("Add Gems Ads manager" + 1000);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
         else if (String.Equals(args.purchasedProduct.definition.id, Products[7], StringComparison.Ordinal))
         {
             //Add Energy PAck 1
-            DataManager.Instance.IncreaseEnergy(10);
+            ServiceManager.Instance.dataManager.IncreaseEnergy(10);
             Debug.Log("Add Energy Ads manager" + 10);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
         else if (String.Equals(args.purchasedProduct.definition.id, Products[8], StringComparison.Ordinal))
         {
             //Add Energy Pack 2
-            DataManager.Instance.IncreaseEnergy(50);
+            ServiceManager.Instance.dataManager.IncreaseEnergy(50);
             Debug.Log("Add Energy Ads manager" + 50);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
         else if (String.Equals(args.purchasedProduct.definition.id, Products[9], StringComparison.Ordinal))
         {
             //Add Energy Pack 3
-            DataManager.Instance.IncreaseEnergy(100);
+            ServiceManager.Instance.dataManager.IncreaseEnergy(100);
             Debug.Log("Add Energy Ads manager" + 100);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
         else if (String.Equals(args.purchasedProduct.definition.id, Products[10], StringComparison.Ordinal))
         {
             //Add Energy Pack 4
-            DataManager.Instance.IncreaseEnergy(500);
+            ServiceManager.Instance.dataManager.IncreaseEnergy(500);
             Debug.Log("Add Energy Ads manager" + 500);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
         else if (String.Equals(args.purchasedProduct.definition.id, Products[11], StringComparison.Ordinal))
         {
             //Add Energy Pack 5
-            DataManager.Instance.IncreaseEnergy(1000);
+            ServiceManager.Instance.dataManager.IncreaseEnergy(1000);
             Debug.Log("Add Energy Ads manager" + 1000);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }

@@ -229,7 +229,7 @@ public class PlayerDetailsUI : MonoBehaviour
                 UIManager.Instance.SpawnPopUpBox("Not Enough Gems");
                 return;
             }
-                DataManager.Instance.SubstractGames(PlayerDataManager.Instance.all_CharchterData[selectedIndex].upgradeAmount[selectedPlayerLevel]);
+            ServiceManager.Instance.dataManager.SubstractGames(PlayerDataManager.Instance.all_CharchterData[selectedIndex].upgradeAmount[selectedPlayerLevel]);
             
         }
         else
@@ -239,7 +239,7 @@ public class PlayerDetailsUI : MonoBehaviour
                 UIManager.Instance.SpawnPopUpBox("Not Enough Coins");
                 return;
             }
-                DataManager.Instance.SubstractCoins(PlayerDataManager.Instance.all_CharchterData[selectedIndex].upgradeAmount[selectedPlayerLevel]);
+            ServiceManager.Instance.dataManager.SubstractCoins(PlayerDataManager.Instance.all_CharchterData[selectedIndex].upgradeAmount[selectedPlayerLevel]);
             
         }
 

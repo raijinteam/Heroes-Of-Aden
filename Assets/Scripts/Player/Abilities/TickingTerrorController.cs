@@ -27,7 +27,7 @@ public class TickingTerrorController : MonoBehaviour
 
     private void OnEnable()
     {
-        if (DataManager.Instance.IsSFXON() == true)
+        if (ServiceManager.Instance.dataManager.IsSFXON())
         {
             audioSource.PlayOneShot(clip_Shoot);
         }
@@ -50,7 +50,7 @@ public class TickingTerrorController : MonoBehaviour
         body.gameObject.SetActive(false);
         explosionEffect.SetActive(true);
 
-        if (DataManager.Instance.IsSFXON() == true)
+        if (ServiceManager.Instance.dataManager.IsSFXON() == true)
         {
             audioSource.PlayOneShot(clip_Explod);
         }

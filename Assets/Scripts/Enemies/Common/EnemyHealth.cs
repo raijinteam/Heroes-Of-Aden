@@ -69,7 +69,7 @@ public class EnemyHealth : MonoBehaviour
 			}
 
             //play death sound
-            if (DataManager.Instance.IsSFXON() == true)
+            if (ServiceManager.Instance.dataManager.IsSFXON())
             {
 				audioSource.PlayOneShot(clip_Death);
 			}

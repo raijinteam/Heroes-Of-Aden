@@ -50,7 +50,7 @@ public class ShopUI : MonoBehaviour
     private void OnEnable()
     {
         specialItemSection.SetActive(true);
-        if (DataManager.Instance.isSpecialItemPurchase)
+        if (ServiceManager.Instance.dataManager.isSpecialItemPurchase)
         {
             specialItemSection.SetActive(false);
         }
@@ -114,12 +114,12 @@ public class ShopUI : MonoBehaviour
     {
         if(index == 0)
         {
-            AdsManager.Instance.rewarsState = RewardState.coinReward;
-            AdsManager.Instance.ShowRewardedAd();
+            ServiceManager.Instance.adsManager.rewarsState = RewardState.coinReward;
+            ServiceManager.Instance.adsManager.ShowRewardedAd();
         }
         else
         {
-            if (int.Parse(all_RequiredResourceForReward[index].text) >= DataManager.Instance.totalGems)
+            if (int.Parse(all_RequiredResourceForReward[index].text) >= ServiceManager.Instance.dataManager.totalGems)
             {
                 UIManager.Instance.SpawnPopUpBox("Not Enough Gems");
                 return;
@@ -127,8 +127,8 @@ public class ShopUI : MonoBehaviour
 
             UIManager.Instance.ui_RewardSummary.SetRewardSummarySingleData(all_CoinsIcons[index].sprite, int.Parse(all_RewaredCoinAmount[index].text));
             UIManager.Instance.ui_RewardSummary.gameObject.SetActive(true);
-            DataManager.Instance.SubstractGames(int.Parse(all_RequiredResourceForReward[index].text));
-            DataManager.Instance.IncreaseCoins(int.Parse(all_RewaredCoinAmount[index].text));
+            ServiceManager.Instance.dataManager.SubstractGames(int.Parse(all_RequiredResourceForReward[index].text));
+            ServiceManager.Instance.dataManager.IncreaseCoins(int.Parse(all_RewaredCoinAmount[index].text));
         }
 
       
@@ -139,12 +139,12 @@ public class ShopUI : MonoBehaviour
 
         if(index == 0)
         {
-            AdsManager.Instance.rewarsState = RewardState.energyReward;
-            AdsManager.Instance.ShowRewardedAd();
+            ServiceManager.Instance.adsManager.rewarsState = RewardState.energyReward;
+            ServiceManager.Instance.adsManager.ShowRewardedAd();
         }
         else
         {
-            if (int.Parse(all_RequiredResourceForRewardEnergy[index].text) >= DataManager.Instance.totalGems)
+            if (int.Parse(all_RequiredResourceForRewardEnergy[index].text) >= ServiceManager.Instance.dataManager.totalGems)
             {
                 UIManager.Instance.SpawnPopUpBox("Not Enough Gems");
                 return;
@@ -152,8 +152,8 @@ public class ShopUI : MonoBehaviour
 
             UIManager.Instance.ui_RewardSummary.SetRewardSummarySingleData(all_EnergiesIcons[index].sprite, int.Parse(all_RewardEnergiesAmount[index].text));
             UIManager.Instance.ui_RewardSummary.gameObject.SetActive(true);
-            DataManager.Instance.SubstractGames(int.Parse(all_RequiredResourceForRewardEnergy[index].text));
-            DataManager.Instance.IncreaseEnergy(int.Parse(all_RewardEnergiesAmount[index].text));
+            ServiceManager.Instance.dataManager.SubstractGames(int.Parse(all_RequiredResourceForRewardEnergy[index].text));
+            ServiceManager.Instance.dataManager.IncreaseEnergy(int.Parse(all_RewardEnergiesAmount[index].text));
         }
 
        
@@ -167,6 +167,6 @@ public class ShopUI : MonoBehaviour
 
     public void OnClick_BuyProduct(int index)
     {
-        FindObjectOfType<IAPManager>().BuyConsumable(index);
+        ServiceManager.Instance.iapManager.BuyConsumable(index);
     }
 }

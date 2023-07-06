@@ -61,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
 			flt_CurrentHealth = 0f;
 			//GameManager.Instance.isGameRunning = false;
 
-			SoundManager.Instance.PlayPlayerDeathSound(clip_PlayerDeath);
+			ServiceManager.Instance.soundManager.PlayPlayerDeathSound(clip_PlayerDeath);
 
 			Instantiate(playerDeathPartical, transform.position, Quaternion.identity);
 
@@ -88,7 +88,7 @@ public class PlayerHealth : MonoBehaviour
 	public void PickedUpHealth()
 	{
 		float increaseAmount = 0.5f * flt_MaxHealth;
-		SoundManager.Instance.PlayHealthPickupSound();
+		ServiceManager.Instance.soundManager.PlayHealthPickupSound();
 		AddHealth(increaseAmount);
 	}
 

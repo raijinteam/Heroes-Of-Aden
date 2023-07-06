@@ -24,9 +24,9 @@ public class AllUseableResourceUI : MonoBehaviour
 
     private void Start()
     {
-        coins = DataManager.Instance.totalCoins;
-        gems = DataManager.Instance.totalGems;
-        energy = DataManager.Instance.totalEnergy;
+        coins = ServiceManager.Instance.dataManager.totalCoins;
+        gems = ServiceManager.Instance.dataManager.totalGems;
+        energy = ServiceManager.Instance.dataManager.totalEnergy;
 
         txt_CoinAmount.text = coins.ToString("F0");
         txt_GamsAmount.text = gems.ToString("F0");
@@ -35,24 +35,24 @@ public class AllUseableResourceUI : MonoBehaviour
 
     private void Update()
     {
-        if (coins != DataManager.Instance.totalCoins)
+        if (coins != ServiceManager.Instance.dataManager.totalCoins)
         {
-            coins = Mathf.Lerp(coins, DataManager.Instance.totalCoins, lerpTimer);
+            coins = Mathf.Lerp(coins, ServiceManager.Instance.dataManager.totalCoins, lerpTimer);
 
             txt_CoinAmount.text = coins.ToString("F0");
         }
 
 
-        if(gems != DataManager.Instance.totalGems)
+        if(gems != ServiceManager.Instance.dataManager.totalGems)
         {
-            gems = Mathf.Lerp(gems, DataManager.Instance.totalGems, lerpTimer);
+            gems = Mathf.Lerp(gems, ServiceManager.Instance.dataManager.totalGems, lerpTimer);
 
             txt_GamsAmount.text = gems.ToString("F0");
         }
 
-        if (energy != DataManager.Instance.totalEnergy)
+        if (energy != ServiceManager.Instance.dataManager.totalEnergy)
         {
-            energy = Mathf.Lerp(energy, DataManager.Instance.totalEnergy, lerpTimer);
+            energy = Mathf.Lerp(energy, ServiceManager.Instance.dataManager.totalEnergy, lerpTimer);
             txt_EnergyAmount.text = energy.ToString("F0");
         }
     }

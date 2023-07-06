@@ -24,7 +24,7 @@ public class ThrusterController : MonoBehaviour
 
 	private void OnEnable()
     {
-		if (DataManager.Instance.IsSFXON() == true)
+		if (ServiceManager.Instance.dataManager.IsSFXON())
 		{
 			audioSource.PlayOneShot(clip_Shoot);
 		}
@@ -65,7 +65,7 @@ public class ThrusterController : MonoBehaviour
 		explosionEffect.SetActive(true);
 
 		//PLAY EXPLOD SOUND
-		if (DataManager.Instance.IsSFXON() == true)
+		if (ServiceManager.Instance.dataManager.IsSFXON())
 		{
 			audioSource.PlayOneShot(clip_Explod);
 		}

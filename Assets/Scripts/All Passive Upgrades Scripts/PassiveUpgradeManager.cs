@@ -27,7 +27,7 @@ public class PassiveUpgradeManager : MonoBehaviour
     //CHECK IF PLAYER HAS ENOUGH COINS FOR UPGRADE 
     public bool hasEnoughCoinsForUpgrade()
     {
-        if (DataManager.Instance.totalCoins >= coinsForUpgrade)
+        if (ServiceManager.Instance.dataManager.totalCoins >= coinsForUpgrade)
         {
             return true;
         }

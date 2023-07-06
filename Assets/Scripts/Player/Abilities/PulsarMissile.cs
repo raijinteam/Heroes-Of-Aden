@@ -23,7 +23,7 @@ public class PulsarMissile : MonoBehaviour
 
     private void OnEnable()
     {
-		if (DataManager.Instance.IsSFXON() == true)
+		if (ServiceManager.Instance.dataManager.IsSFXON())
 		{
 			audioSource.PlayOneShot(clip_Shoot);
 		}
@@ -57,7 +57,7 @@ public class PulsarMissile : MonoBehaviour
 			return;
 		}
 
-		if (DataManager.Instance.IsSFXON() == true)
+		if (ServiceManager.Instance.dataManager.IsSFXON())
 		{
 			audioSource.PlayOneShot(clip_Explod);
 		}

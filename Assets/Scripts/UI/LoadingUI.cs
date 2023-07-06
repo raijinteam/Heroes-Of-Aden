@@ -12,39 +12,46 @@ public class LoadingUI : MonoBehaviour
     [SerializeField] private LoadingFadeBGUI ui_FadeBG;
     [SerializeField] private float currentLoadingDuration;
 
+    private AsyncOperation asyncOperation;
+
     private void Start()
     {
-
-        //Invoke("Loadscene", 2f);
-       // StartCoroutine(StartLoading());
         StartCoroutine(LoadAsync());
+        StartCoroutine(StartLoading());    
     }
 
-    private void Loadscene()
+	IEnumerator LoadAsync()
     {
-        SceneManager.LoadScene(1);
-    }
+		//AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1);
 
-    IEnumerator LoadAsync()
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(1);
+		//while (!asyncLoad.isDone)
+		//{
+		//    yield return null;
+		//}
 
-        // While the scene isn't fully loaded
-        while (!operation.isDone)
-        {
-            // You can access operation.progress for a value between 0 and 0.9
-            // that represents the current load progress
-            // Note: operation.progress will never reach 1.0 directly,
-            // when the scene is loaded the operation will just finish
-            float progress = Mathf.Clamp01(operation.progress / 0.9f);
-            Debug.Log("Loading progress: " + (progress * 100) + "%");
 
-            // Yield until next frame
-            yield return null;
-        }
+		asyncOperation = SceneManager.LoadSceneAsync(1);
+		asyncOperation.allowSceneActivation = false;
 
-        Debug.Log("Loading completed");
-    }
+		// While the asynchronous operation to load the new scene is not yet complete, continue waiting
+		while (!asyncOperation.isDone)
+		{
+			// Check if the load has completed
+			if (asyncOperation.progress >= 0.9f)
+			{
+				// You can implement here a condition when to activate your scene
+				// For example: if a loading screen animation has completed
+				//asyncOperation.allowSceneActivation = true;
+
+				// Optionally output the progress to the console
+				Debug.Log("Scene Loaded");
+			}
+
+			yield return null;
+		}
+
+
+	}
 
     IEnumerator StartLoading()
     {
@@ -62,14 +69,29 @@ public class LoadingUI : MonoBehaviour
         }
 
         Sequence sec = DOTween.Sequence();
-        sec.Append(ui_FadeBG.img_FadeBG.DOFade(1,0.3f)).OnComplete(ChangeScean);
+        Debug.Log("1");
+        sec.Append(ui_FadeBG.img_FadeBG.DOFade(1,0.3f)).OnComplete(ChangeScene);
 
 
         //Debug.Log("Change scene");
     }
 
-    public void ChangeScean()
+    public void ChangeScene()
     {
-        SceneManager.LoadScene(1);
+        //SceneManager.LoadScene(1);
+        StartCoroutine(LoadSceneOverTime());      
     }
+
+    private IEnumerator LoadSceneOverTime()
+	{
+        if(asyncOperation.progress >= 0.9f)
+		{
+            SceneManager.LoadScene(1);
+		}
+		else
+		{
+            yield return new WaitForSeconds(1f);
+            ChangeScene();
+		}
+	}
 }

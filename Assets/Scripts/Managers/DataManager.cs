@@ -5,7 +5,7 @@ using System;
 
 public class DataManager : MonoBehaviour
 {
-	public static DataManager Instance;
+	//public static DataManager Instance;
 
 	
 
@@ -33,23 +33,21 @@ public class DataManager : MonoBehaviour
 	
 
 
-	private void Awake()
-	{
-		if(Instance == null)
-        {
-			Instance = this;
-        }
-        else
-        {
-			Destroy(gameObject);
-        }
-		DontDestroyOnLoad(this.gameObject);
+	//private void Awake()
+	//{
+	//	if(Instance == null)
+ //       {
+	//		Instance = this;
+ //       }
+ //       else
+ //       {
+	//		Destroy(gameObject);
+ //       }
+	//	DontDestroyOnLoad(this.gameObject);
+	
+	//}
 
-
-		
-	}
-
-    private void OnEnable()
+    private void Start()
     {
 		if (PlayerPrefs.HasKey(PlayerPrefsData.KEY_COINS))
 		{
@@ -59,10 +57,6 @@ public class DataManager : MonoBehaviour
 		{
 			SetFirstTimeData(); //SET DATA WHEN GAME FIRST TIME LOAD
 		}
-	}
-    private void Start()
-    {
-		
 	}
 
     private void Update()

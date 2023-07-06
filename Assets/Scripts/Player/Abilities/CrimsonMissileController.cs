@@ -22,7 +22,7 @@ public class CrimsonMissileController : MonoBehaviour
 
 	private void OnEnable()
 	{
-		if (DataManager.Instance.IsSFXON() == true)
+		if (ServiceManager.Instance.dataManager.IsSFXON())
 		{
 			audioSource.PlayOneShot(clip_Shoot);
 		}
@@ -61,7 +61,7 @@ public class CrimsonMissileController : MonoBehaviour
 
 		hasCollided = true;
 
-        if (DataManager.Instance.IsSFXON() == true)
+        if (ServiceManager.Instance.dataManager.IsSFXON() == true)
         {
 			audioSource.PlayOneShot(clip_Explod);
         }

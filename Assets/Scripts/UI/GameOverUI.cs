@@ -98,7 +98,7 @@ public class GameOverUI : MonoBehaviour
 				currentObjectToAnimate.transform.DOScale(Vector3.one, flt_AnimaitonDuration);
 				if( i == all_ObjectsForAnimate.Length - 1)
                 {
-					currentObjectToAnimate.transform.DOScale(Vector3.one, flt_AnimaitonDuration).OnComplete(AdsManager.Instance.ShowInterstitialAd);
+					currentObjectToAnimate.transform.DOScale(Vector3.one, flt_AnimaitonDuration).OnComplete(ServiceManager.Instance.adsManager.ShowInterstitialAd);
                 }
             }
 
@@ -145,9 +145,7 @@ public class GameOverUI : MonoBehaviour
 	public void OnClick_2XCoin()
     {
 		btn_2XReward.gameObject.SetActive(false);
-		AdsManager.Instance.rewarsState = RewardState.doubkeCoinReward;
-		AdsManager.Instance.ShowRewardedAd();
-		
-
+		ServiceManager.Instance.adsManager.rewarsState = RewardState.doubkeCoinReward;
+		ServiceManager.Instance.adsManager.ShowRewardedAd();
 	}
 }

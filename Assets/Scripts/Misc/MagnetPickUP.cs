@@ -8,7 +8,7 @@ public class MagnetPickUP : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        SoundManager.Instance.PlayMagnetPickupSound();
+        ServiceManager.Instance.soundManager.PlayMagnetPickupSound();
 
         foreach(Transform point in GameManager.Instance.pointSpawnParent)
         {
