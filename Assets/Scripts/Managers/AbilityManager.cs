@@ -15,14 +15,14 @@ public class AbilityManager : MonoBehaviour
 
 	[Header("Upgrade Names")]
 	private string str_Damage = "Damage";
-	private string str_ProjectileCount = "Projectile Count";
+	private string str_ProjectileCount = "Proj. Count";
 	private string str_FireRate = "FireRate";
 	private string str_SpawnRate = "Cooldown";
 	private string str_AliveTime = "Alive Time";
 	private string str_MaxHealth = "Max Health";
 	private string str_Regen = "Regen";
-	private string str_CritialChance = "Critical Chance";
-	private string str_CritialDamage = "Critical Damage";
+	private string str_CritialChance = "Crit. Chance";
+	private string str_CritialDamage = "Crit. Damage";
 	private string str_MovementSpeed = "Move Speed";
 
 	[Header("POWER UP SCRIPTS")]

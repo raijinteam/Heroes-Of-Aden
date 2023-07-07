@@ -19,6 +19,8 @@ public class PlayerPrefsData
     public static string KEY_PLAYER_LEVEL = "ActivePlayerLevel";
 
     public static string KEY_UPGRADE_LEVEL = "UpgradeLevel";
+    public static string KEY_PASSIVEUPGRADE_UNLOCK_PRICE = "PassiveUpgradeUnlockPrice";
+
 
     public static string KEY_BESTTIME = "Besttime";
 

@@ -43,6 +43,8 @@ public class RateUsUI : MonoBehaviour
 
     public void OnClick_Continue()
     {
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
+
         this.gameObject.SetActive(false);
         ServiceManager.Instance.dataManager.HideRateUSBox();
         ServiceManager.Instance.dataManager.CheckForRateusShow();
@@ -50,6 +52,8 @@ public class RateUsUI : MonoBehaviour
 
     public void OnClick_Close()
     {
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
+
         this.gameObject.SetActive(false);
         ServiceManager.Instance.dataManager.gameCountForShowRateusBox = 0;
         ServiceManager.Instance.dataManager.IncreaseRateusGameCount();

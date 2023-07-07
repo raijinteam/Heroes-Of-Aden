@@ -36,8 +36,9 @@ public class HomePanelUI : MonoBehaviour
 
     public void OnClick_StartGame()
     {
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
 
-        if(!(PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY) >= requireEnergyToStart))
+        if(!(PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY) > requireEnergyToStart))
         {
             UIManager.Instance.SpawnPopUpBox("Not Enough Energy");
             return;

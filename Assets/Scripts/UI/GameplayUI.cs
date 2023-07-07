@@ -59,6 +59,8 @@ public class GameplayUI : MonoBehaviour
 
 	public void OnClick_Pause()
     {
+		ServiceManager.Instance.soundManager.PlayButtonClickSound();
+
 		Time.timeScale = 0;
 		UIManager.Instance.ui_Pause.gameObject.SetActive(true);
     }

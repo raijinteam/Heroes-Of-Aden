@@ -8,6 +8,9 @@ using DG.Tweening;
 public class PassiveUpgradeSelectonUI : MonoBehaviour
 {
     [SerializeField] private Button btn_Upgrade;
+    [SerializeField] private TextMeshProUGUI txt_PriceForUpgrade;
+    
+
 
     public Image[] all_UpgradeGlowBG;
     public Image[] all_UpgradeIcons;
@@ -20,6 +23,11 @@ public class PassiveUpgradeSelectonUI : MonoBehaviour
 
 
 
+    private void Start()
+    {
+        
+    }
+
     private void OnEnable()
     {
         for (int i = 0; i < all_UpgradeGlowBG.Length; i++)
@@ -28,6 +36,8 @@ public class PassiveUpgradeSelectonUI : MonoBehaviour
         }
 
         SetPassiveUpgradeLevelText();
+
+        txt_PriceForUpgrade.text = PassiveUpgradeManager.Instance.currentPassiveUpgradeAmount.ToString();
 
         CheckForUpgradeMaxLevel();
 
@@ -102,15 +112,19 @@ public class PassiveUpgradeSelectonUI : MonoBehaviour
     private void ShowRewardPanel()
     {
         UIManager.Instance.canChangeMenus = false;
+
         this.gameObject.SetActive(false);
+
         UIManager.Instance.ui_PassiveUpgrade.btn_Upgrade.SetActive(false);
         UIManager.Instance.ui_PassiveUpgrade.ui_PassiveUpgradeSummary.gameObject.SetActive(true);
+
         btn_Upgrade.interactable = true;
     }
 
 
     public void OnClick_UpgradeSelectionStart()
     {
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
 
         if (!PassiveUpgradeManager.Instance.hasEnoughCoinsForUpgrade())
         {
@@ -119,11 +133,17 @@ public class PassiveUpgradeSelectonUI : MonoBehaviour
         }
         btn_Upgrade.interactable = false;
 
+        
         StartCoroutine(SetRandomPassiveUpgradeSelectionEffect());
-        ServiceManager.Instance.dataManager.SubstractCoins(PassiveUpgradeManager.Instance.coinsForUpgrade);
+
+        ServiceManager.Instance.dataManager.SubstractCoins(PassiveUpgradeManager.Instance.currentPassiveUpgradeAmount);
+
         Sequence seq = DOTween.Sequence();
         seq.Append(btn_Upgrade.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), flt_UpgradeButtonAnimationDuration).SetEase(Ease.OutSine)).
                     Append(btn_Upgrade.transform.DOScale(new Vector3(1f, 1f, 1f), flt_UpgradeButtonAnimationDuration).SetEase(Ease.InSine));
+
+        PassiveUpgradeManager.Instance.SetPassiveUnlockUpgradePrice();
+        txt_PriceForUpgrade.text = PassiveUpgradeManager.Instance.currentPassiveUpgradeAmount.ToString();
     }
 
 }

@@ -67,6 +67,8 @@ public class AbilityInfoUI : MonoBehaviour
 
     public void OnClick_AbilitySelect()
 	{
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
+
         GameManager.Instance.PlayerSelectedAbility(abiliyIndex);
 	}
 }

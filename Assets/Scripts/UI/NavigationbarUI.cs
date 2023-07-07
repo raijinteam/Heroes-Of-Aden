@@ -22,6 +22,7 @@ public class NavigationbarUI : MonoBehaviour
 
     public void OnClick_MenuActivate(int index)
     {
+
         float startingPosition = 0;
 
         if (UIManager.Instance.canChangeMenus == true)
@@ -31,6 +32,7 @@ public class NavigationbarUI : MonoBehaviour
                 //I IS EQULS TO IDEX INCREASE SIZE OF BUTTON AND SET ACTIVE THAT BUTTON
                 if (i == index)
                 {
+                    ServiceManager.Instance.soundManager.PlayButtonClickSound();
                     all_MenusBG[i].DOAnchorMin(new Vector2(startingPosition, all_MenusBG[i].anchorMin.y), animationDuration);
                     startingPosition += xPositionOffset;
                     all_MenusBG[i].DOAnchorMax(new Vector2(startingPosition, 1f), animationDuration);

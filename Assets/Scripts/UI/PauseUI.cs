@@ -53,6 +53,8 @@ public class PauseUI : MonoBehaviour
 
     public void OnCLick_Resume()
     {
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
+
         Time.timeScale = 1;
         UIManager.Instance.ui_Gameplay.gameObject.SetActive(true);
         this.gameObject.SetActive(false);
@@ -60,6 +62,8 @@ public class PauseUI : MonoBehaviour
 
     public void OnClick_Home()
     {
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
+
         this.gameObject.SetActive(false);
         GameManager.Instance.PlayerDied();
         UIManager.Instance.ui_HomePanel.gameObject.SetActive(true);

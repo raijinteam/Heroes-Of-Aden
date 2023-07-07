@@ -7,7 +7,10 @@ public class PassiveUpgradeManager : MonoBehaviour
     public static PassiveUpgradeManager Instance;
 
     public PassiveUpgradeData[] all_PassiveData;
-    public int coinsForUpgrade = 500;
+
+    public int currentLevel;
+    public int currentPassiveUpgradeAmount;
+
     public int maxPassiveUpgradeLevel = 10;
 
 
@@ -24,6 +27,8 @@ public class PassiveUpgradeManager : MonoBehaviour
     private void OnEnable()
     {
         SetAllPassiveLevel();
+
+        currentPassiveUpgradeAmount = PlayerPrefs.GetInt(PlayerPrefsData.KEY_PASSIVEUPGRADE_UNLOCK_PRICE);
     }
 
     private void SetAllPassiveLevel()
@@ -38,11 +43,18 @@ public class PassiveUpgradeManager : MonoBehaviour
     //CHECK IF PLAYER HAS ENOUGH COINS FOR UPGRADE 
     public bool hasEnoughCoinsForUpgrade()
     {
-        if (ServiceManager.Instance.dataManager.totalCoins >= coinsForUpgrade)
+        if (ServiceManager.Instance.dataManager.totalCoins > currentPassiveUpgradeAmount)
         {
             return true;
         }
         return false;
+    }
+
+
+    public void SetPassiveUnlockUpgradePrice()
+    {
+        currentPassiveUpgradeAmount += 100;
+        PlayerPrefs.SetInt(PlayerPrefsData.KEY_PASSIVEUPGRADE_UNLOCK_PRICE, currentPassiveUpgradeAmount);
     }
 
     //CHECK IF ANY UPGRADE REACH ITS MAX LEVEL

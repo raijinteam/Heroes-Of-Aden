@@ -23,7 +23,7 @@ public class RewardSummartUI : MonoBehaviour
         }
     }
 
-    public void SetRewardSummarySingleData(Sprite _rewardIcon , int _rewardAmount)
+    public void SetRewardSummarySingleData(Sprite _rewardIcon , float _rewardAmount)
     {
         all_Rewards[0].gameObject.SetActive(true);
         all_Rewards[0].img_RewardIcon.sprite = _rewardIcon;
@@ -54,6 +54,7 @@ public class RewardSummartUI : MonoBehaviour
             }
             else
             {
+                all_Rewards[i].img_RewardIcon.sprite = PlayerDataManager.Instance.all_CharchterData[UIManager.Instance.ui_Shop.playerIndex].playerIcon;
                 all_Rewards[i].txt_RewardAmount.gameObject.SetActive(false);
             }
         }
@@ -62,7 +63,10 @@ public class RewardSummartUI : MonoBehaviour
 
     public void OnClick_Continue()
     {
-        for(int i = 0; i < all_Rewards.Length; i++)
+
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
+
+        for (int i = 0; i < all_Rewards.Length; i++)
         {
             all_Rewards[i].gameObject.SetActive(false);
         }

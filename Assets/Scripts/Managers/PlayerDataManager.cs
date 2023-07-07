@@ -61,7 +61,7 @@ public class PlayerDataManager : MonoBehaviour
     //CHECK FOR PLAYER HAS ENOUCH COINS TO UPGRADE PLAYER
     public bool hasEnoughCoinsForUpgradePlayer(int _playerIndex)
     {
-        if (ServiceManager.Instance.dataManager.totalCoins >= all_CharchterData[_playerIndex].upgradeAmount[all_CharchterData[_playerIndex].level])
+        if (ServiceManager.Instance.dataManager.totalCoins > all_CharchterData[_playerIndex].upgradeAmount[all_CharchterData[_playerIndex].level])
         {
 
             return true;
@@ -77,7 +77,7 @@ public class PlayerDataManager : MonoBehaviour
         }
         return false;*/
 
-        return ServiceManager.Instance.dataManager.totalGems >= all_CharchterData[_playerIndex].upgradeAmount[all_CharchterData[_playerIndex].level] ? true : false;
+        return ServiceManager.Instance.dataManager.totalGems > all_CharchterData[_playerIndex].upgradeAmount[all_CharchterData[_playerIndex].level] ? true : false;
     }
 
 

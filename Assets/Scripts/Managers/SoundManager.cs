@@ -17,6 +17,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource pointCollectSound;
     [SerializeField] private AudioClip clip_PointCollect;
     [SerializeField] private AudioSource playerShootingSound;
+    [SerializeField] private AudioSource buttonCLickSound;
 
     //private void Awake()
     //{
@@ -31,11 +32,28 @@ public class SoundManager : MonoBehaviour
     //    DontDestroyOnLoad(this.gameObject);
     //}
 
+    private void Start()
+    {
+        PlayBGSound();
+    }
+
     public void PlayBGSound()
     {
         if (ServiceManager.Instance.dataManager.isMusicOn)
         {
             bgSound.Play();
+        }
+        else
+        {
+            bgSound.Stop();
+        }
+    }
+
+    public void PlayButtonClickSound()
+    {
+        if (ServiceManager.Instance.dataManager.isSFXOn)
+        {
+            buttonCLickSound.Play();
         }
     }
 

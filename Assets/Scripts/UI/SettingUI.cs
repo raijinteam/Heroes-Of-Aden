@@ -32,6 +32,7 @@ public class SettingUI : MonoBehaviour
             img_MusicTick.gameObject.SetActive(false);
             ServiceManager.Instance.dataManager.isMusicOn = false;
         }
+        ServiceManager.Instance.soundManager.PlayBGSound();
     }
 
     public void CheckStateOfSFX()
@@ -52,6 +53,8 @@ public class SettingUI : MonoBehaviour
 
     public void OnClick_Music()
     {
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
+
         if (PlayerPrefs.GetInt(PlayerPrefsData.KEY_MUSIC) == 0)
         {
             PlayerPrefs.SetInt(PlayerPrefsData.KEY_MUSIC, 1);
@@ -65,7 +68,8 @@ public class SettingUI : MonoBehaviour
 
     public void OnClick_SFX()
     {
-        
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
+
         if (PlayerPrefs.GetInt(PlayerPrefsData.KEY_SFX) == 0)
         {
             PlayerPrefs.SetInt(PlayerPrefsData.KEY_SFX, 1);
@@ -80,6 +84,8 @@ public class SettingUI : MonoBehaviour
 
     public void OnClick_Rateus()
     {
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
+
         Debug.Log("Rate US");
         ServiceManager.Instance.dataManager.HideRateUSBox();
         ServiceManager.Instance.dataManager.CheckForRateusShow();

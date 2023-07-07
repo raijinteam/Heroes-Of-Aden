@@ -20,7 +20,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
         "com.shubham.HeroesofAden.EnergyPack3" , "com.shubham.HeroesofAden.EnergyPack4" , "com.shubham.HeroesofAden.EnergyPack5"
     };
 
-    public static string[] gemsProducts = { "com.shubham.HeroesofAden.GemsPack1", "com.shubham.HeroesofAden.GemsPack2", "com.shubham.HeroesofAden.GemsPack3", "com.shubham.HeroesofAden.GemsPack4", "com.shubham.HeroesofAden.GemsPack5" };
+   
 
     //private void Awake()
     //{
@@ -147,31 +147,31 @@ public class IAPManager : MonoBehaviour, IStoreListener
         }
         else if (String.Equals(args.purchasedProduct.definition.id, Products[2], StringComparison.Ordinal))
         {
-            ServiceManager.Instance.dataManager.IncreaseGems(10);
-            Debug.Log("Add Gems Ads manager" + 10);
-            Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-        }
-        else if (String.Equals(args.purchasedProduct.definition.id, Products[3], StringComparison.Ordinal))
-        {
             ServiceManager.Instance.dataManager.IncreaseGems(50);
             Debug.Log("Add Gems Ads manager" + 50);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
-        else if (String.Equals(args.purchasedProduct.definition.id, Products[4], StringComparison.Ordinal)) {
-            ServiceManager.Instance.dataManager.IncreaseGems(100);
-            Debug.Log("Add Gems Ads manager" + 100);
+        else if (String.Equals(args.purchasedProduct.definition.id, Products[3], StringComparison.Ordinal))
+        {
+            ServiceManager.Instance.dataManager.IncreaseGems(200);
+            Debug.Log("Add Gems Ads manager" + 200);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
-        else if (String.Equals(args.purchasedProduct.definition.id, Products[5], StringComparison.Ordinal))
-        {
+        else if (String.Equals(args.purchasedProduct.definition.id, Products[4], StringComparison.Ordinal)) {
             ServiceManager.Instance.dataManager.IncreaseGems(500);
             Debug.Log("Add Gems Ads manager" + 500);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
-        else if (String.Equals(args.purchasedProduct.definition.id, Products[6], StringComparison.Ordinal))
+        else if (String.Equals(args.purchasedProduct.definition.id, Products[5], StringComparison.Ordinal))
         {
             ServiceManager.Instance.dataManager.IncreaseGems(1000);
             Debug.Log("Add Gems Ads manager" + 1000);
+            Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
+        }
+        else if (String.Equals(args.purchasedProduct.definition.id, Products[6], StringComparison.Ordinal))
+        {
+            ServiceManager.Instance.dataManager.IncreaseGems(2500);
+            Debug.Log("Add Gems Ads manager" + 2500);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
         else if (String.Equals(args.purchasedProduct.definition.id, Products[7], StringComparison.Ordinal))

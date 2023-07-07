@@ -78,6 +78,8 @@ public class PlayerSelectorUI : MonoBehaviour
     public void OnClick_UpgradePlayer(int _playerIndex)
     {
 
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
+
         for (int i = 0; i < all_Player.Length; i++)
         {
             all_Player[i].img_SelectedBG.gameObject.SetActive(false);
@@ -101,6 +103,8 @@ public class PlayerSelectorUI : MonoBehaviour
 
     public void OnClick_ShowPlayerDetails()
     {
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
+
         selectPlayerUI.gameObject.SetActive(true);
 
         selectPlayerUI.SetSelectedPlayerData(selectedIndex);

@@ -271,6 +271,7 @@ public class PlayerDetailsUI : MonoBehaviour
             UIManager.Instance.ui_PlayerSelector.CheckForPlayerUnlocked();
             txt_PlayerLevel.gameObject.SetActive(true);
             img_Locked.gameObject.SetActive(false);
+            txt_UpgradeButton.text = PlayerDataManager.Instance.all_CharchterData[selectedIndex].upgradeAmount[PlayerDataManager.Instance.GetPlayerLevel(selectedIndex)].ToString();
             txt_PlayerLevel.text = "LV." + (PlayerDataManager.Instance.GetPlayerLevel(selectedIndex)).ToString();
         }
         else

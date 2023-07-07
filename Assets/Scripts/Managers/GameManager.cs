@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using Cinemachine;
 using Random = UnityEngine.Random;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class GameManager : MonoBehaviour
 		Instance = this;
 	}
 
+	//Only for Testing
+	public TextMeshProUGUI text;
 
 	[Header("Game Data")]
 	public List<Transform> list_ActiveEnemies;

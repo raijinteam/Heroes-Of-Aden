@@ -12,7 +12,6 @@ public class PassiveUpgradeSummaryUI : MonoBehaviour
     [SerializeField] private Image img_UpgradeIconBG;
     [SerializeField] private TextMeshProUGUI txt_UpgradeName;
     [SerializeField] private TextMeshProUGUI txt_UpgradeLevel;
-    [SerializeField] private TextMeshProUGUI txt_UpgradeDescription;
     [SerializeField] private TextMeshProUGUI txt_UpgradeCurrentValue;
     [SerializeField] private TextMeshProUGUI txt_UpgradedValue;
     [SerializeField] private Button btn_Continue;
@@ -52,6 +51,7 @@ public class PassiveUpgradeSummaryUI : MonoBehaviour
         txt_UpgradeLevel.transform.DOScale(Vector3.zero, .1f);
         txt_UpgradeCurrentValue.transform.DOScale(Vector3.zero, .1f);
         txt_UpgradedValue.transform.DOScale(Vector3.zero, .1f);
+        btn_Continue.transform.DOScale(Vector3.zero, 0.1f);
     }
 
     public void SetPassiveUpgradeRewardInfo(int _selectedUpgradeIndex)
@@ -68,6 +68,9 @@ public class PassiveUpgradeSummaryUI : MonoBehaviour
 
     public void OnClick_Continue()
     {
+
+        ServiceManager.Instance.soundManager.PlayButtonClickSound();
+
         for (int i = 0; i < UIManager.Instance.ui_PassiveUpgrade.ui_PassiveUpgradeSelection.all_UpgradeGlowBG.Length; i++)
         {
             UIManager.Instance.ui_PassiveUpgrade.ui_PassiveUpgradeSelection.all_UpgradeGlowBG[i].gameObject.SetActive(false);
