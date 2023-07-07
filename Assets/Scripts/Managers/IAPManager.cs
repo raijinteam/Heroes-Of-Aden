@@ -14,10 +14,8 @@ public class IAPManager : MonoBehaviour, IStoreListener
     
     public static string[] Products =
     {
-        "com.shubham.HeroesofAden.NoAds" , "com.subham.HeroesofAden.SpecialItem" ,
-        "com.shubham.HeroesofAden.GemsPack1" , "com.shubham.HeroesofAden.GemsPack2" , "com.shubham.HeroesofAden.GemsPack3" , "com.shubham.HeroesofAden.GemsPack4" , "com.shubham.HeroesofAden.GemsPack5" ,
-         "com.shubham.HeroesofAden.EnergyPack1" , "com.shubham.HeroesofAden.EnergyPack2" ,
-        "com.shubham.HeroesofAden.EnergyPack3" , "com.shubham.HeroesofAden.EnergyPack4" , "com.shubham.HeroesofAden.EnergyPack5"
+        "com.armageddonstudio.heroesofaden.SpecialItem" ,
+        "com.armageddonstudio.heroesofaden.GemsPack1" , "com.armageddonstudio.heroesofaden.GemsPack2" , "com.armageddonstudio.heroesofaden.GemsPack3" , "com.armageddonstudio.heroesofaden.GemsPack4" , "com.armageddonstudio.heroesofaden.GemsPack5"
     };
 
    
@@ -99,12 +97,7 @@ public class IAPManager : MonoBehaviour, IStoreListener
         {
             Debug.Log("BuyProductID FAIL. Not initialized.");
         }
-
-
-
     }
-
-
 
     public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
     {
@@ -174,42 +167,6 @@ public class IAPManager : MonoBehaviour, IStoreListener
             Debug.Log("Add Gems Ads manager" + 2500);
             Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
         }
-        else if (String.Equals(args.purchasedProduct.definition.id, Products[7], StringComparison.Ordinal))
-        {
-            //Add Energy PAck 1
-            ServiceManager.Instance.dataManager.IncreaseEnergy(10);
-            Debug.Log("Add Energy Ads manager" + 10);
-            Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-        }
-        else if (String.Equals(args.purchasedProduct.definition.id, Products[8], StringComparison.Ordinal))
-        {
-            //Add Energy Pack 2
-            ServiceManager.Instance.dataManager.IncreaseEnergy(50);
-            Debug.Log("Add Energy Ads manager" + 50);
-            Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-        }
-        else if (String.Equals(args.purchasedProduct.definition.id, Products[9], StringComparison.Ordinal))
-        {
-            //Add Energy Pack 3
-            ServiceManager.Instance.dataManager.IncreaseEnergy(100);
-            Debug.Log("Add Energy Ads manager" + 100);
-            Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-        }
-        else if (String.Equals(args.purchasedProduct.definition.id, Products[10], StringComparison.Ordinal))
-        {
-            //Add Energy Pack 4
-            ServiceManager.Instance.dataManager.IncreaseEnergy(500);
-            Debug.Log("Add Energy Ads manager" + 500);
-            Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-        }
-        else if (String.Equals(args.purchasedProduct.definition.id, Products[11], StringComparison.Ordinal))
-        {
-            //Add Energy Pack 5
-            ServiceManager.Instance.dataManager.IncreaseEnergy(1000);
-            Debug.Log("Add Energy Ads manager" + 1000);
-            Debug.Log(string.Format("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
-        }
-
         else
         {
             Debug.Log(string.Format("ProcessPurchase: FAIL. Unrecognized product: '{0}'", args.purchasedProduct.definition.id));

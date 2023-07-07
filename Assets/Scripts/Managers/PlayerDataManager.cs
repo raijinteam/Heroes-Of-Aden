@@ -71,13 +71,13 @@ public class PlayerDataManager : MonoBehaviour
 
     public bool HasEnoughGemsForUpgradePlayer(int _playerIndex)
     {
-        /*if(DataManager.Instance.totalGems >= all_CharchterData[_playerIndex].upgradeAmount[all_CharchterData[_playerIndex].level])
+        if (ServiceManager.Instance.dataManager.totalGems > all_CharchterData[_playerIndex].upgradeAmount[all_CharchterData[_playerIndex].level])
         {
             return true;
         }
-        return false;*/
+        return false;
 
-        return ServiceManager.Instance.dataManager.totalGems > all_CharchterData[_playerIndex].upgradeAmount[all_CharchterData[_playerIndex].level] ? true : false;
+        //return ServiceManager.Instance.dataManager.totalGems > all_CharchterData[_playerIndex].upgradeAmount[all_CharchterData[_playerIndex].level] ? true : false;
     }
 
 
