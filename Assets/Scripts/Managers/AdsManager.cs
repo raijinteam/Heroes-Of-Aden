@@ -238,7 +238,6 @@ public class AdsManager : MonoBehaviour
     {
         shouldBeRewarded = false;
         Debug.Log("Show Reward");
-        GameManager.Instance.text.text = "Show Reward";
         rewardedAd.Show((Reward reward) => { });
     }
 
@@ -256,7 +255,6 @@ public class AdsManager : MonoBehaviour
     private void UserWatchedFullAd()
 	{
         Debug.Log("User Watch full ad");
-        GameManager.Instance.text.text = "User watch full ad";
         shouldBeRewarded = true;
 	}
 
@@ -268,7 +266,6 @@ public class AdsManager : MonoBehaviour
             {
                 //Give Coins As reward
                 Debug.Log("Coin Based Reward");
-                GameManager.Instance.text.text = "Coin Based Reward";
                 ServiceManager.Instance.dataManager.IncreaseCoins(UIManager.Instance.ui_Shop.all_CoinsAmount[0]);
             }
 
@@ -276,7 +273,6 @@ public class AdsManager : MonoBehaviour
             {
                 //Give Double Coins as reward
                 Debug.Log("Show Ads For Double Coin");
-                GameManager.Instance.text.text = "Show Ads For Double Coin";
                 UIManager.Instance.ui_GameOver.txt_collectedCoins.text = (GameManager.Instance.coinsCollectedInThisRound * 2).ToString();
                 ServiceManager.Instance.dataManager.IncreaseCoins(GameManager.Instance.coinsCollectedInThisRound * 2);
             }
@@ -285,7 +281,6 @@ public class AdsManager : MonoBehaviour
             {
                 //Give energy As reward
                 Debug.Log("Show Ads For ENergy");
-                GameManager.Instance.text.text = "Show Ads For ENergy";
                 ServiceManager.Instance.dataManager.IncreaseEnergy(UIManager.Instance.ui_Shop.all_EnergyAmount[0]);
             }
 
@@ -293,7 +288,6 @@ public class AdsManager : MonoBehaviour
             {
                 //give revive as reward
                 Debug.Log("Show Reward Ad");
-                GameManager.Instance.text.text = "Show Reward Ad";
                 GameManager.Instance.isGameRunning = true;
                 GameManager.Instance.player.gameObject.SetActive(true);
                 GameManager.Instance.GiveAllPointsAndCoinOnRevive();

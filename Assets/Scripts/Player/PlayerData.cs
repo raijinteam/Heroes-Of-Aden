@@ -242,6 +242,7 @@ public class PlayerData : MonoBehaviour
 
 	public int GetMyPowerupLevel(int _powerUpIndex)
 	{
+		Debug.Log("Power up Index" + _powerUpIndex) ;
 		return all_Powerups[_powerUpIndex].currentLevel;
 	}
 
