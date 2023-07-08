@@ -38,9 +38,14 @@ public class HomePanelUI : MonoBehaviour
     {
         ServiceManager.Instance.soundManager.PlayButtonClickSound();
 
-        if(!(PlayerPrefs.GetInt(PlayerPrefsData.KEY_ENERGY) > requireEnergyToStart))
+        if(!(ServiceManager.Instance.dataManager.totalEnergy > requireEnergyToStart))
         {
             UIManager.Instance.SpawnPopUpBox("Not Enough Energy");
+            UIManager.Instance.ui_Navigation.OnClick_MenuActivate(0);
+
+            UIManager.Instance.ui_Shop.gameObject.SetActive(true);
+            Vector2 position = new Vector2(0, 2000);
+            UIManager.Instance.ui_Shop.ScrollDownAnimation(position);
             return;
         }
 

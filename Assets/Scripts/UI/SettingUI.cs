@@ -86,6 +86,7 @@ public class SettingUI : MonoBehaviour
     {
         ServiceManager.Instance.soundManager.PlayButtonClickSound();
 
+        Application.OpenURL("https://play.google.com/store/apps/details?id=com.armageddonstudio.heroesofadenn");
         Debug.Log("Rate US");
         ServiceManager.Instance.dataManager.HideRateUSBox();
         ServiceManager.Instance.dataManager.CheckForRateusShow();

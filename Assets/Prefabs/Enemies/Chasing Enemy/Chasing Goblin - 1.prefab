@@ -53,6 +53,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &112490670238985754
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +328,7 @@ MonoBehaviour:
   spriteTransform: {fileID: 5978704647556911727}
   anim: {fileID: 1473317615}
   isPlayerInRange: 0
-  flt_MoveSpeed: 2.2
+  flt_MoveSpeed: 2
   damage: 5
   flt_AttackRate: 0.4
 --- !u!114 &7885315767993495620

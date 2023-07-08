@@ -16,15 +16,6 @@ public class LightningNovaController : MonoBehaviour
     private string tag_Enemy = "Enemy";
 
 
-    private void Start()
-    {
-        if (ServiceManager.Instance.dataManager.isSFXOn)
-        {
-            audioSource.Play();
-        }
-    }
-
-
     public void SetData(int _damage)
 	{
         damage = _damage;
@@ -35,6 +26,11 @@ public class LightningNovaController : MonoBehaviour
 
     private void DoDamageInRadius()
 	{
+        if (ServiceManager.Instance.dataManager.isSFXOn)
+        {
+            audioSource.Play();
+        }
+
         ps_NovaEffect.Play();
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius, enemyLayer);
         // Check if a collision occurred

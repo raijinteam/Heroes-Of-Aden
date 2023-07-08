@@ -14,8 +14,9 @@ public class IAPManager : MonoBehaviour, IStoreListener
     
     public static string[] Products =
     {
-        "com.armageddonstudio.heroesofaden.specialItem" ,
-        "com.armageddonstudio.heroesofaden.gemsPack1" , "com.armageddonstudio.heroesofaden.gemsPack2" , "com.armageddonstudio.heroesofaden.gemsPack3" , "com.armageddonstudio.heroesofaden.gemsPack4" , "com.armageddonstudio.heroesofaden.gemsPack5"
+        "com.armageddonstudio.heroesofadenn.specialitem" ,
+        "com.armageddonstudio.heroesofadenn.gemspack1" , "com.armageddonstudio.heroesofadenn.gemspack2" , "com.armageddonstudio.heroesofadenn.gemspack3" , "com.armageddonstudio.heroesofadenn.gemspack4" ,
+        "com.armageddonstudio.heroesofadenn.gemspack5"
     };
 
    

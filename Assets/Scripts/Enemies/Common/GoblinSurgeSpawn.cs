@@ -28,7 +28,7 @@ public class GoblinSurgeSpawn : MonoBehaviour
 
 	public void GoblinSurgeHandling()
 	{
-		if(GameManager.Instance.currentPlayerLevel < 7)
+		if(GameManager.Instance.currentPlayerLevel < 9)
 		{
 			return; // start spawn after level 5
 		}

@@ -640,8 +640,25 @@ public class GameManager : MonoBehaviour
         if (!isPlayerTakeRevive)
         {
 			//Show Revive Screen
-			UIManager.Instance.ui_Revive.gameObject.SetActive(true);
-			isPlayerTakeRevive = true;
+			if (ServiceManager.Instance.adsManager.IsRewardAdReady())
+			{
+				UIManager.Instance.ui_Revive.gameObject.SetActive(true);
+				isPlayerTakeRevive = true;
+			}
+			else
+			{
+				//Destory all things
+				GameObject[] all_PlayerPowers = GameObject.FindGameObjectsWithTag(tag_PlayerPowers);
+
+				foreach (GameObject pp in all_PlayerPowers)
+				{
+					Destroy(pp);
+				}
+
+				UIManager.Instance.ui_Gameplay.gameObject.SetActive(false);
+
+				UIManager.Instance.ui_GameOver.gameObject.SetActive(true);
+			}
         }
         else
         {
