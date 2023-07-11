@@ -234,6 +234,7 @@ public class DataManager : MonoBehaviour
         PlayerPrefs.SetInt(PlayerPrefsData.KEY_UNLOCK_PLAYER + _selectedIndex, 1);
         PlayerPrefs.SetInt(PlayerPrefsData.KEY_PLAYER_LEVEL + _selectedIndex, 1);
         PlayerDataManager.Instance.CheckIsPlayerUnlocked();
+        PlayerDataManager.Instance.SetCharacterLevel();
     }
 
     public void NoAds()

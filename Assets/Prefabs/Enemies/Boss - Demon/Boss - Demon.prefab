@@ -179,6 +179,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1958934124387815354
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,12 +629,12 @@ SpriteRenderer:
   m_SortingLayerID: 1131331489
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e5827e008d3878c4689ae9ac7fcd7d7a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 63d61454d9a79a141aef9a4e6ab746d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 34.002552, y: 13.000001}
+  m_Size: {x: 28.000002, y: 8.503907}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

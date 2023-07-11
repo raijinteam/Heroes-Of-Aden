@@ -62,7 +62,7 @@ public class PlayerData : MonoBehaviour
 	public void UpdateMaxHealthForPlayer(float _percentage)
 	{
 		maxHealthIncreasePercent += _percentage;
-		
+
 		float baseMaxHealth = PlayerDataManager.Instance.all_CharchterData[ServiceManager.Instance.dataManager.activePlayerIndex].GetPlayerHealth();
 
 
@@ -153,6 +153,8 @@ public class PlayerData : MonoBehaviour
 
 	private void CalculatePlayerFirerate()
 	{
+		Debug.Log("INDEX: " + ServiceManager.Instance.dataManager.activePlayerIndex);
+
 		float baseFirerate = PlayerDataManager.Instance.all_CharchterData[ServiceManager.Instance.dataManager.activePlayerIndex].GetPlayerFirerate();
 		fireRateReducePercentage = PassiveUpgradeManager.Instance.all_PassiveData[0].GetMyPercentage();
 
@@ -242,7 +244,7 @@ public class PlayerData : MonoBehaviour
 
 	public int GetMyPowerupLevel(int _powerUpIndex)
 	{
-		Debug.Log("Power up Index" + _powerUpIndex) ;
+		Debug.Log("Power up Index" + _powerUpIndex);
 		return all_Powerups[_powerUpIndex].currentLevel;
 	}
 

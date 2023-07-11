@@ -45,7 +45,8 @@ public class GoblinSurgeSpawn : MonoBehaviour
 			{
 				isGoblinSurgeOn = true;
 				currentSpawnCount = 0;
-				maxGoblinSpawnCount = Random.Range(10, 20);
+				maxGoblinSpawnCount = Random.Range(30, 60);
+				currentTimePassed = 0f;
 			}
 		}
 		

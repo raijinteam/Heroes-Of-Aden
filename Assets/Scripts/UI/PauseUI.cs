@@ -22,7 +22,9 @@ public class PauseUI : MonoBehaviour
             all_ActiveUpgradeSlots[i].isSlotHasData = true;
             all_ActiveUpgradeSlots[i].txt_level.gameObject.SetActive( true);
             all_ActiveUpgradeSlots[i].img_Icon.sprite = GameManager.Instance.player.all_Powerups[GameManager.Instance.list_ActivePowerUpSelectedIndexes[i]].GetMyIcon();
-            all_ActiveUpgradeSlots[i].txt_level.text = GameManager.Instance.player.all_Powerups[GameManager.Instance.list_ActivePowerUpSelectedIndexes[i]].currentLevel.ToString();
+
+            int currentLevel = GameManager.Instance.player.all_Powerups[GameManager.Instance.list_ActivePowerUpSelectedIndexes[i]].currentLevel + 1;
+            all_ActiveUpgradeSlots[i].txt_level.text = currentLevel.ToString();
         }
 
         for (int i = 0; i < all_ActiveUpgradeSlots.Length; i++)
@@ -42,7 +44,9 @@ public class PauseUI : MonoBehaviour
             all_PassiveUpgradeSlots[i].isSlotHasData = true;
             all_PassiveUpgradeSlots[i].img_Icon.sprite = GameManager.Instance.player.all_Powerups[GameManager.Instance.list_PassivePowerUpSelectedIndexes[i]].GetMyIcon();
             all_PassiveUpgradeSlots[i].txt_level.gameObject.SetActive(true);
-            all_PassiveUpgradeSlots[i].txt_level.text = GameManager.Instance.player.all_Powerups[GameManager.Instance.list_PassivePowerUpSelectedIndexes[i]].currentLevel.ToString();
+
+            int currentLevel = GameManager.Instance.player.all_Powerups[GameManager.Instance.list_PassivePowerUpSelectedIndexes[i]].currentLevel + 1;
+            all_PassiveUpgradeSlots[i].txt_level.text = currentLevel.ToString();
         }
 
         for (int i = 0; i < all_PassiveUpgradeSlots.Length; i++)

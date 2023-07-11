@@ -38,7 +38,7 @@ public class HomePanelUI : MonoBehaviour
     {
         ServiceManager.Instance.soundManager.PlayButtonClickSound();
 
-        if(!(ServiceManager.Instance.dataManager.totalEnergy > requireEnergyToStart))
+        if(!(ServiceManager.Instance.dataManager.totalEnergy >= requireEnergyToStart))
         {
             UIManager.Instance.SpawnPopUpBox("Not Enough Energy");
             UIManager.Instance.ui_Navigation.OnClick_MenuActivate(0);

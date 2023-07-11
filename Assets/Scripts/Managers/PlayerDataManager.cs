@@ -22,8 +22,13 @@ public class PlayerDataManager : MonoBehaviour
     {
         CheckIsPlayerUnlocked();
 
+        SetCharacterLevel();
+       
+    }
 
-        for(int i =0; i < all_CharchterData.Length; i++)
+    public void SetCharacterLevel()
+	{
+        for (int i = 0; i < all_CharchterData.Length; i++)
         {
             all_CharchterData[i].level = PlayerPrefs.GetInt(PlayerPrefsData.KEY_PLAYER_LEVEL + i);
         }

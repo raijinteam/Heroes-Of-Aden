@@ -38,6 +38,7 @@ public class CharchterData : MonoBehaviour
 
     public float GetPlayerFirerate()
     {
+        Debug.Log("Level : " + level);
         return firerate[level - 1];
     }
 
